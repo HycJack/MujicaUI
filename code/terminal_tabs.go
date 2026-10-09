@@ -144,11 +144,12 @@ func terminalTabsTab(c *ui.Context, tab ui.Element, t TerminalTab, on bool, st *
 		fg = k.Text
 	}
 	internal.Ease(tab, core.Motion(c, theme.StateDuration), fg)
+	focusVisible := tab.FocusVisible()
 	tab.FocusRing(false).DrawOver(func(p *ui.Painter, r ui.Rect) {
 		if on {
 			p.Fill(ui.Rect{X: r.X, Y: r.Y + r.H - 2, W: r.W, H: 2}, k.AccentText, 0)
 		}
-		if tab.FocusVisible() {
+		if focusVisible {
 			internal.FocusRing(p, r, theme.ControlRadius, k.Focus)
 		}
 	})

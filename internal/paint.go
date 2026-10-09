@@ -15,10 +15,13 @@ func FocusRing(p *ui.Painter, r ui.Rect, radius float32, c ui.Color) {
 	p.Stroke(ui.Rect{X: r.X - o, Y: r.Y - o, W: r.W + 2*o, H: r.H + 2*o}, c, radius+o, theme.FocusWidth)
 }
 
-// Ring replaces MyGo's ring on e with the MujicaUI ring.
+// Ring replaces MyGo's ring on e with the MujicaUI ring. The draw
+// callback runs in the paint pass, after the build pass has ended, so
+// it must not query the element: FocusVisible is read at build time.
 func Ring(e ui.Element, c ui.Color, radius float32) ui.Element {
+	visible := e.FocusVisible()
 	return e.FocusRing(false).DrawOver(func(p *ui.Painter, r ui.Rect) {
-		if e.FocusVisible() {
+		if visible {
 			FocusRing(p, r, radius, c)
 		}
 	})

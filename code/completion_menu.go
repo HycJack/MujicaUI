@@ -69,9 +69,12 @@ func CompletionMenu(c *ui.Context, anchor ui.Element, open *bool, items []Comple
 		s.Selected = (s.Selected + d + len(items)) % len(items)
 		s.rows.ScrollIntoView(s.Selected)
 	}
-	// Take the menu keys before the editor does.
+	// Take the menu keys before the editor does. The callback runs in
+	// the input phase, after the build pass has ended: it must not
+	// query elements, only the values captured here.
+	disabled := opts.Disabled || anchor.IsDisabled()
 	anchor.HandleInput(func(ev ui.InputEvent) bool {
-		if ev.Kind != ui.InputKeyDown || ev.Mods != 0 || !*open || anchor.IsDisabled() {
+		if ev.Kind != ui.InputKeyDown || ev.Mods != 0 || !*open || disabled {
 			return false
 		}
 		switch ev.Key {

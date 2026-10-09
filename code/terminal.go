@@ -94,8 +94,16 @@ func Terminal(c *ui.Context, s *TerminalState, opts TerminalOptions) ui.Element 
 		return TerminalPos{Line: len(s.back) - s.offset + row, Col: col}
 	}
 	anchor := ui.Local(e, "terminal.anchor", func() TerminalPos { return TerminalPos{} })
+	// The callback runs in the input phase, after the build pass has
+	// ended: no element queries inside, only captured values, the
+	// press state kept in local storage, and the handle for focus
+	// requests.
+	disabled := e.IsDisabled()
+	held := ui.Local(e, "terminal.held", func() bool { return false })
+	var focus ui.Handle
+	e.Bind(&focus)
 	e.HandleInput(func(ev ui.InputEvent) bool {
-		if e.IsDisabled() {
+		if disabled {
 			return false
 		}
 		switch ev.Kind {
@@ -117,15 +125,19 @@ func Terminal(c *ui.Context, s *TerminalState, opts TerminalOptions) ui.Element 
 			if ev.Button != 0 {
 				return false
 			}
-			e.Focus()
+			focus.RequestFocus(c)
+			*held = true
 			*anchor = cell(ev.X, ev.Y)
 			s.selOn = false
 			return true
 		case ui.InputPointerMove:
-			if e.Pressed() {
+			if *held {
 				s.Select(*anchor, cell(ev.X, ev.Y))
 			}
 			return true
+		case ui.InputPointerUp:
+			*held = false
+			return false
 		}
 		return false
 	})
@@ -152,12 +164,14 @@ func terminalKey(c *ui.Context, s *TerminalState, ev ui.InputEvent, send func(st
 	switch {
 	case ev.Mods == clip && ev.Key == ui.KeyC:
 		if t := s.Selection(); t != "" {
-			c.WriteClipboard(t)
+			// Input phase: the frame-scoped clipboard calls no-op
+			// here, the window services do not.
+			c.Services().WriteClipboard(t)
 			slog.Debug("mujica: terminal copy", "runes", len([]rune(t)))
 		}
 		return true
 	case ev.Mods == clip && ev.Key == ui.KeyV:
-		if t := c.ReadClipboard(); t != "" {
+		if t := c.Services().ReadClipboard(); t != "" {
 			send(t)
 		}
 		return true

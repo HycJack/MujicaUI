@@ -149,8 +149,11 @@ func renameSelection(c *ui.Context, in ui.Element, st *renameState) {
 			p.Fill(ui.Rect{X: r.X, Y: r.Y + 2, W: w, H: r.H - 4}, k.Selection, 2)
 		})
 	}
+	// The callback runs in the input phase, after the build pass has
+	// ended: no element queries inside, only captured values.
+	inDisabled := in.IsDisabled()
 	in.HandleInput(func(ev ui.InputEvent) bool {
-		if !st.stemSel || in.IsDisabled() {
+		if !st.stemSel || inDisabled {
 			return false
 		}
 		switch {

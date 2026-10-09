@@ -85,13 +85,17 @@ func CallStack(c *ui.Context, threads []DebugThread, s *CallStackState, opts Cal
 			s.selected = was
 			return
 		}
+		// The list applies its pending input (arrows, clicks) when
+		// queried; Changed reports whether the choice moved this
+		// pass. Read the chosen row only afterwards.
+		changed := list.Changed()
 		if s.selected < 0 || s.selected >= len(s.flat) {
 			return
 		}
 		r := s.flat[s.selected]
 		t := threads[r.thread]
 		switch {
-		case r.frame >= 0 && s.selected != was:
+		case r.frame >= 0 && changed:
 			s.Current = t.Frames[r.frame].ID
 			s.seen, res = s.Current, core.NewChoiceResult(res.Element, true)
 			slog.Debug("mujica: call_stack frame", "thread", t.ID, "depth", r.frame)
