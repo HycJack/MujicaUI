@@ -125,11 +125,7 @@ func sidebarGroup(c *ui.Context, title string, open *bool, section bool, depth i
 	d := core.Density(c)
 	u := d.Unit()
 	ui.Column(c).Gap(u*0.5).Shrink(0).Padding(0, 0, 0, float32(depth)*u*4).Children(func() {
-		was := *open
 		tr := ui.CollapsibleBase(c, open).Trigger
-		if *open != was {
-			slog.Debug("mujica: sidebar group toggle", "group", title, "open", *open)
-		}
 		tr.AlignItems(ui.Center).Gap(u*2).Padding(u, u*2).Radius(theme.ControlRadius).Label(title).Cursor(ui.CursorPointer)
 		if section {
 			tr.Margin(u*2, 0, 0, 0).FontWeight(600).FontSize(core.FontSize(c, theme.CaptionSize))
@@ -139,6 +135,10 @@ func sidebarGroup(c *ui.Context, title string, open *bool, section bool, depth i
 		internal.Ring(tr, k.Focus, theme.ControlRadius)
 		if tr.Hovered() {
 			tr.Background(k.SurfaceHover)
+		}
+		// v0.3 applies the toggle lazily; query the trigger before reading *open.
+		if tr.Changed() {
+			slog.Debug("mujica: sidebar group toggle", "group", title, "open", *open)
 		}
 		fg := k.Text
 		if section {

@@ -213,4 +213,6 @@ func taskListFilter(c *ui.Context, value *int, labels []string) {
 			seg.Children(func() { ui.Text(c, label).SingleLine() })
 		}
 	})
+	// v0.3 applies the choice lazily; query the track before the caller reads *value.
+	parts.Track.Changed()
 }

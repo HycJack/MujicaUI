@@ -25,6 +25,7 @@ func TestMarketChartsStatesDisabledAndBoundaries(t *testing.T) {
 			status := data.DataReady
 			disabled, empty := false, false
 			var r ChartResult
+			boxH := float32(0)
 			tt := ui.NewTester(func(c *ui.Context) {
 				core.Use(c, core.Settings{Density: theme.Compact})
 				ui.Column(c).Disabled(disabled).Width(600).Children(func() {
@@ -75,6 +76,9 @@ func TestMarketChartsStatesDisabledAndBoundaries(t *testing.T) {
 						}
 						r = CandlestickChart(c, candles, &v, opts)
 					}
+					if h := r.Element.Bounds().H; h > 0 {
+						boxH = h
+					}
 				})
 			}, 620, 350)
 			for range 10 {
@@ -105,13 +109,13 @@ func TestMarketChartsStatesDisabledAndBoundaries(t *testing.T) {
 			}
 			disabled = false
 			tt.Frame()
-			height := r.Element.Bounds().H
+			height := boxH
 			for _, st := range []data.DataStatus{data.DataLoading, data.DataFailed, data.DataReady} {
 				status = st
 				empty = st == data.DataReady
 				tt.Frame()
-				if r.Point != -1 || r.Element.Bounds().H != height {
-					t.Fatalf("state %v: point %d height %v want %v", st, r.Point, r.Element.Bounds().H, height)
+				if r.Point != -1 || boxH != height {
+					t.Fatalf("state %v: point %d height %v want %v", st, r.Point, boxH, height)
 				}
 			}
 		})

@@ -41,8 +41,8 @@ func ChoiceChips[T comparable](c *ui.Context, value *[]T, items []ToggleItem[T],
 			on := slices.Contains(*value, it.Value)
 			pressed := on
 			b := ui.ToggleBase(c, &pressed).Disabled(it.Disabled)
-			// The base took input before Disabled applied: drop a disabled chip's press.
-			if b.Changed() && !b.IsDisabled() && toggleGroupApply(value, it.Value, pressed, ToggleGroupOptions{Multiple: opts.Multiple, AllowEmpty: true}) {
+			// MyGo defers the toggle to a response query; a disabled chip takes none.
+			if b.Changed() && toggleGroupApply(value, it.Value, pressed, ToggleGroupOptions{Multiple: opts.Multiple, AllowEmpty: true}) {
 				changed, on = true, pressed
 			}
 			choiceChipLook(c, k, d, b, on, it)

@@ -145,7 +145,7 @@ func ShortcutRecorder(c *ui.Context, value *Shortcut, opts ShortcutRecorderOptio
 		}
 		if st.recording {
 			b.HandleInput(func(ev ui.InputEvent) bool {
-				if b.IsDisabled() {
+				if disabled { // captured at build time; input handlers run outside the build pass
 					return false
 				}
 				return shortcutRecorderKey(st, ev)

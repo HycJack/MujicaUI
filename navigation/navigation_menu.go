@@ -119,11 +119,12 @@ func navigationMenuTop(c *ui.Context, l NavigationLink, path string, push func(s
 		fg = k.Text
 	}
 	internal.Ease(b, core.Motion(c, theme.StateDuration), fg)
+	visible := b.FocusVisible() // captured at build time; draw closures run after it
 	b.FocusRing(false).DrawOver(func(p *ui.Painter, r ui.Rect) {
 		if on {
 			p.Fill(ui.Rect{X: r.X + u*3, Y: r.Y + r.H - 2, W: r.W - u*6, H: 2}, k.AccentText, 1)
 		}
-		if b.FocusVisible() {
+		if visible {
 			internal.FocusRing(p, r, theme.ControlRadius, k.Focus)
 		}
 	})
@@ -142,6 +143,7 @@ func navigationMenuTop(c *ui.Context, l NavigationLink, path string, push func(s
 		}
 		return
 	}
+	wasOpen := *open
 	if b.Clicked() {
 		*open = !*open
 	} else if b.Shortcut(0, ui.KeyDown) {
@@ -157,6 +159,10 @@ func navigationMenuTop(c *ui.Context, l NavigationLink, path string, push func(s
 			navigationMenuPanel(c, l.Items, path, open, push)
 		})
 	})
+	// The popover eats Escape and the closing press without a focus target.
+	if wasOpen && !*open && !b.Focused() {
+		b.Focus()
+	}
 }
 
 // navigationMenuPanel lists a group's links, its subgroups under serif headings.

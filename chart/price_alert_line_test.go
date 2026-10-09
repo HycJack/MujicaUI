@@ -14,17 +14,18 @@ func TestPriceAlertLineDragAndTrigger(t *testing.T) {
 	alerts := []PriceAlertLine{{ID: "a", Price: 100, Label: "Buy"}}
 	var fired []string
 	var res ChartResult
+	var st *mktState
 	_ = res
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		res = CandlestickChart(c, candles, &view, CandlestickOptions{Frame: ChartFrame{Label: "BTC"}, Alerts: &alerts,
 			OnAlert: func(a PriceAlertLine, last Candle) { fired = append(fired, a.ID) }})
+		st = mktState0(res)
 	}, 800, 400)
 	if !tt.HasText("BTC") {
 		t.Fatal("not built")
 	}
 	// Drag the line from its own y, as painted.
-	st := mktState0(res)
 	plot := st.plot
 	y := st.ys.Map(100)
 	tt.Press(plot.X+100, y)

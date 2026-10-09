@@ -55,11 +55,15 @@ func MultiSelect[T comparable](c *ui.Context, values *[]T, options []SelectOptio
 	SelectField(c, tr, *open, func() {
 		MultiSelectTags(c, values, options, opts)
 	})
-	ui.PopoverBase(c, tr, open, func(panel ui.Element) {
+	panel := ui.PopoverBase(c, tr, open, func(panel ui.Element) {
 		SelectPanel(c, panel)
 		panel.MinWidth(tr.Bounds().W).MaxWidth(max(tr.Bounds().W, 320))
 		multiSelectPopup(c, k, values, options, query, opts)
 	})
+	// A popup closing with the focus inside it leaves it nothing to hold; give it back to the field.
+	if panel.Valid() && !*open && panel.FocusWithin() {
+		tr.Focus()
+	}
 	changed := !slices.Equal(before, *values)
 	if changed {
 		slog.Debug("mujica: multi select changed", "label", opts.Label, "count", len(*values))

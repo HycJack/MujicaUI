@@ -75,6 +75,7 @@ func VerticalSlider(c *ui.Context, value *float64, opts VerticalSliderOptions) c
 		slog.Debug("mujica: vertical_slider changed", "label", opts.Label, "value", *value)
 	}
 	hot := s.Hovered() || held
+	focusVisible, focused := s.FocusVisible(), s.Focused()
 	v := *value
 	s.Draw(func(p *ui.Painter, r ui.Rect) {
 		x := r.X + core.Density(c).ControlHeight()/2
@@ -90,8 +91,8 @@ func VerticalSlider(c *ui.Context, value *float64, opts VerticalSliderOptions) c
 				p.Text(x+SliderTrack/2+10, my-th/2, m.Label, size, k.TextMuted)
 			}
 		}
-		SliderThumbPaint(p, k, x, y(r, v), hot, s.FocusVisible())
-		if opts.ShowValue && (hot || s.Focused()) {
+		SliderThumbPaint(p, k, x, y(r, v), hot, focusVisible)
+		if opts.ShowValue && (hot || focused) {
 			sliderBubblePaint(p, k, x, y(r, v), format(v), size)
 		}
 	})

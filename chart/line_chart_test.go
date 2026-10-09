@@ -14,6 +14,7 @@ import (
 
 type chartHarness struct {
 	res      ChartResult
+	box      ui.Rect
 	changes  int
 	disabled bool
 	build    func(c *ui.Context) ChartResult
@@ -23,6 +24,10 @@ func (h *chartHarness) view(c *ui.Context) {
 	core.Use(c, core.Settings{Mode: core.Light})
 	ui.Column(c).Padding(16).Width(480).Disabled(h.disabled).Children(func() {
 		h.res = h.build(c)
+		h.box = h.res.Element.Bounds()
+		if h.box.W == 0 && h.box.H == 0 {
+			c.Invalidate() // the first build has no previous-frame box yet
+		}
 		if h.res.Changed() {
 			h.changes++
 		}
@@ -84,7 +89,7 @@ func TestLineChartHoverAndToggle(t *testing.T) {
 		return r
 	}}
 	tt := ui.NewTester(h.view, 520, 420)
-	b := h.res.Element.Bounds()
+	b := h.box
 	// The plot spans 52..W-12; x 30 is three quarters across.
 	px := b.X + 52 + (b.W-64)*0.75
 	tt.Move(px, b.Y+b.H/2)
@@ -118,11 +123,11 @@ func TestLineChartTimeAxisAndStates(t *testing.T) {
 	if got := chartReadout(tt); !strings.HasPrefix(got, "2026-10-05 10:00:00 · ") {
 		t.Fatalf("time readout %q", got)
 	}
-	heights = append(heights, h.res.Element.Bounds().H)
+	heights = append(heights, h.box.H)
 	for _, st := range []data.DataStatus{data.DataLoading, data.DataFailed} {
 		status = st
 		tt.Frame()
-		heights = append(heights, h.res.Element.Bounds().H)
+		heights = append(heights, h.box.H)
 	}
 	if !tt.HasText("Retry") || heights[0] != heights[1] || heights[1] != heights[2] {
 		t.Fatalf("states changed size: %v", heights)

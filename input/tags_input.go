@@ -168,8 +168,9 @@ func TagsInput(c *ui.Context, tags *[]string, opts TagsInputOptions) TagsInputPa
 		border = k.ControlBorder.Mix(k.Text, 0.25)
 	}
 	box.Border(theme.BorderWidth, border)
+	focus := in.Focused()
 	box.DrawOver(func(p *ui.Painter, r ui.Rect) {
-		if in.Focused() {
+		if focus {
 			internal.FocusRing(p, r, theme.ControlRadius, k.Focus)
 		}
 	})

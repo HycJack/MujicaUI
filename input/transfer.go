@@ -148,8 +148,8 @@ func transferPanel(c *ui.Context, st *transferState, side int, title string, ite
 		head.Children(func() {
 			all := checked > 0 && checked == enabled
 			box := ui.CheckboxBase(c, &all).Size(theme.MinHitSize, theme.MinHitSize).Justify(ui.Center).Label(fmt.Sprintf(core.Msg(c, "transfer.all"), title)).Disabled(enabled == 0)
-			transferMark(c, box, all, checked > 0 && !all)
 			box.Description(transferPartial(c, checked, enabled))
+			// MyGo defers the toggle to a response query; land it before drawing the mark.
 			if box.Changed() {
 				for _, it := range shown {
 					if !it.Disabled {
@@ -157,6 +157,7 @@ func transferPanel(c *ui.Context, st *transferState, side int, title string, ite
 					}
 				}
 			}
+			transferMark(c, box, all, checked > 0 && !all)
 			ui.Text(c, title).Font(theme.SerifFont).FontWeight(600).TextColor(k.Text).Grow(1)
 			ui.Text(c, fmt.Sprintf("%d / %d", checked, len(items))).TextColor(k.TextMuted).FontSize(core.FontSize(c, theme.CaptionSize)).FontFeatures("tnum")
 		})
@@ -178,6 +179,7 @@ func transferPanel(c *ui.Context, st *transferState, side int, title string, ite
 				ui.Box(c).Key(it.ID).Children(func() {
 					cb := ui.CheckboxBase(c, &on).Gap(d.Unit()*2).MinHeight(max(d.ControlHeight()-d.Unit(), theme.MinHitSize)).Padding(0, d.Unit()*2).
 						Radius(theme.ControlRadius).FillWidth().Disabled(it.Disabled)
+					// MyGo defers the toggle to a response query; land it before drawing the mark.
 					if cb.Changed() {
 						st.checked[it.ID] = on
 					}

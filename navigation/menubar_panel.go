@@ -126,14 +126,22 @@ func (m *menubarRun) panel(l int, x, y float32, parent ui.Rect) (ui.Element, ui.
 	return panel, anchor
 }
 
+// item builds one menu row. A disabled row must stay hit-testable: a
+// disabled element is skipped by hit testing, so its press would fall
+// through to the backdrop and close the menu. It is dimmed instead;
+// activate and the keyboard path skip disabled items.
 func (m *menubarRun) item(it MenubarItem, hl bool) ui.Element {
 	c := m.c
 	k := core.Tokens(c)
 	d := core.Density(c)
 	u := d.Unit()
 	name := menubarName(c, it)
+	fg := k.Text
+	if it.Disabled {
+		fg = k.TextMuted
+	}
 	row := ui.Row(c).AlignItems(ui.Center).Gap(u*2).MinHeight(d.ControlHeight()-4).Padding(0, u*2).
-		Radius(theme.ControlRadius).Label(name).TextColor(k.Text).Disabled(it.Disabled).Role(ui.RoleButton)
+		Radius(theme.ControlRadius).Label(name).TextColor(fg).Role(ui.RoleButton)
 	if hl {
 		row.Background(k.Selection)
 	}

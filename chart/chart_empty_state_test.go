@@ -19,24 +19,26 @@ func TestChartEmptyStateKeepsSizeAndRetries(t *testing.T) {
 		ui.Column(c).Width(400).Disabled(disabled).Children(func() {
 			r := ChartEmptyState(c, status, ChartEmptyStateOptions{Height: 180, Empty: "No hymns this week", Error: "The choir did not answer"})
 			el = r.Element
+			if h := el.Bounds().H; h > 0 {
+				heights = append(heights, h)
+			} else {
+				c.Invalidate() // the first build has no previous-frame box yet
+			}
 			if r.Changed() {
 				retries++
 			}
 		})
 	}, 440, 300)
-	heights = append(heights, el.Bounds().H)
 	if !tt.HasText("No hymns this week") {
 		t.Fatalf("empty: %q", tt.Texts())
 	}
 	status = data.DataLoading
 	tt.Frame()
-	heights = append(heights, el.Bounds().H)
 	if !tt.HasText("Loading") {
 		t.Fatalf("loading: %q", tt.Texts())
 	}
 	status = data.DataFailed
 	tt.Frame()
-	heights = append(heights, el.Bounds().H)
 	if err := tt.Click("Retry"); err != nil || retries != 1 || !tt.HasText("The choir did not answer") {
 		t.Fatalf("retry: %v %d", err, retries)
 	}

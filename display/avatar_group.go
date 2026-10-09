@@ -107,6 +107,8 @@ func avatarGroupMore(c *ui.Context, k theme.Tokens, open *bool, size, ring float
 				})
 			})
 		})
+		// Applies the deferred toggle before the caller reads *open.
+		b.Changed()
 	})
 	return b
 }

@@ -19,8 +19,9 @@ func (m *mktCore) input(plot ui.Element) {
 	n := len(m.candles)
 	room := m.room()
 	changed := false
+	disabled := plot.IsDisabled() // build time; input handlers run outside the build pass
 	plot.HandleInput(func(ev ui.InputEvent) bool {
-		if ev.Kind != ui.InputScroll || plot.IsDisabled() || ev.DY == 0 {
+		if ev.Kind != ui.InputScroll || disabled || ev.DY == 0 {
 			return false
 		}
 		f := 0.9

@@ -141,8 +141,9 @@ func slashMenuShow(c *ui.Context, composer input.InputResult, st *slashMenuState
 	}
 	st.pick = slashMenuNone
 	n := len(rows)
+	disabled := composer.Element.IsDisabled() // build time; input-phase hooks run outside the build pass
 	promptComposerHook(composer, func(ev ui.InputEvent) bool {
-		if composer.Element.IsDisabled() {
+		if disabled {
 			return true
 		}
 		if ev.Kind != ui.InputKeyDown || ev.Mods != 0 {

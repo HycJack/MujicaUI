@@ -62,7 +62,7 @@ func PromptComposer(c *ui.Context, value *string, opts PromptComposerOptions) in
 		}
 		ta := input.TextAreaOptions{Label: label, Placeholder: opts.Placeholder, MaxHeight: maxH,
 			Keys: func(ev ui.InputEvent) bool {
-				if r.Element.IsDisabled() {
+				if opts.Disabled { // captured at build time; input handlers run outside the build pass
 					return true
 				}
 				if opts.Composing && ev.Kind == ui.InputKeyDown {

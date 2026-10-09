@@ -35,8 +35,10 @@ func TestBasesBlockedByDisabledWrapper(t *testing.T) {
 	}
 }
 
-// TestComboboxBaseIgnoresDisabledWrapper shows why Combobox hands its base a copy: a focused one still takes typing.
-func TestComboboxBaseIgnoresDisabledWrapper(t *testing.T) {
+// TestComboboxBaseBlocksDisabledWrapper: since mygo v0.3 a wrapper's
+// Disabled blocks typing into a focused ComboboxBase (v0.2 ignored it,
+// which is why Combobox handed its base a copy of the value).
+func TestComboboxBaseBlocksDisabledWrapper(t *testing.T) {
 	q, off := "", false
 	tt := ui.NewTester(func(c *ui.Context) {
 		ui.Row(c).Disabled(off).Children(func() {
@@ -50,7 +52,7 @@ func TestComboboxBaseIgnoresDisabledWrapper(t *testing.T) {
 	off = true
 	tt.Type("a")
 	tt.Frame()
-	if q != "a" {
-		t.Fatalf("typing left %q; the wrapper now blocks it and Combobox can drop its copy", q)
+	if q != "" {
+		t.Fatalf("typing through a disabled wrapper changed the value to %q", q)
 	}
 }

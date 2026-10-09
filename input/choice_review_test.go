@@ -139,15 +139,19 @@ func TestChoiceHitAreas(t *testing.T) {
 func TestChoiceRowsFollowDensity(t *testing.T) {
 	for _, d := range []theme.Density{theme.Compact, theme.Default, theme.Comfortable} {
 		v, on := "apple", false
-		var sw ui.Element
+		var sw ui.Handle
+		var sc *ui.Context
+		var swEl ui.Element
 		tt := ui.NewTester(func(c *ui.Context) {
+			sc = c
 			core.Use(c, core.Settings{Density: d})
 			ui.Column(c).Padding(10).AlignItems(ui.Start).Children(func() {
-				sw = Switch(c, &on, "Wi-Fi", SwitchOptions{})
+				swEl = Switch(c, &on, "Wi-Fi", SwitchOptions{})
+				swEl.Bind(&sw)
 				Select(c, &v, selectTestOptions, SelectOptions{Label: "Fruit"})
 			})
 		}, 400, 500)
-		if h := sw.Bounds().H; h < d.ControlHeight() {
+		if h := sw.Bounds(sc).H; h < d.ControlHeight() {
 			t.Errorf("%v: switch %v high", d, h)
 		}
 		_ = tt.Click("Fruit")

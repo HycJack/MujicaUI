@@ -58,15 +58,7 @@ func CommandBlock(c *ui.Context, run agent.CommandRun, open *bool, opts CommandB
 	res := CommandBlockResult{Element: box}
 	box.Children(func() {
 		ui.Row(c).AlignItems(ui.Center).Gap(u).Padding(0, u*2, 0, 0).MinHeight(d.ControlHeight()).Children(func() {
-			was := *open
 			tr := ui.CollapsibleBase(c, open).Trigger
-			if box.IsDisabled() {
-				*open = was
-			}
-			if *open != was {
-				res.toggled = true
-				slog.Debug("mujica: command block toggle", "open", *open)
-			}
 			tr.Grow(1).MinWidth(0).MinHeight(d.ControlHeight()).AlignItems(ui.Center).Gap(u*2).Padding(0, u*3).
 				Radius(theme.ControlRadius).Label(prompt + " " + run.Command).Cursor(ui.CursorPointer)
 			internal.Ring(tr, k.Focus, theme.ControlRadius)
@@ -74,6 +66,11 @@ func CommandBlock(c *ui.Context, run agent.CommandRun, open *bool, opts CommandB
 				tr.Background(k.SurfaceHover)
 			}
 			tr.Transition(core.ColorFade)
+			// v0.3 applies the toggle lazily; query the trigger before reading *open.
+			if tr.Changed() {
+				res.toggled = true
+				slog.Debug("mujica: command block toggle", "open", *open)
+			}
 			turn := tr.Animate("mujica.turn", commandBlockTurn(*open), core.Motion(c, theme.StateDuration))
 			tr.Children(func() {
 				ui.Icon(c, icons.Must("chevron-right")).Size(14, 14).Shrink(0).Rotate(turn).TextColor(k.TextMuted)

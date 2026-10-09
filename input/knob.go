@@ -75,8 +75,9 @@ func Knob(c *ui.Context, value *float64, opts KnobOptions) core.ChoiceResult {
 		}
 		s.Size(size, size).FocusRing(false).Cursor(ui.CursorResizeNS).Label(cmp.Or(opts.Label, core.Msg(c, "knob.label")))
 		hot := s.Hovered() || dragged
+		focusVisible := s.FocusVisible()
 		v := *value
-		s.Draw(func(p *ui.Painter, r ui.Rect) { knobPaint(p, r, k, g, v, opts.Ticks, hot, s.FocusVisible()) })
+		s.Draw(func(p *ui.Painter, r ui.Rect) { knobPaint(p, r, k, g, v, opts.Ticks, hot, focusVisible) })
 		ui.Text(c, format(*value)).TextColor(k.TextMuted).FontSize(core.FontSize(c, theme.CaptionSize)).FontFeatures("tnum")
 	})
 	changed := *value != old

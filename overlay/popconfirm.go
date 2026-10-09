@@ -54,7 +54,7 @@ func Popconfirm(c *ui.Context, anchor ui.Element, open *bool, opts PopconfirmOpt
 	}
 	b := anchor.Bounds()
 	shown := true
-	ui.PopoverBase(c, anchor, &shown, func(panel ui.Element) {
+	panel := ui.PopoverBase(c, anchor, &shown, func(panel ui.Element) {
 		core.OverlayStyle(c, panel, OverlayAnchored(c, panel, b))
 		panel.Margin(6, 0, 0, 0).Padding(u * 3).Gap(u * 3).MaxWidth(PopoverWide(c, 320)).MaxHeight(PopoverRoom(c, b)).Role(ui.RoleAlertDialog).
 			Label(opts.Title).Description(opts.Description)
@@ -84,6 +84,8 @@ func Popconfirm(c *ui.Context, anchor ui.Element, open *bool, opts PopconfirmOpt
 	if res.Confirmed || res.Canceled {
 		slog.Debug("mujica: popconfirm close", "confirmed", res.Confirmed)
 		*open = false
+		// Drop the exit keep-alive, so MyGo prunes the panel and returns the focus.
+		panel.Transition(ui.ElementTransition{})
 	}
 	return res
 }

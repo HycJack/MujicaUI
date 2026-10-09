@@ -95,6 +95,8 @@ func AlertDialog(c *ui.Context, open *bool, opts AlertDialogOptions) AlertDialog
 	if res.Confirmed || res.Canceled {
 		slog.Debug("mujica: alert_dialog close", "confirmed", res.Confirmed)
 		*open = false
+		// Drop the exit keep-alive, so MyGo prunes the panel and returns the focus.
+		panel.Transition(ui.ElementTransition{})
 	}
 	return res
 }

@@ -79,6 +79,8 @@ func radioGroupItem[T comparable](c *ui.Context, k theme.Tokens, d theme.Density
 	if item.IsDisabled() && item.FocusWithin() {
 		item.FocusRing(false).Focus()
 	}
+	// MyGo defers the choice to a response query; land it before drawing the mark.
+	changed := row.Changed()
 	on := *value == it.Value
 	hover, pressed := row.Hovered(), row.Pressed()
 	row.Children(func() {
@@ -86,18 +88,19 @@ func radioGroupItem[T comparable](c *ui.Context, k theme.Tokens, d theme.Density
 		dot := ui.Box(c).Size(checkboxSize, checkboxSize).Shrink(0).Radius(checkboxSize/2).
 			Background(bg).Border(theme.BorderWidth, border)
 		dot.Transition(core.ColorFade)
+		focus := row.FocusVisible()
 		dot.DrawOver(func(p *ui.Painter, r ui.Rect) {
 			if on {
 				s := r.W * 0.375
 				p.Fill(ui.Rect{X: r.X + (r.W-s)/2, Y: r.Y + (r.H-s)/2, W: s, H: s}, k.OnAccent, s/2)
 			}
-			if row.FocusVisible() {
+			if focus {
 				internal.FocusRing(p, r, checkboxSize/2, k.Focus)
 			}
 		})
 		ui.Text(c, it.Label)
 	})
-	return row.Changed()
+	return changed
 }
 
 // stableKey keys v by its first appearance in *known, so equal-looking values stay apart.

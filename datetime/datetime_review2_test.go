@@ -167,21 +167,19 @@ func TestTimePickerPopupPickClearsSegmentError(t *testing.T) {
 func TestFormFocusesDatePickerInput(t *testing.T) {
 	var st input.FormState
 	day := core.Date{}
-	var field ui.Element
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		input.Form(c, &st, input.FormOptions{}, func(f *input.FormScope) {
 			input.FormItem(c, f, "debut", &day, input.FormItemOptions[core.Date]{Label: "Debut date", Required: true}, func() ui.Element {
-				r := DatePicker(c, &day, DatePickerOptions{Today: calendarToday})
-				field = r.Input
-				return r.Input
+				return DatePicker(c, &day, DatePickerOptions{Today: calendarToday}).Input
 			})
 		})
 	}, 600, 500)
 	if err := tt.Click("Submit"); err != nil {
 		t.Fatal(err)
 	}
-	if !field.Valid() || !field.Focused() || !tt.Focused("Debut date") {
+	// Captured elements expire between passes on mygo v0.3; assert via the label.
+	if !tt.Focused("Debut date") {
 		t.Fatal("a failed submit should focus the DatePicker's text box")
 	}
 	tt.Type("2026-10-12")

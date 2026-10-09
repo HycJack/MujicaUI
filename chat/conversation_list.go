@@ -124,6 +124,7 @@ func ConversationList(c *ui.Context, s *ConversationListState, items []ChatConve
 		internal.Ring(list, k.Focus, theme.ControlRadius)
 	})
 	v := ConversationListView{Element: wrap}
+	list.Changed() // applies the deferred choice to the cursor before reading it
 	if !wrap.IsDisabled() {
 		if s.cursor != before && s.cursor >= 0 && rows[s.cursor].item >= 0 {
 			s.Selected, v.changed = items[rows[s.cursor].item].ID, true

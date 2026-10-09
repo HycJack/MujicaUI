@@ -59,8 +59,8 @@ func ToggleGroup[T comparable](c *ui.Context, value *[]T, items []ToggleItem[T],
 			// Keyed by value so focus follows the item, not its position.
 			ui.Box(c).Key(stableKey(known, it.Value)).Children(func() {
 				b := ui.ToggleBase(c, &pressed).Disabled(it.Disabled)
-				// The base took input before Disabled applied: drop a disabled item's press.
-				if b.Changed() && !it.Disabled && !opts.Disabled && toggleGroupApply(value, it.Value, pressed, opts) {
+				// MyGo defers the toggle to a response query; a disabled item takes none.
+				if b.Changed() && toggleGroupApply(value, it.Value, pressed, opts) {
 					changed = true
 					on = pressed
 				}

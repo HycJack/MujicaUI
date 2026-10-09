@@ -90,6 +90,8 @@ func SliderControl(c *ui.Context, v float64, g SliderGeom, from, to float64) (s 
 		ks.up = ev.Key
 		return true
 	})
+	// MyGo defers the base's keys and drags to a response query; land them in raw now.
+	s.Changed()
 	up := ks.up
 	ks.up = 0
 	if _, _, dragged = s.Dragged(); dragged {
@@ -194,12 +196,13 @@ func Slider(c *ui.Context, value *float64, opts SliderOptions) core.ChoiceResult
 		slog.Debug("mujica: slider changed", "label", opts.Label, "value", *value)
 	}
 	hover := s.Hovered()
+	focusVisible, focused := s.FocusVisible(), s.Focused()
 	v := *value
 	s.Draw(func(p *ui.Painter, r ui.Rect) {
 		SliderTrackPaint(p, r, g, k, opts.Marks, size, g.X(r, g.lo), g.X(r, v))
 		x := g.X(r, v)
-		SliderThumbPaint(p, k, x, r.Y+g.TrackY, hover || held, s.FocusVisible())
-		if opts.ShowValue && (hover || held || s.Focused()) {
+		SliderThumbPaint(p, k, x, r.Y+g.TrackY, hover || held, focusVisible)
+		if opts.ShowValue && (hover || held || focused) {
 			sliderBubblePaint(p, k, x, r.Y+g.TrackY, format(v), size)
 		}
 	})

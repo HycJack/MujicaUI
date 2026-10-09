@@ -30,13 +30,8 @@ func Collapsible(c *ui.Context, open *bool, opts CollapsibleOptions, content fun
 	var v core.ChoiceResult
 	v.Element = ui.Column(c).Shrink(0)
 	v.Element.Children(func() {
-		was := *open
 		p := ui.CollapsibleBase(c, open)
 		tr := p.Trigger
-		if opts.Disabled {
-			*open = was
-		}
-		v = core.NewChoiceResult(v.Element, *open != was)
 		tr.Disabled(opts.Disabled).AlignSelf(ui.Start).AlignItems(ui.Center).Gap(u*2).
 			MinHeight(core.Density(c).ControlHeight()).Padding(0, u*3, 0, u*2).Radius(theme.ControlRadius)
 		if opts.Title != "" {
@@ -46,6 +41,8 @@ func Collapsible(c *ui.Context, open *bool, opts CollapsibleOptions, content fun
 		if tr.Hovered() && !opts.Disabled {
 			tr.Background(k.SurfaceHover)
 		}
+		// v0.3 applies the toggle lazily; query the trigger to apply and report it.
+		v = core.NewChoiceResult(v.Element, tr.Changed())
 		prog := tr.Animate("mujica.open", collapsibleTarget(*open), core.Motion(c, theme.StateDuration))
 		tr.Children(func() {
 			ui.Icon(c, icons.Must("chevron-right")).Size(16, 16).Rotate(90 * prog).TextColor(k.TextMuted)

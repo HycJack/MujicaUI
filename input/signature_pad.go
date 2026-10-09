@@ -73,16 +73,17 @@ func SignaturePad(c *ui.Context, strokes *[][]SignaturePoint, opts SignaturePadO
 		internal.Ring(pad, k.Focus, theme.CardRadius)
 		d := ui.Local(pad, "signature_pad", func() *signaturePadDrawing { return &signaturePadDrawing{} })
 		s := *d
+		var fh ui.Handle
+		pad.Bind(&fh)
+		// MyGo stops input to a disabled element before it reaches this handler;
+		// focus goes through the handle, an Element is expired outside the build.
 		pad.HandleInput(func(ev ui.InputEvent) bool {
-			if pad.IsDisabled() {
-				return false
-			}
 			pt := SignaturePoint{ev.X, ev.Y}
 			switch {
 			case ev.Kind == ui.InputPointerDown && ev.Button == 0:
 				*strokes = append(*strokes, []SignaturePoint{pt})
 				s.active = true
-				pad.Focus()
+				fh.Focus()
 			case ev.Kind == ui.InputPointerMove && s.active && len(*strokes) > 0:
 				last := &(*strokes)[len(*strokes)-1]
 				if q := (*last)[len(*last)-1]; math.Hypot(float64(pt.X-q.X), float64(pt.Y-q.Y)) >= 1 {

@@ -43,6 +43,7 @@ func VolumeChart(c *ui.Context, candles []Candle, view *MarketView, opts VolumeC
 		s.load(opts.SyncID, candles, view)
 	}
 	m.window()
+	st := m.st0() // bound at build time; Draw runs after the build pass
 	hi := ChartMemo(ch, "vmax", [3]any{ChartID(candles), m.from, m.to}, func() float64 {
 		v := 0.0
 		for i := m.from; i < m.to; i++ {
@@ -99,7 +100,7 @@ func VolumeChart(c *ui.Context, candles []Candle, view *MarketView, opts VolumeC
 				p.Fill(bar, col, 0)
 			}
 		}
-		m.st0().drawn = m.to - m.from
+		st.drawn = m.to - m.from
 		if at >= m.from && at < m.to {
 			x := internal.Snap(p, band.Center(at-m.from))
 			p.Line(x, plot.Y, x, plot.Y+plot.H, 1, k.TextMuted)

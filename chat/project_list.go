@@ -64,7 +64,11 @@ func ProjectList(c *ui.Context, s *ProjectListState, projects []ChatProject, con
 			}
 			seen[p.Folder] = true
 			open := !s.closed[p.Folder]
-			ui.Column(c).Key("folder:" + p.Folder).Children(func() { projectListFolder(c, p.Folder, &open) })
+			var folder ui.Element
+			ui.Column(c).Key("folder:" + p.Folder).Children(func() {
+				folder = projectListFolder(c, p.Folder, &open)
+			})
+			folder.Changed() // applies the deferred toggle to open
 			s.closed[p.Folder] = !open
 			if !open {
 				continue

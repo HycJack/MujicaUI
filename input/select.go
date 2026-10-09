@@ -64,6 +64,8 @@ func Select[T comparable](c *ui.Context, value *T, options []SelectOption[T], op
 		ui.Row(c).Key(life.generation).Children(func() { s = ui.SelectBase(c, &pick) })
 	})
 	tr := s.Trigger
+	// MyGo defers the base's open and key input to a response query; land it before committing.
+	tr.Changed()
 	commit := func() {
 		if pick != *value && !tr.IsDisabled() && selectEnabled(options, pick) {
 			*value = pick
@@ -75,10 +77,8 @@ func Select[T comparable](c *ui.Context, value *T, options []SelectOption[T], op
 		tr.Label(opts.Label)
 	}
 	ta := ui.Local(tr, selectKey{"typeahead"}, func() selectTypeahead { return selectTypeahead{} })
+	// MyGo stops input to a disabled element before it reaches this handler.
 	tr.TextCaret(ui.Rect{W: 1, H: core.Density(c).ControlHeight()}).HandleInput(func(ev ui.InputEvent) bool {
-		if tr.IsDisabled() {
-			return false
-		}
 		if ev.Kind != ui.InputText || strings.TrimSpace(ev.Text) == "" {
 			return false
 		}
@@ -137,6 +137,9 @@ func Select[T comparable](c *ui.Context, value *T, options []SelectOption[T], op
 			}
 		})
 	})
+	commit()
+	// The options' clicks are pending until a query; land them, then commit the choice.
+	tr.Changed()
 	commit()
 	if !s.Open() {
 		*lastHi = -1

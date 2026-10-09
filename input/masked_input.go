@@ -107,6 +107,8 @@ func MaskedInput(c *ui.Context, value *string, opts MaskedInputOptions) InputRes
 		st := ui.Local(in, "masked_input", func() *maskedInputState { return &maskedInputState{caret: len(raw)} })
 		s := *st
 		s.caret = min(s.caret, len(raw))
+		// The handler runs outside the build pass, where only Services read the clipboard.
+		svc := c.Services()
 		insert := func(text string) {
 			for _, ch := range text {
 				if s.caret < len(slots) && len(raw) < len(slots) && maskedInputFits(slots[s.caret], ch) {
@@ -117,9 +119,7 @@ func MaskedInput(c *ui.Context, value *string, opts MaskedInputOptions) InputRes
 			}
 		}
 		in.HandleInput(func(ev ui.InputEvent) bool {
-			if in.IsDisabled() {
-				return false
-			}
+			// MyGo stops input to a disabled element before it reaches this handler.
 			raw = []rune(*value)
 			switch ev.Kind {
 			case ui.InputText:
@@ -130,9 +130,9 @@ func MaskedInput(c *ui.Context, value *string, opts MaskedInputOptions) InputRes
 			case ui.InputCommand:
 				switch ev.Text {
 				case "paste":
-					insert(c.ReadClipboard())
+					insert(svc.ReadClipboard())
 				case "copy":
-					c.WriteClipboard(*value)
+					svc.WriteClipboard(*value)
 				default:
 					return false
 				}
@@ -196,8 +196,9 @@ func MaskedInput(c *ui.Context, value *string, opts MaskedInputOptions) InputRes
 			}
 			ui.Text(c, string(shown[max(at, filled):])).TextColor(k.TextMuted).FontSize(size).SingleLine()
 		})
+		caret := in.Focused() && !in.IsDisabled()
 		in.DrawOver(func(p *ui.Painter, rr ui.Rect) {
-			if in.Focused() && !in.IsDisabled() && s.compose == "" {
+			if caret && s.compose == "" {
 				p.Fill(ui.Rect{X: rr.X + w, Y: rr.Y + (rr.H-h)/2, W: 1, H: h}, k.Text, 0)
 			}
 		})

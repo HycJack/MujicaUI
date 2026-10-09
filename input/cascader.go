@@ -97,7 +97,7 @@ func Cascader(c *ui.Context, path *[]string, opts CascaderOptions) core.ChoiceRe
 		}
 		ui.Text(c, cascaderLabels(opts, *path)).SingleLine().Grow(1).Shrink(1)
 	})
-	ui.PopoverBase(c, tr, &st.open, func(panel ui.Element) {
+	panel := ui.PopoverBase(c, tr, &st.open, func(panel ui.Element) {
 		SelectPanel(c, panel)
 		panel.Padding(0)
 		ui.Row(c).AlignItems(ui.Stretch).Dividers(theme.BorderWidth, core.Tokens(c).Border).Children(func() {
@@ -108,6 +108,10 @@ func Cascader(c *ui.Context, path *[]string, opts CascaderOptions) core.ChoiceRe
 			}
 		})
 	})
+	// A popup closing with the focus inside it leaves it nothing to hold; give it back to the field.
+	if panel.Valid() && !st.open && panel.FocusWithin() {
+		tr.Focus()
+	}
 	changed := !slices.Equal(before, *path)
 	if changed {
 		slog.Debug("mujica: cascader changed", "label", opts.Label, "path", *path)

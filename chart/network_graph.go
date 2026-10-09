@@ -187,8 +187,9 @@ func networkInput(plot ui.Element, s *NetworkGraphState, focus int, nodes []Grap
 		s.dragging = false
 		slog.Debug("mujica: network_graph drag", "node", s.drag)
 	}
+	disabled := plot.IsDisabled() // build time; input handlers run outside the build pass
 	plot.HandleInput(func(ev ui.InputEvent) bool {
-		if ev.Kind != ui.InputScroll || ev.DY == 0 || plot.IsDisabled() {
+		if ev.Kind != ui.InputScroll || ev.DY == 0 || disabled {
 			return false
 		}
 		if ev.DY < 0 {

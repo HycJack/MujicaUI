@@ -16,6 +16,10 @@ type FormFieldOptions struct {
 	Error string
 	// Horizontal puts the label beside the control instead of above it.
 	Horizontal bool
+	// ReserveNote keeps a line free under the control, so a note that
+	// appears there later — a check running, an error — never shifts the
+	// layout while the pointer is down elsewhere.
+	ReserveNote bool
 }
 
 // FormField labels the element control returns and shows help and error text for it.
@@ -71,8 +75,12 @@ func formFieldBuild(c *ui.Context, key, label string, opts FormFieldOptions, bes
 			if !ctrl.Valid() {
 				panic("mujica: FormField " + label + ": control returned nil")
 			}
-			if opts.Description != "" {
+			switch {
+			case opts.Description != "":
 				ui.Text(c, opts.Description).TextColor(k.TextMuted).FontSize(core.FontSize(c, theme.CaptionSize)).Role(ui.RoleNone)
+			case opts.ReserveNote:
+				// The note's line is kept free, so it never shifts the layout.
+				ui.Text(c, "").TextColor(k.TextMuted).FontSize(core.FontSize(c, theme.CaptionSize)).Role(ui.RoleNone)
 			}
 			if opts.Error != "" {
 				ui.Text(c, opts.Error).TextColor(k.Danger).FontSize(core.FontSize(c, theme.CaptionSize)).Role(ui.RoleNone)

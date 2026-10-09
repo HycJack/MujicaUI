@@ -150,6 +150,7 @@ func TabsStyle(c *ui.Context, tab ui.Element, t Tab, on, vertical bool) {
 		fg = k.Text
 	}
 	internal.Ease(tab, core.Motion(c, theme.StateDuration), fg)
+	visible := tab.FocusVisible() // captured at build time; draw closures run after it
 	tab.FocusRing(false).DrawOver(func(p *ui.Painter, r ui.Rect) {
 		if on {
 			if vertical {
@@ -158,7 +159,7 @@ func TabsStyle(c *ui.Context, tab ui.Element, t Tab, on, vertical bool) {
 				p.Fill(ui.Rect{X: r.X, Y: r.Y + r.H - 2, W: r.W, H: 2}, k.AccentText, 0)
 			}
 		}
-		if tab.FocusVisible() {
+		if visible {
 			internal.FocusRing(p, r, theme.ControlRadius, k.Focus)
 		}
 	})

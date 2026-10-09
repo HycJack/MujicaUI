@@ -51,7 +51,6 @@ func Accordion(c *ui.Context, open *[]string, items []AccordionItem, opts Accord
 					ui.Box(c).Height(1).FillWidth().Background(k.Border)
 				}
 				isOpen := slices.Contains(*open, it.ID)
-				was := isOpen
 				p := ui.CollapsibleBase(c, &isOpen)
 				tr := p.Trigger.Disabled(it.Disabled).AlignItems(ui.Center).Gap(u*2).MinHeight(d.ControlHeight()+u*2).
 					Padding(0, u*4).Label(it.Title)
@@ -66,7 +65,8 @@ func Accordion(c *ui.Context, open *[]string, items []AccordionItem, opts Accord
 				if j := accordionKey(tr, items, i); j >= 0 {
 					*focusTo = j
 				}
-				if isOpen != was && !it.Disabled && accordionSet(open, it.ID, isOpen, opts) {
+				// v0.3 applies the toggle lazily; query the trigger to apply and report it.
+				if tr.Changed() && accordionSet(open, it.ID, isOpen, opts) {
 					v = core.NewChoiceResult(v.Element, true)
 				}
 				isOpen = slices.Contains(*open, it.ID)

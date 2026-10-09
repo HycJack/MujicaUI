@@ -96,7 +96,8 @@ func StatusSelect(c *ui.Context, value *string, statuses []WorkflowStatus, opts 
 			})
 		})
 	}
-	if pick != *value && !tr.IsDisabled() {
+	// v0.3 applies the choice lazily; query the trigger to apply it before reading pick.
+	if tr.Changed() && pick != *value && !tr.IsDisabled() {
 		*value = pick
 	}
 	changed := *value != old

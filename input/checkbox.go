@@ -50,6 +50,7 @@ func Checkbox(c *ui.Context, value *bool, label string, opts CheckboxOptions) ui
 		box := ui.Box(c).Size(checkboxSize, checkboxSize).Shrink(0).Radius(theme.ControlRadius).
 			Background(bg).Border(theme.BorderWidth, border)
 		box.Transition(core.ColorFade)
+		focus := row.FocusVisible()
 		box.DrawOver(func(p *ui.Painter, r ui.Rect) {
 			switch {
 			case mixed:
@@ -59,7 +60,7 @@ func Checkbox(c *ui.Context, value *bool, label string, opts CheckboxOptions) ui
 				path.MoveTo(r.X+r.W*0.24, r.Y+r.H*0.52).LineTo(r.X+r.W*0.42, r.Y+r.H*0.7).LineTo(r.X+r.W*0.77, r.Y+r.H*0.3)
 				p.StrokePath(&path, 2, k.OnAccent)
 			}
-			if row.FocusVisible() {
+			if focus {
 				internal.FocusRing(p, r, theme.ControlRadius, k.Focus)
 			}
 		})

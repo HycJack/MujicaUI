@@ -64,8 +64,9 @@ func HoldToConfirm(c *ui.Context, label string, opts HoldToConfirmOptions) core.
 	st := ui.Local(b, "hold_to_confirm", func() *holdToConfirmState { return &holdToConfirmState{} })
 	s := *st
 	// Space holds; Enter and Space never click, so no single key press confirms.
+	// MyGo stops input to a disabled element before it reaches this handler.
 	b.HandleInput(func(ev ui.InputEvent) bool {
-		if ev.Key != ui.KeySpace && ev.Key != ui.KeyEnter || b.IsDisabled() {
+		if ev.Key != ui.KeySpace && ev.Key != ui.KeyEnter {
 			return false
 		}
 		if ev.Key == ui.KeySpace && (ev.Kind == ui.InputKeyDown || ev.Kind == ui.InputKeyUp) {

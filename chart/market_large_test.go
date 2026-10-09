@@ -15,13 +15,14 @@ func TestDepthChartLargeDataBounded(t *testing.T) {
 		asks[i] = DepthLevel{101 + float64(i)*0.0001, 2}
 	}
 	var res ChartResult
+	var drawn *int
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		res = DepthChart(c, bids, asks, DepthChartOptions{Frame: ChartFrame{Label: "Depth"}})
+		drawn = ui.Local(res.Element, "mujica.depth.drawn", func() int { return 0 })
 	}, 640, 340)
-	drawn := *ui.Local(res.Element, "mujica.depth.drawn", func() int { return 0 })
-	if drawn <= 0 || drawn > 4*640+8 {
-		t.Fatalf("painted %d depth vertices", drawn)
+	if *drawn <= 0 || *drawn > 4*640+8 {
+		t.Fatalf("painted %d depth vertices", *drawn)
 	}
 	tt.Key(0, ui.KeyTab)
 	tt.Key(0, ui.KeyEnd)
@@ -36,13 +37,14 @@ func TestVolumeProfileLargeDataBounded(t *testing.T) {
 		bins[i] = ProfileBin{float64(i), float64(i + 1), float64(i%19 + 1)}
 	}
 	var res ChartResult
+	var drawn *int
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		res = VolumeProfile(c, bins, VolumeProfileOptions{Frame: ChartFrame{Label: "Profile"}})
+		drawn = ui.Local(res.Element, "mujica.profile.drawn", func() int { return 0 })
 	}, 640, 340)
-	drawn := *ui.Local(res.Element, "mujica.profile.drawn", func() int { return 0 })
-	if drawn <= 0 || drawn > 4*340+4 {
-		t.Fatalf("painted %d profile bins", drawn)
+	if *drawn <= 0 || *drawn > 4*340+4 {
+		t.Fatalf("painted %d profile bins", *drawn)
 	}
 	tt.Key(0, ui.KeyTab)
 	tt.Key(0, ui.KeyEnd)

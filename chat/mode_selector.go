@@ -42,9 +42,10 @@ func ModeSelector(c *ui.Context, mode *ChatMode, opts ModeSelectorOptions) core.
 		panic("mujica: unknown ChatMode")
 	}
 	k, u := core.Tokens(c), core.Density(c).Unit()
-	old, pick := *mode, int(*mode)
+	pick := int(*mode)
 	wrapper := ui.Row(c).Shrink(0).Disabled(opts.Disabled)
 	var track ui.Element
+	changed := false
 	wrapper.Children(func() {
 		parts := ui.SegmentedBase(c, &pick, len(chatModes))
 		track = parts.Track.Padding(2).Gap(2).Radius(theme.ControlRadius+2).Background(k.Background).
@@ -81,8 +82,10 @@ func ModeSelector(c *ui.Context, mode *ChatMode, opts ModeSelectorOptions) core.
 				})
 			}
 		})
+		// Query after configuring: the deferred choice lands in pick.
+		changed = track.Changed()
 	})
-	changed := ChatMode(pick) != old && !wrapper.IsDisabled()
+	changed = changed && !wrapper.IsDisabled()
 	if changed {
 		*mode = ChatMode(pick)
 		slog.Debug("mujica: mode_selector changed", "mode", pick)

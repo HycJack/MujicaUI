@@ -15,6 +15,7 @@ type brushHarness struct {
 	changes  int
 	disabled bool
 	el       ui.Element
+	box      ui.Rect
 }
 
 func (h *brushHarness) view(c *ui.Context) {
@@ -22,6 +23,10 @@ func (h *brushHarness) view(c *ui.Context) {
 	ui.Column(c).Padding(10).Width(420).Children(func() {
 		r := ChartBrush(c, &h.value, ChartBrushOptions{Label: "Months", Min: 0, Max: 100, Step: 1, Disabled: h.disabled})
 		h.el = r.Element
+		h.box = r.Element.Bounds()
+		if h.box.W == 0 && h.box.H == 0 {
+			c.Invalidate() // the first build has no previous-frame box yet
+		}
 		if r.Changed() {
 			h.changes++
 		}
@@ -57,7 +62,7 @@ func TestChartBrushKeyboard(t *testing.T) {
 func TestChartBrushDrag(t *testing.T) {
 	h := &brushHarness{value: [2]float64{20, 40}}
 	tt := ui.NewTester(h.view, 460, 200)
-	b := h.el.Bounds()
+	b := h.box
 	x := func(v float32) float32 { return b.X + 400*v/100 }
 	y := b.Y + 24
 	tt.Press(x(30), y) // inside the window
@@ -86,7 +91,7 @@ func TestChartBrushDrag(t *testing.T) {
 func TestChartBrushDisabledAndBad(t *testing.T) {
 	h := &brushHarness{value: [2]float64{20, 40}, disabled: true}
 	tt := ui.NewTester(h.view, 460, 200)
-	b := h.el.Bounds()
+	b := h.box
 	tt.Press(b.X+120, b.Y+24)
 	tt.Move(b.X+200, b.Y+24)
 	tt.Release(b.X+200, b.Y+24)
@@ -128,7 +133,7 @@ func TestChartBrushSnapshot(t *testing.T) {
 func TestChartBrushWindowDragPreservesSpanAtEdges(t *testing.T) {
 	h := &brushHarness{value: [2]float64{20, 60}}
 	tt := ui.NewTester(h.view, 460, 200)
-	b := h.el.Bounds()
+	b := h.box
 	tt.Press(b.X+160, b.Y+24)
 	tt.Move(b.X+380, b.Y+24)
 	tt.Release(b.X+380, b.Y+24)

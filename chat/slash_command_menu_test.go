@@ -130,18 +130,22 @@ func TestSlashCommandMenuNarrowAndLargeData(t *testing.T) {
 		cmds[i] = SlashCommand{Name: fmt.Sprintf("cmd%d", i)}
 	}
 	text := "/"
-	var panel ui.Element
+	valid := false
+	var b ui.Rect
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		p := PromptComposer(c, &text, PromptComposerOptions{Label: "Prompt"})
-		panel = SlashCommandMenu(c, p, &text, cmds).Element
+		panel := SlashCommandMenu(c, p, &text, cmds).Element
+		valid = panel.Valid()
+		if rb := panel.Bounds(); rb.W > 0 {
+			b = rb
+		}
 	}, 180, 120)
 	_ = tt.Click("Prompt")
 	tt.Frame()
-	if !panel.Valid() {
+	if !valid {
 		t.Fatal("menu missing")
 	}
-	b := panel.Bounds()
 	if b.X < 0 || b.Y < 0 || b.X+b.W > 180 || b.Y+b.H > 120 {
 		t.Errorf("popup outside window: %v", b)
 	}

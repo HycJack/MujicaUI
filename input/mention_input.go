@@ -71,11 +71,14 @@ func MentionInput(c *ui.Context, value *string, mentions *[]Mention, opts Mentio
 		fb := frame.Bounds()
 		onPanel := s.panel.Contains(fb.X+px, fb.Y+py)
 		popup := (in.Focused() || onPanel) && s.at >= 0 && !s.dismissed && len(s.found) > 0
+		// The handler runs outside the build pass, where only Services touch the clipboard.
+		svc := c.Services()
+		var fh ui.Handle
+		in.Bind(&fh)
+		// MyGo stops input to a disabled element before it reaches this handler;
+		// focus goes through the handle, an Element is expired outside the build.
 		in.HandleInput(func(ev ui.InputEvent) bool {
-			if in.IsDisabled() {
-				return false
-			}
-			return mentionInputEvent(c, s, ev, popup, in)
+			return mentionInputEvent(c, s, ev, popup, &fh, svc)
 		})
 		if s.changed && !look.disabled {
 			*value, *mentions = string(s.doc.text), slices.Clone(s.doc.mentions)
@@ -110,7 +113,7 @@ func mentionInputQuery(s *mentionInputState, opts MentionInputOptions) {
 }
 
 // mentionInputEvent applies one input event to the document and reports whether it took it.
-func mentionInputEvent(c *ui.Context, s *mentionInputState, ev ui.InputEvent, popup bool, in ui.Element) bool {
+func mentionInputEvent(c *ui.Context, s *mentionInputState, ev ui.InputEvent, popup bool, focus *ui.Handle, svc ui.Services) bool {
 	edit := func(f func()) {
 		s.undo = append(s.undo, s.doc.clone())
 		s.redo = nil
@@ -125,7 +128,7 @@ func mentionInputEvent(c *ui.Context, s *mentionInputState, ev ui.InputEvent, po
 	case ui.InputCompose:
 		s.compose = ev.Text
 	case ui.InputPointerDown:
-		in.Focus()
+		focus.Focus()
 		s.doc.moveTo(mentionInputHit(c, s, ev.X), extend)
 	case ui.InputPointerMove:
 		if ev.Button != 0 {
@@ -136,12 +139,12 @@ func mentionInputEvent(c *ui.Context, s *mentionInputState, ev ui.InputEvent, po
 		a, b := s.doc.span()
 		switch ev.Text {
 		case "copy", "cut":
-			c.WriteClipboard(string(s.doc.text[a:b]))
+			svc.WriteClipboard(string(s.doc.text[a:b]))
 			if ev.Text == "cut" && a != b {
 				edit(func() { s.doc.erase(false) })
 			}
 		case "paste":
-			edit(func() { s.doc.insert(c.ReadClipboard()) })
+			edit(func() { s.doc.insert(svc.ReadClipboard()) })
 		case "selectAll":
 			s.doc.anchor, s.doc.caret = 0, len(s.doc.text)
 		case "delete":
@@ -249,18 +252,19 @@ func mentionInputView(c *ui.Context, k theme.Tokens, s *mentionInputState, in ui
 		chips[i] = [2]float32{measure(m.Start), measure(m.End)}
 	}
 	spans := mentionInputSpans(k, s, size, placeholder)
+	focused := in.Focused()
 	in.Draw(func(p *ui.Painter, r ui.Rect) {
 		y := r.Y + (r.H-h)/2
 		for _, ch := range chips {
 			p.Fill(ui.Rect{X: r.X + ch[0] - s.offset - 1, Y: y, W: ch[1] - ch[0] + 2, H: h}, k.Selection, theme.ControlRadius)
 		}
-		if a != b && in.Focused() {
+		if a != b && focused {
 			p.Fill(ui.Rect{X: r.X + sel[0] - s.offset, Y: y, W: sel[1] - sel[0], H: h}, k.Selection.Mix(k.AccentText, 0.25), 0)
 		}
 		p.RichText(r.X-s.offset, y, 0, spans...)
 	})
 	in.DrawOver(func(p *ui.Painter, r ui.Rect) {
-		if in.Focused() && s.compose == "" {
+		if focused && s.compose == "" {
 			p.Fill(ui.Rect{X: r.X + x - s.offset, Y: r.Y + (r.H-h)/2, W: 1, H: h}, k.Text, 0)
 		}
 	})

@@ -106,15 +106,18 @@ func TestRatingSnapshot(t *testing.T) {
 
 func TestRatingHitAreaCompact(t *testing.T) {
 	v := 2.0
-	var r core.ChoiceResult
+	var rh ui.Handle
+	var sc *ui.Context
 	tt := ui.NewTester(func(c *ui.Context) {
+		sc = c
 		core.Use(c, core.Settings{Density: theme.Compact})
 		ui.Column(c).AlignItems(ui.Start).Children(func() {
-			r = Rating(c, &v, RatingOptions{})
+			r := Rating(c, &v, RatingOptions{})
+			r.Element.Bind(&rh)
 		})
 	}, 300, 100)
 	tt.Frame()
-	if b := r.Element.Bounds(); b.W < 5*28 || b.H < 28 {
+	if b := rh.Bounds(sc); b.W < 5*28 || b.H < 28 {
 		t.Fatalf("stars %v", b)
 	}
 }

@@ -192,7 +192,8 @@ func paginationSizes(c *ui.Context, page, pageSize *int, sizes []int, res *core.
 			})
 		}
 	})
-	if *pageSize != old {
+	// v0.3 applies the choice lazily; query the trigger before reading *pageSize.
+	if sel.Trigger.Changed() {
 		// Keep the first record of the old page in view.
 		first := (*page-1)*old + 1
 		*page = (first-1) / *pageSize + 1
