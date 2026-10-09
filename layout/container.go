@@ -3,8 +3,8 @@ package layout
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Space is a spacing step scaled by the window's density. Zero picks the component's default.
@@ -62,7 +62,7 @@ type ContainerOptions struct {
 }
 
 // Container pads its children, caps their width and can center, fill and clip.
-func Container(c *ui.Context, opts ContainerOptions, children func()) *ui.Element {
+func Container(c *ui.Context, opts ContainerOptions, children func()) ui.Element {
 	if opts.MaxWidth < 0 {
 		panic("mujica: Container MaxWidth must not be negative")
 	}

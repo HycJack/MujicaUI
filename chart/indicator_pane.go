@@ -8,12 +8,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // IndicatorPaneSpec is one lower pane: MACD, RSI, KDJ or OBV.
@@ -44,7 +44,7 @@ type IndicatorPaneOptions struct {
 
 // IndicatorPaneResult reports the stack's events.
 type IndicatorPaneResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Removed reports the closed pane; -1 means none.
 	Removed int
 	// Resized reports finished height changes, for saving.
@@ -218,7 +218,7 @@ func indicatorPaneOne(c *ui.Context, candles []Candle, view *MarketView, spec In
 		m.view = &copy
 	}
 	result, plot := ch.Build(spec2)
-	if plot != nil {
+	if plot.Valid() {
 		m.input(plot)
 	}
 	return closed && !ch.Res.Element.IsDisabled(), result

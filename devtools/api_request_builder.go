@@ -8,13 +8,13 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/agent"
-	"github.com/ZacharyZhang-NY/MujicaUI/code"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/navigation"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/agent"
+	"github.com/HycJack/MujicaUI/code"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/navigation"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ApiRequest holds request data sent by the caller.
@@ -36,7 +36,7 @@ type ApiRequestBuilderOptions struct {
 
 // ApiRequestResult reports this frame's events.
 type ApiRequestResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Send asks the caller to send the request.
 	Send    bool
 	Changed bool

@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Workload is one member's assigned and available hours.
@@ -30,7 +30,7 @@ type WorkloadViewOptions struct {
 }
 
 // WorkloadView virtualizes member loads with capacity and overload marks.
-func WorkloadView(c *ui.Context, loads []Workload, opts WorkloadViewOptions) *ui.Element {
+func WorkloadView(c *ui.Context, loads []Workload, opts WorkloadViewOptions) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	unit := opts.Unit

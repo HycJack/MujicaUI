@@ -8,12 +8,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/datetime"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/datetime"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // PomodoroPhase is the part of the cycle running.
@@ -64,7 +64,7 @@ type PomodoroTimerOptions struct {
 
 // PomodoroResult is the timer and what changed this frame.
 type PomodoroResult struct {
-	Element  *ui.Element
+	Element  ui.Element
 	changed  bool
 	finished PomodoroPhase
 	done     bool

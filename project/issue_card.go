@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/datetime"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/datetime"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // IssueCardOptions configure an IssueCard.
@@ -23,7 +23,7 @@ type IssueCardOptions struct {
 }
 
 // IssueCard displays task fields in a selectable card.
-func IssueCard(c *ui.Context, task Task, opts IssueCardOptions) *ui.Element {
+func IssueCard(c *ui.Context, task Task, opts IssueCardOptions) ui.Element {
 	projectCheckPriority(task.Priority)
 	st := projectStatus(opts.Statuses, task.Status)
 	k := core.Tokens(c)

@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MarketSymbol is a tradable instrument as the caller lists it.
@@ -33,7 +33,7 @@ func SymbolBadge(c *ui.Context, s MarketSymbol, opts SymbolBadgeOptions) core.Ch
 	}
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
-	var e *ui.Element
+	var e ui.Element
 	wrap := ui.Row(c).Shrink(0).Disabled(opts.Disabled)
 	wrap.Children(func() {
 		if opts.Clickable {

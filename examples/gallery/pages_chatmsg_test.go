@@ -9,7 +9,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // chatmsgDemoTester runs the demo of page id and returns its tester and event log.

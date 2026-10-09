@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TagsInputOptions configure a TagsInput.
@@ -34,9 +34,9 @@ type TagsInputOptions struct {
 
 // TagsInputParts are the parts of a TagsInput.
 type TagsInputParts struct {
-	Element *ui.Element
+	Element ui.Element
 	// Input takes the focus.
-	Input   *ui.Element
+	Input   ui.Element
 	changed bool
 }
 
@@ -44,7 +44,7 @@ type TagsInputParts struct {
 func (p TagsInputParts) Changed() bool { return p.changed }
 
 // NewTagsInputParts reports a tag field built from parts in another component.
-func NewTagsInputParts(e, input *ui.Element, changed bool) TagsInputParts {
+func NewTagsInputParts(e, input ui.Element, changed bool) TagsInputParts {
 	return TagsInputParts{e, input, changed}
 }
 
@@ -109,7 +109,7 @@ func TagsInput(c *ui.Context, tags *[]string, opts TagsInputOptions) TagsInputPa
 			remove(len(*tags) - 1)
 		}
 	}
-	var box *ui.Element
+	var box ui.Element
 	outer.Children(func() {
 		box = ui.Row(c).Wrap().AlignItems(ui.Center).Gap(d.Unit()*1.5).MinHeight(d.ControlHeight()).
 			Padding(d.Unit(), d.Unit()*2).Radius(theme.ControlRadius).Background(k.Surface).Disabled(opts.Disabled)
@@ -177,7 +177,7 @@ func TagsInput(c *ui.Context, tags *[]string, opts TagsInputOptions) TagsInputPa
 }
 
 // tagsInputCommit adds the text before each separator, and all of it on Enter.
-func tagsInputCommit(st *tagsInputState, in *ui.Element, seps string, add func(string) bool) {
+func tagsInputCommit(st *tagsInputState, in ui.Element, seps string, add func(string) bool) {
 	if in.Changed() {
 		st.err = ""
 	}

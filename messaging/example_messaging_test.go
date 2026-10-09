@@ -5,11 +5,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/messaging"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/messaging"
 )
 
 func ExampleChannelList() {

@@ -9,7 +9,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // CurrencyInputOptions configure a CurrencyInput.
@@ -101,7 +101,7 @@ func CurrencyInput(c *ui.Context, value *int64, opts CurrencyInputOptions) Input
 	k := core.Tokens(c)
 	var r InputResult
 	look := &textInputLook{disabled: opts.Disabled, err: opts.Error}
-	r.Element, r.Input = textInputFrame(c, look, func(frame *ui.Element) *ui.Element {
+	r.Element, r.Input = textInputFrame(c, look, func(frame ui.Element) ui.Element {
 		if opts.Symbol != "" {
 			ui.Text(c, opts.Symbol).TextColor(k.TextMuted).SingleLine()
 		}

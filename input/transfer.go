@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TransferItem is one entry of a Transfer; ID must be unique and stable.
@@ -203,7 +203,7 @@ func transferPartial(c *ui.Context, checked, enabled int) string {
 }
 
 // transferMark draws a check box's square inside box, which takes the focus ring.
-func transferMark(c *ui.Context, box *ui.Element, on, mixed bool) {
+func transferMark(c *ui.Context, box ui.Element, on, mixed bool) {
 	k := core.Tokens(c)
 	internal.Ring(box, k.Focus, theme.ControlRadius)
 	box.Children(func() {

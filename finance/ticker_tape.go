@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TickerItem is one symbol on a TickerTape.
@@ -41,7 +41,7 @@ type tickerTapeState struct {
 }
 
 // TickerTape loops quotes, pausing on hover or focus.
-func TickerTape(c *ui.Context, items []TickerItem, opts TickerTapeOptions) *ui.Element {
+func TickerTape(c *ui.Context, items []TickerItem, opts TickerTapeOptions) ui.Element {
 	if opts.Speed < 0 || opts.PerPage < 0 {
 		panic("mujica: TickerTape Speed and PerPage cannot be negative")
 	}
@@ -107,7 +107,7 @@ func TickerTape(c *ui.Context, items []TickerItem, opts TickerTapeOptions) *ui.E
 }
 
 // tickerTapePages shows one page of items, for reduced motion.
-func tickerTapePages(c *ui.Context, e *ui.Element, st *tickerTapeState, items []TickerItem, per, dec int) {
+func tickerTapePages(c *ui.Context, e ui.Element, st *tickerTapeState, items []TickerItem, per, dec int) {
 	pages := max(1, (len(items)+per-1)/per)
 	st.page = min(st.page, pages-1)
 	turn := func(by int) {

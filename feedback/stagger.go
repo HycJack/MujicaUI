@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // StaggerOptions configure a Stagger.
@@ -26,7 +26,7 @@ type staggerState struct {
 }
 
 // Stagger builds n items entering one after another, once.
-func Stagger(c *ui.Context, n int, opts StaggerOptions, item func(i int)) *ui.Element {
+func Stagger(c *ui.Context, n int, opts StaggerOptions, item func(i int)) ui.Element {
 	if n < 0 || opts.Interval < 0 || opts.Duration < 0 {
 		panic("mujica: Stagger needs non-negative n, Interval and Duration")
 	}

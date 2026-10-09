@@ -6,21 +6,21 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CoachmarkStep uses an anchor built in the current frame.
 type CoachmarkStep struct {
-	Anchor      *ui.Element
+	Anchor      ui.Element
 	Title, Body string
 }
 
 // CoachmarkResult reports tour completion or dismissal.
 type CoachmarkResult struct {
-	Element             *ui.Element
+	Element             ui.Element
 	finished, dismissed bool
 }
 
@@ -40,7 +40,7 @@ func Coachmark(c *ui.Context, open *bool, step *int, steps []CoachmarkStep) Coac
 		return r
 	}
 	cur := steps[*step]
-	if cur.Anchor == nil || cur.Title == "" {
+	if !cur.Anchor.Valid() || cur.Title == "" {
 		panic("mujica: CoachmarkStep needs an Anchor and a Title")
 	}
 	if cur.Anchor.IsDisabled() {

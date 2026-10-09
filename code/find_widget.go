@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // FindState is a FindWidget's query, options and current match.
@@ -50,7 +50,7 @@ type FindWidgetOptions struct {
 
 // FindWidgetResult is a FindWidget and what happened in this frame.
 type FindWidgetResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Moved reports navigation; Replaced counts replacements.
 	Moved    bool
 	Replaced int

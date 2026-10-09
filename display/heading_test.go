@@ -5,7 +5,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 func headingHeights(t *testing.T, p ui.Preferences) (h1, h2, h3 float32) {

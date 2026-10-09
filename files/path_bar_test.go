@@ -5,7 +5,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 func pathBarTester(p *string, opts PathBarOptions, w int, went *[]string) *ui.Tester {

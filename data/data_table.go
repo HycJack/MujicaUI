@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // DataColumn is a column of a DataTable showing rows of type R.
@@ -89,7 +89,7 @@ func (s *DataTableState[K]) VisibleRows() (first, last int) { return s.rows.Visi
 
 // DataTableView is a built DataTable and what happened to it in this frame.
 type DataTableView struct {
-	Element                           *ui.Element
+	Element                           ui.Element
 	changed, submitted, sorted, retry bool
 }
 

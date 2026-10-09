@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // overlayLongText is about 372 characters of description.
@@ -58,7 +58,7 @@ func TestOverlayPanelFitsWindow(t *testing.T) {
 			if p := Overlay(c, &open, OverlayOptions{Modal: modal}, func() {
 				ui.Text(c, strings.Repeat(overlayLongText, 6))
 				input.Button(c, "Done", input.ButtonOptions{})
-			}); p != nil {
+			}); p.Valid() {
 				panel = p.Bounds()
 			}
 		}, 600, 400)

@@ -3,8 +3,8 @@ package finance
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Quote is an instrument's price and change since the close.
@@ -24,7 +24,7 @@ type QuoteCardOptions struct {
 }
 
 // QuoteCard shows a symbol, name, price, change and mini chart.
-func QuoteCard(c *ui.Context, q Quote, opts QuoteCardOptions) *ui.Element {
+func QuoteCard(c *ui.Context, q Quote, opts QuoteCardOptions) ui.Element {
 	if q.Symbol == "" {
 		panic("mujica: QuoteCard needs a Symbol")
 	}

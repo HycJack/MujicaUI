@@ -3,11 +3,11 @@ package feedback
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/internal"
 )
 
 // PulseLoader shows one dot gently breathing, without a halo.
-func PulseLoader(c *ui.Context, opts LoaderOptions) *ui.Element {
+func PulseLoader(c *ui.Context, opts LoaderOptions) ui.Element {
 	return loaderMark(c, opts, "pulse_loader", 1, 1600, func(p *ui.Painter, r ui.Rect, t float64, col ui.Color, still bool) {
 		s, a := float32(1), float32(1)
 		if !still {

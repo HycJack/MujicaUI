@@ -5,7 +5,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // toolMenuApp holds tools and what the menu reported.

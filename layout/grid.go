@@ -3,7 +3,7 @@ package layout
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // GridOptions configure a Grid.
@@ -19,7 +19,7 @@ type GridOptions struct {
 }
 
 // Grid lays children out in columns and rows; GridCell places and spans them.
-func Grid(c *ui.Context, opts GridOptions, children func()) *ui.Element {
+func Grid(c *ui.Context, opts GridOptions, children func()) ui.Element {
 	if children == nil {
 		panic("mujica: Grid needs children")
 	}
@@ -48,7 +48,7 @@ type GridCellOptions struct {
 }
 
 // GridCell is one child of a Grid, placed and spanned by opts; build makes one element, stretched over the cell.
-func GridCell(c *ui.Context, opts GridCellOptions, build func()) *ui.Element {
+func GridCell(c *ui.Context, opts GridCellOptions, build func()) ui.Element {
 	if build == nil {
 		panic("mujica: GridCell needs build")
 	}
@@ -59,7 +59,7 @@ func GridCell(c *ui.Context, opts GridCellOptions, build func()) *ui.Element {
 		panic("mujica: GridCell spans must be positive, or -1 for the rest")
 	}
 	// A one-track grid stretches its child over the whole cell, as the grid does its own children.
-	e := ui.Grid(c).Columns(1).Rows(1)
+	e := ui.Grid(c).Columns(1).GridRows(1)
 	if opts.Column > 0 {
 		e.ColumnStart(opts.Column)
 	}

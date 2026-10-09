@@ -7,11 +7,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CarouselOptions configure a Carousel.
@@ -133,7 +133,7 @@ func Carousel(c *ui.Context, index *int, n int, opts CarouselOptions, slide func
 }
 
 // carouselDot is a position button: a filled diamond for the current slide.
-func carouselDot(c *ui.Context, i, n int, on bool) *ui.Element {
+func carouselDot(c *ui.Context, i, n int, on bool) ui.Element {
 	k := core.Tokens(c)
 	b := ui.ButtonBase(c).Size(theme.MinHitSize, theme.MinHitSize).Radius(theme.ControlRadius).
 		Label(fmt.Sprintf(core.Msg(c, "carousel.position"), i+1, n)).Role(ui.RoleTab).Selected(on)
@@ -154,7 +154,7 @@ func carouselDot(c *ui.Context, i, n int, on bool) *ui.Element {
 }
 
 // carouselPause is the pause button: two bars, or a play triangle while paused.
-func carouselPause(c *ui.Context, paused bool) *ui.Element {
+func carouselPause(c *ui.Context, paused bool) ui.Element {
 	k := core.Tokens(c)
 	label := core.Msg(c, "carousel.pause")
 	if paused {

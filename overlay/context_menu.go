@@ -18,8 +18,8 @@ type contextMenuState struct {
 }
 
 // ContextMenu gives the container target an in-window menu at the pointer or below the focus.
-func ContextMenu(c *ui.Context, target *ui.Element, opts ContextMenuOptions, build func(m *PopupMenu)) *ui.Element {
-	if target == nil {
+func ContextMenu(c *ui.Context, target ui.Element, opts ContextMenuOptions, build func(m *PopupMenu)) ui.Element {
+	if !target.Valid() {
 		panic("mujica: ContextMenu needs a target")
 	}
 	if build == nil {
@@ -45,7 +45,7 @@ func ContextMenu(c *ui.Context, target *ui.Element, opts ContextMenuOptions, bui
 	if !st.open {
 		return target
 	}
-	var anchor *ui.Element
+	var anchor ui.Element
 	target.Children(func() {
 		anchor = ui.Box(c).Key("mujica.contextmenu.anchor").Absolute().Left(st.x).Top(st.y).Size(1, 1).PassThrough()
 	})

@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chart"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/chart"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 func mktDemo(c *ui.Context, log func(string), id string) {

@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // PromptComposerOptions configure a PromptComposer.
@@ -101,7 +101,7 @@ func PromptComposer(c *ui.Context, value *string, opts PromptComposerOptions) in
 
 // promptComposerHook registers a handler before editor input.
 func promptComposerHook(composer input.InputResult, f func(ui.InputEvent) bool) {
-	if composer.Element == nil {
+	if !composer.Element.Valid() {
 		panic("mujica: menus need a built PromptComposer")
 	}
 	h := *ui.Local(composer.Element, promptHooksKey{}, func() *promptHooks { return &promptHooks{} })

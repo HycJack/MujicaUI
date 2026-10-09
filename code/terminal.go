@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TerminalOptions configure a Terminal.
@@ -50,7 +50,7 @@ func terminalMetrics(f ui.Font) (cw, ch, base float32) {
 }
 
 // Terminal draws a TerminalState and sends input to the PTY.
-func Terminal(c *ui.Context, s *TerminalState, opts TerminalOptions) *ui.Element {
+func Terminal(c *ui.Context, s *TerminalState, opts TerminalOptions) ui.Element {
 	if s == nil {
 		panic("mujica: Terminal needs a TerminalState")
 	}

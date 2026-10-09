@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // DescriptionItem is a name and its value.
@@ -33,7 +33,7 @@ type DescriptionListOptions struct {
 
 // DescriptionListView is a built DescriptionList and what happened to it in this frame.
 type DescriptionListView struct {
-	Element *ui.Element
+	Element ui.Element
 	copied  int
 }
 

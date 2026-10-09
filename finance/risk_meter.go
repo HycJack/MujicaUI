@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // RiskLevel is one step of a RiskMeter's scale.
@@ -25,7 +25,7 @@ type RiskMeterOptions struct {
 }
 
 // RiskMeter shows level, from 1, on a named graded scale.
-func RiskMeter(c *ui.Context, level int, opts RiskMeterOptions) *ui.Element {
+func RiskMeter(c *ui.Context, level int, opts RiskMeterOptions) ui.Element {
 	levels := opts.Levels
 	if levels == nil {
 		for i := range 5 {

@@ -9,11 +9,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CodeViewerOptions configure a CodeViewer.
@@ -140,7 +140,7 @@ func CodeViewer(c *ui.Context, lines []string, s *CodeViewerState, opts CodeView
 }
 
 // codeViewerKeys copies the selection and folds with Left and Right.
-func codeViewerKeys(c *ui.Context, list *ui.Element, lines []string, s *CodeViewerState) {
+func codeViewerKeys(c *ui.Context, list ui.Element, lines []string, s *CodeViewerState) {
 	if list.IsDisabled() {
 		return
 	}

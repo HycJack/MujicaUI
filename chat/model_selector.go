@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ModelOption is one model a ModelSelector offers.
@@ -44,7 +44,7 @@ func ModelSelector(c *ui.Context, value *string, models []ModelOption, opts Mode
 		}
 	}
 	k, u := core.Tokens(c), core.Density(c).Unit()
-	var tr *ui.Element
+	var tr ui.Element
 	ui.Row(c).Shrink(0).Disabled(opts.Disabled).Children(func() { tr = ui.ButtonBase(c).Role(ui.RolePopUpButton) })
 	st := ui.Local(tr, "model-selector", func() modelSelectorState { return modelSelectorState{hi: -1, lastHi: -1} })
 	disabled := tr.IsDisabled()
@@ -120,7 +120,7 @@ func ModelSelector(c *ui.Context, value *string, models []ModelOption, opts Mode
 	})
 	if st.open {
 		ww, wh := c.Size()
-		ui.PopoverBase(c, tr, &st.open, func(panel *ui.Element) {
+		ui.PopoverBase(c, tr, &st.open, func(panel ui.Element) {
 			core.OverlayStyle(c, panel, overlay.OverlayAnchored(c, panel, tr.Bounds()))
 			a := tr.Bounds()
 			room := max(a.Y, wh-a.Y-a.H) - 8

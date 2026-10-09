@@ -8,11 +8,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // PromptTemplate is a reusable prompt; {{name}} marks a variable.
@@ -47,7 +47,7 @@ type promptLibraryShown struct {
 
 // PromptLibraryView is a built PromptLibrary and inserted text.
 type PromptLibraryView struct {
-	Element *ui.Element
+	Element ui.Element
 	// Inserted is the filled template, or empty.
 	Inserted string
 }
@@ -203,7 +203,7 @@ func promptLibraryPreview(c *ui.Context, k theme.Tokens, s *PromptLibraryState, 
 	for _, name := range vars {
 		val := s.Values[name]
 		ui.Column(c).Key("var:" + name).Children(func() {
-			input.FormField(c, name, input.FormFieldOptions{Required: true}, func() *ui.Element {
+			input.FormField(c, name, input.FormFieldOptions{Required: true}, func() ui.Element {
 				r := input.TextInput(c, &val, input.TextInputOptions{Label: name, Disabled: disabled})
 				if r.Changed() {
 					s.Values[name] = val

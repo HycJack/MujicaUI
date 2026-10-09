@@ -3,9 +3,9 @@ package finance
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // PriceChangeBadgeOptions configure a PriceChangeBadge.
@@ -17,7 +17,7 @@ type PriceChangeBadgeOptions struct {
 }
 
 // PriceChangeBadge shows a signed change and percent with an arrow.
-func PriceChangeBadge(c *ui.Context, change, percent float64, opts PriceChangeBadgeOptions) *ui.Element {
+func PriceChangeBadge(c *ui.Context, change, percent float64, opts PriceChangeBadgeOptions) ui.Element {
 	dec := core.PriceDecimals("PriceChangeBadge", opts.Decimals)
 	sign := core.TrendSign(change)
 	if sign == 0 {

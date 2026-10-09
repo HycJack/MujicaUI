@@ -9,11 +9,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MailDraft is a mail being written.
@@ -35,7 +35,7 @@ type MailComposerOptions struct {
 
 // MailComposerResult is the composer's element and this frame's events.
 type MailComposerResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Sent requests sending; Discarded requests discarding the draft.
 	Sent, Discarded bool
 }

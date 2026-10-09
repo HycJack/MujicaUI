@@ -5,7 +5,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 var gaugeSegments = []GaugeSegment{{60, "Calm", GaugeGood}, {85, "Busy", GaugeWarning}, {100, "Crowded", GaugeDanger}}

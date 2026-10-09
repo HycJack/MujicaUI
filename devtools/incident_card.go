@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/agent"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/agent"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // IncidentStatus tracks investigation; zero means IncidentInvestigating.
@@ -49,7 +49,7 @@ type Incident struct {
 }
 
 // IncidentCard shows an incident's title, status, impact and update timeline.
-func IncidentCard(c *ui.Context, inc Incident) *ui.Element {
+func IncidentCard(c *ui.Context, inc Incident) ui.Element {
 	if inc.Title == "" {
 		panic("mujica: IncidentCard needs a Title")
 	}

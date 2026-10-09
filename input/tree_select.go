@@ -8,9 +8,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TreeSelectNode is one node of a TreeSelect. IDs must be unique in the tree.
@@ -94,7 +94,7 @@ func TreeSelect(c *ui.Context, selected *[]string, nodes []TreeSelectNode, opts 
 			MultiSelectTags(c, selected, options, MultiSelectOptions{MaxTags: opts.MaxTags, Disabled: opts.Disabled})
 		}
 	})
-	ui.PopoverBase(c, tr, &st.open, func(panel *ui.Element) {
+	ui.PopoverBase(c, tr, &st.open, func(panel ui.Element) {
 		SelectPanel(c, panel)
 		panel.MinWidth(max(tr.Bounds().W, 260))
 		ui.Column(c).Gap(4).Children(func() {
@@ -219,7 +219,7 @@ func treeSelectFirstChild(n *TreeSelectNode, shown map[string]bool) string {
 }
 
 // treeSelectDescribe says what MyGo cannot set on custom rows (ui/element.go:282).
-func treeSelectDescribe(c *ui.Context, b *ui.Element, branch, open bool, state internal.CheckState) {
+func treeSelectDescribe(c *ui.Context, b ui.Element, branch, open bool, state internal.CheckState) {
 	var parts []string
 	if branch {
 		parts = append(parts, core.Msg(c, map[bool]string{true: "tree_select.expanded", false: "tree_select.collapsed"}[open]))
@@ -255,7 +255,7 @@ func treeSelectRowView(c *ui.Context, st *treeSelectState, selected *[]string, r
 			})
 		}
 		state := treeSelectCheck(n, *selected, opts)
-		var b *ui.Element
+		var b ui.Element
 		if opts.Multiple {
 			on := state == internal.Checked
 			b = MultiSelectCheck(c, k, &on, state, n.Label, n.Disabled)

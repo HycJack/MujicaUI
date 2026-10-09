@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chart"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/chart"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SentimentGaugeOptions configure a SentimentGauge.
@@ -30,7 +30,7 @@ var sentimentBands = [5]string{"sentiment_gauge.extreme_fear", "sentiment_gauge.
 
 func sentimentBand(v float64) int { return min(4, int(v/20)) }
 
-func SentimentGauge(c *ui.Context, value float64, opts SentimentGaugeOptions) *ui.Element {
+func SentimentGauge(c *ui.Context, value float64, opts SentimentGaugeOptions) ui.Element {
 	if math.IsNaN(value) || value < 0 || value > 100 {
 		panic("mujica: SentimentGauge value must be in 0..100")
 	}

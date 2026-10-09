@@ -9,12 +9,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chart"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/chart"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 type ScreenerField struct {
@@ -87,7 +87,7 @@ type ScreenerOptions struct {
 
 // ScreenerView is a built Screener and this frame's events.
 type ScreenerView struct {
-	Element       *ui.Element
+	Element       ui.Element
 	Changed, Save bool
 	Table         data.DataTableView
 }

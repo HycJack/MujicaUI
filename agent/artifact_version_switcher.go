@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
 )
 
 // ArtifactVersion is one saved version of an artifact.
@@ -23,7 +23,7 @@ type ArtifactVersionSwitcherOptions struct {
 
 // ArtifactVersionResult reports this frame's events.
 type ArtifactVersionResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Changed reports *current moved.
 	Changed bool
 	// Compare asks to diff current against the previous version.

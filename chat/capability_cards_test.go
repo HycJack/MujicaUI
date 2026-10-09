@@ -5,7 +5,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 func TestCapabilityCardsExample(t *testing.T) {
@@ -35,7 +35,7 @@ func TestCapabilityCardsExample(t *testing.T) {
 
 func TestCapabilityCardsColumnsAndDisabled(t *testing.T) {
 	got := ""
-	var g *ui.Element
+	var g ui.Element
 	tt := chatTester(900, 600, func(c *ui.Context) {
 		v := CapabilityCards(c, chatCards(), CapabilityCardsOptions{Columns: 1, Disabled: true})
 		g = v.Element
@@ -51,7 +51,7 @@ func TestCapabilityCardsColumnsAndDisabled(t *testing.T) {
 	}
 	a, _ := tt.Find("Write")
 	b, _ := tt.Find("Plan")
-	if b.Y <= a.Y || g == nil {
+	if b.Y <= a.Y || !g.Valid() {
 		t.Fatalf("one column should stack cards: %v %v", a, b)
 	}
 }

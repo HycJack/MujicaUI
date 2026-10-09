@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // BidAskBarOptions configure a BidAskBar.
@@ -20,7 +20,7 @@ type BidAskBarOptions struct {
 }
 
 // BidAskBar compares buy and sell volume in a split bar.
-func BidAskBar(c *ui.Context, bid, ask float64, opts BidAskBarOptions) *ui.Element {
+func BidAskBar(c *ui.Context, bid, ask float64, opts BidAskBarOptions) ui.Element {
 	if bid < 0 || ask < 0 || math.IsNaN(bid+ask) {
 		panic("mujica: BidAskBar volumes must be zero or more")
 	}

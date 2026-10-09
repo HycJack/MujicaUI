@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SelectOption is one choice of a Select or MultiSelect.
@@ -53,7 +53,7 @@ func Select[T comparable](c *ui.Context, value *T, options []SelectOption[T], op
 	old := *value
 	// SelectBase chooses into a copy as it is built; a choice counts once the option is known enabled.
 	pick := old
-	var s *ui.SelectParts[T]
+	var s ui.SelectParts[T]
 	site := ui.Row(c).Shrink(0).Disabled(opts.Disabled)
 	life := ui.Local(site, selectKey{"lifetime"}, func() selectLifetime { return selectLifetime{} })
 	if disabled := site.IsDisabled(); disabled != life.disabled {
@@ -117,7 +117,7 @@ func Select[T comparable](c *ui.Context, value *T, options []SelectOption[T], op
 	if tr.IsDisabled() {
 		return core.NewChoiceResult(tr, false)
 	}
-	s.Popup(func(panel *ui.Element) {
+	s.Popup(func(panel ui.Element) {
 		SelectPanel(c, panel)
 		ui.Scroll(c).MaxHeight(280).Children(func() {
 			if len(options) == 0 {
@@ -196,7 +196,7 @@ func selectOr(s, fallback string) string {
 }
 
 // SelectField styles tr as a field that opens a popup, with content and a chevron.
-func SelectField(c *ui.Context, tr *ui.Element, open bool, content func()) {
+func SelectField(c *ui.Context, tr ui.Element, open bool, content func()) {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	tr.MinHeight(d.ControlHeight()).MinWidth(180).Padding(0, d.Unit()*2, 0, d.Unit()*3).Gap(d.Unit() * 2).
@@ -254,13 +254,13 @@ func SelectCheck(c *ui.Context, on bool) {
 }
 
 // SelectPanel styles a popup panel.
-func SelectPanel(c *ui.Context, panel *ui.Element) {
+func SelectPanel(c *ui.Context, panel ui.Element) {
 	core.OverlayStyle(c, panel, core.OverlayEnter(c, panel))
 	panel.Margin(4, 0, 0, 0).Padding(4)
 }
 
 // SelectRow styles an option row: chosen has the selection fill and a check, highlighted a side bar.
-func SelectRow(c *ui.Context, row *ui.Element, highlighted, chosen bool, label string) {
+func SelectRow(c *ui.Context, row ui.Element, highlighted, chosen bool, label string) {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	row.MinHeight(d.ControlHeight()).Padding(0, d.Unit()*3, 0, d.Unit()*2).Gap(d.Unit() * 2).

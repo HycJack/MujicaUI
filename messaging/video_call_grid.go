@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/media"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/media"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CallParticipant supplies identity, frames and call state.
@@ -31,7 +31,7 @@ type VideoCallGridOptions struct {
 }
 
 // VideoCallGrid displays participant frames and speaker marks.
-func VideoCallGrid(c *ui.Context, people []CallParticipant, opts VideoCallGridOptions) *ui.Element {
+func VideoCallGrid(c *ui.Context, people []CallParticipant, opts VideoCallGridOptions) ui.Element {
 	if opts.Columns < 0 {
 		panic("mujica: VideoCallGrid Columns must not be negative")
 	}

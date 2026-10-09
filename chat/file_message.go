@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // FileMessageOptions describe a file sent in a chat.
@@ -26,7 +26,7 @@ type FileMessageOptions struct {
 
 // FileMessageResult is a FileMessage's element and this frame's actions.
 type FileMessageResult struct {
-	Element            *ui.Element
+	Element            ui.Element
 	opened, downloaded bool
 }
 

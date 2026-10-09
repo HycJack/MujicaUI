@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Commit is one commit of a history, newest first.
@@ -24,7 +24,7 @@ type Commit struct {
 
 // GitListResult is a built version-control list and its events.
 type GitListResult struct {
-	Element            *ui.Element
+	Element            ui.Element
 	changed, submitted bool
 	action, item       string
 }

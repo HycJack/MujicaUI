@@ -11,15 +11,15 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/feedback"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/layout"
-	"github.com/ZacharyZhang-NY/MujicaUI/navigation"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/feedback"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/layout"
+	"github.com/HycJack/MujicaUI/navigation"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 const filesID = "c-files"
@@ -319,7 +319,7 @@ func (g *gallery) renameDialog(c *ui.Context, log func(string)) {
 			commit()
 		}
 	}}, func() {
-		input.FormField(c, g.t("New name", "新名称"), input.FormFieldOptions{Error: bad}, func() *ui.Element {
+		input.FormField(c, g.t("New name", "新名称"), input.FormFieldOptions{Error: bad}, func() ui.Element {
 			r := input.TextInput(c, &s.newName, input.TextInputOptions{Error: bad})
 			if r.Submitted() {
 				commit()

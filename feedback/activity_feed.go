@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Activity is one event of an ActivityFeed: Actor did Action to Object at Time.
@@ -47,7 +47,7 @@ type activityFeedCache struct {
 }
 
 // ActivityFeed lists events grouped by day, newest first as given, building only the rows in view.
-func ActivityFeed(c *ui.Context, items []Activity, opts ActivityFeedOptions) *ui.Element {
+func ActivityFeed(c *ui.Context, items []Activity, opts ActivityFeedOptions) ui.Element {
 	loc := cmp.Or(opts.Location, time.Local)
 	for _, a := range items {
 		if a.ID == "" || a.Actor == "" || a.Action == "" || a.Time.IsZero() {
@@ -106,7 +106,7 @@ func ActivityFeed(c *ui.Context, items []Activity, opts ActivityFeedOptions) *ui
 }
 
 // activityFeedHeader is a day's title: Today, Yesterday or the date, over an ornament rule.
-func activityFeedHeader(c *ui.Context, k theme.Tokens, box *ui.Element, day, today core.Date) {
+func activityFeedHeader(c *ui.Context, k theme.Tokens, box ui.Element, day, today core.Date) {
 	label := core.DatetimeDayLabel(c, day)
 	switch day {
 	case today:
@@ -122,7 +122,7 @@ func activityFeedHeader(c *ui.Context, k theme.Tokens, box *ui.Element, day, tod
 }
 
 // activityFeedEvent is one event: avatar, "Actor action Object", and the time.
-func activityFeedEvent(c *ui.Context, k theme.Tokens, box *ui.Element, a Activity, loc *time.Location) {
+func activityFeedEvent(c *ui.Context, k theme.Tokens, box ui.Element, a Activity, loc *time.Location) {
 	when := a.Time.In(loc).Format("15:04")
 	box.Role(ui.RoleListItem).Label(a.Actor + " " + a.Action + " " + a.Object + ", " + when)
 	box.Children(func() {

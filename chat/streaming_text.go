@@ -7,7 +7,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // StreamingTextOptions configure a StreamingText.
@@ -28,7 +28,7 @@ type streamingState struct {
 }
 
 // StreamingText shows text that grows as it streams; reduced motion shows it at once.
-func StreamingText(c *ui.Context, text string, opts StreamingTextOptions) *ui.Element {
+func StreamingText(c *ui.Context, text string, opts StreamingTextOptions) ui.Element {
 	if opts.Rate < 0 {
 		panic("mujica: StreamingText Rate must not be negative")
 	}

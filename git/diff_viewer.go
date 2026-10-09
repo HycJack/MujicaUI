@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // DiffViewerState keeps a DiffViewer's diff, opened folds and scroll place.
@@ -42,7 +42,7 @@ type diffViewerRow struct {
 }
 
 // DiffViewer compares two texts by line; give it a height.
-func DiffViewer(c *ui.Context, s *DiffViewerState, from, to string, opts DiffViewerOptions) *ui.Element {
+func DiffViewer(c *ui.Context, s *DiffViewerState, from, to string, opts DiffViewerOptions) ui.Element {
 	ctx := opts.Context
 	if ctx == 0 {
 		ctx = 3

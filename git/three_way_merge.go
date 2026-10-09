@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MergeChoice is how a conflict is resolved.
@@ -187,7 +187,7 @@ func threeWayMergeChunk(c *ui.Context, s *ThreeWayMergeState, i int) bool {
 }
 
 // mergeChoiceButton is a toggle marking the chosen side.
-func mergeChoiceButton(c *ui.Context, label string, on bool) *ui.Element {
+func mergeChoiceButton(c *ui.Context, label string, on bool) ui.Element {
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
 	b := ui.ButtonBase(c).MinHeight(theme.MinHitSize).Padding(0, u*3).Gap(u*1.5).Radius(theme.ControlRadius).

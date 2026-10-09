@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // OutputChannel is a named stream of ANSI lines.
@@ -34,7 +34,7 @@ type OutputPanelOptions struct {
 
 // OutputPanelResult is an OutputPanel and what happened in this frame.
 type OutputPanelResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Cleared names a channel to clear.
 	Changed bool
 	Cleared string

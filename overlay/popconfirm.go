@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // PopconfirmOptions configure a Popconfirm. Title is required.
@@ -28,8 +28,8 @@ type PopconfirmResult struct {
 }
 
 // Popconfirm asks for a light confirmation by anchor; use AlertDialog for high-risk actions.
-func Popconfirm(c *ui.Context, anchor *ui.Element, open *bool, opts PopconfirmOptions) PopconfirmResult {
-	if anchor == nil {
+func Popconfirm(c *ui.Context, anchor ui.Element, open *bool, opts PopconfirmOptions) PopconfirmResult {
+	if !anchor.Valid() {
 		panic("mujica: Popconfirm needs an anchor")
 	}
 	if opts.Title == "" {
@@ -54,7 +54,7 @@ func Popconfirm(c *ui.Context, anchor *ui.Element, open *bool, opts PopconfirmOp
 	}
 	b := anchor.Bounds()
 	shown := true
-	ui.PopoverBase(c, anchor, &shown, func(panel *ui.Element) {
+	ui.PopoverBase(c, anchor, &shown, func(panel ui.Element) {
 		core.OverlayStyle(c, panel, OverlayAnchored(c, panel, b))
 		panel.Margin(6, 0, 0, 0).Padding(u * 3).Gap(u * 3).MaxWidth(PopoverWide(c, 320)).MaxHeight(PopoverRoom(c, b)).Role(ui.RoleAlertDialog).
 			Label(opts.Title).Description(opts.Description)

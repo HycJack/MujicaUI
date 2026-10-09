@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chat"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/chat"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
 )
 
 func TestChatContinues(t *testing.T) {

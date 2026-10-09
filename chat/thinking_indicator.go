@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ThinkingIndicatorOptions configure a ThinkingIndicator.
@@ -17,7 +17,7 @@ type ThinkingIndicatorOptions struct {
 }
 
 // ThinkingIndicator shows rising diamonds and a phase, still when reduced.
-func ThinkingIndicator(c *ui.Context, opts ThinkingIndicatorOptions) *ui.Element {
+func ThinkingIndicator(c *ui.Context, opts ThinkingIndicatorOptions) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	phase := opts.Phase

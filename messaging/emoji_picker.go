@@ -8,11 +8,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // EmojiPickerOptions configure an EmojiPicker.
@@ -26,7 +26,7 @@ type EmojiPickerOptions struct {
 
 // EmojiResult exposes the element and this frame’s chosen emoji.
 type EmojiResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Picked contains the chosen emoji, or an empty string.
 	Picked string
 }

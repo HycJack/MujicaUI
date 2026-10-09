@@ -3,9 +3,9 @@ package messaging
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // UserProfile is the person a UserProfileCard shows.
@@ -31,7 +31,7 @@ type UserProfileCardOptions struct {
 }
 
 // UserProfileCard displays identity, presence, role and action slots.
-func UserProfileCard(c *ui.Context, prof UserProfile, opts UserProfileCardOptions) *ui.Element {
+func UserProfileCard(c *ui.Context, prof UserProfile, opts UserProfileCardOptions) ui.Element {
 	if prof.Name == "" {
 		panic("mujica: UserProfileCard needs a Name")
 	}

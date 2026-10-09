@@ -5,8 +5,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // LayoutTransitionOptions configure a LayoutTransition.
@@ -20,7 +20,7 @@ type LayoutTransitionOptions struct {
 }
 
 // LayoutTransition animates its size and place when they change.
-func LayoutTransition(c *ui.Context, opts LayoutTransitionOptions, content func()) *ui.Element {
+func LayoutTransition(c *ui.Context, opts LayoutTransitionOptions, content func()) ui.Element {
 	if opts.Duration < 0 {
 		panic("mujica: LayoutTransition Duration is negative")
 	}

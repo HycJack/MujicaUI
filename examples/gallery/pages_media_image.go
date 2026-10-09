@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/media"
-	"github.com/ZacharyZhang-NY/MujicaUI/navigation"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/media"
+	"github.com/HycJack/MujicaUI/navigation"
 )
 
 func imageCropperDemo(c *ui.Context, log func(string)) {

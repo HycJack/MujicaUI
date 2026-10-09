@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // DateSeparatorOptions configure a DateSeparator.
@@ -18,7 +18,7 @@ type DateSeparatorOptions struct {
 }
 
 // DateSeparator marks where a day's messages begin, localized.
-func DateSeparator(c *ui.Context, day core.Date, opts DateSeparatorOptions) *ui.Element {
+func DateSeparator(c *ui.Context, day core.Date, opts DateSeparatorOptions) ui.Element {
 	if !day.Valid() {
 		panic("mujica: DateSeparator needs a valid date")
 	}

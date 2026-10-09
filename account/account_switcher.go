@@ -6,14 +6,14 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Account is a signed-in account a user can switch to.
@@ -29,7 +29,7 @@ type AccountSwitcherOptions struct {
 
 // AccountSwitcherResult reports account changes and addition requests.
 type AccountSwitcherResult struct {
-	Element *ui.Element
+	Element ui.Element
 	changed bool
 	add     bool
 }
@@ -92,7 +92,7 @@ func AccountSwitcher(c *ui.Context, current *string, accounts []Account, opts Ac
 	return r
 }
 
-func accountSwitcherLarge(c *ui.Context, b *ui.Element, open *bool, current *string, accounts []Account, r *AccountSwitcherResult) {
+func accountSwitcherLarge(c *ui.Context, b ui.Element, open *bool, current *string, accounts []Account, r *AccountSwitcherResult) {
 	overlay.Popover(c, b, open, overlay.PopoverOptions{Label: core.Msg(c, "account_switcher.accounts"), Width: 320}, func() {
 		cursor := ui.Local(b, "cursor", func() int { return -1 })
 		rows := ui.Local(b, "list", func() ui.ListState { return ui.ListState{} })
@@ -129,7 +129,7 @@ func accountSwitcherLarge(c *ui.Context, b *ui.Element, open *bool, current *str
 }
 
 // accountTrigger displays an avatar, name and detail.
-func accountTrigger(c *ui.Context, name, detail string, avatar *ui.Bitmap, disabled bool) *ui.Element {
+func accountTrigger(c *ui.Context, name, detail string, avatar *ui.Bitmap, disabled bool) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	b := ui.ButtonBase(c).Role(ui.RoleMenuButton).MinHeight(d.ControlHeight()+d.Unit()*2).Padding(d.Unit(), d.Unit()*3, d.Unit(), d.Unit()*2).

@@ -5,12 +5,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 type SymbolSearchState struct {
@@ -33,7 +33,7 @@ type SymbolSearchOptions struct {
 
 // SymbolSearchView is a built SymbolSearch and this frame's events.
 type SymbolSearchView struct {
-	Element *ui.Element
+	Element ui.Element
 	Changed bool
 	// Chosen is the symbol picked when Picked is set.
 	Chosen MarketSymbol

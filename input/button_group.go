@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ButtonGroupItem is one button of a ButtonGroup. Give Label, Icon or both; icon-only needs Name.
@@ -29,7 +29,7 @@ type ButtonGroupOptions struct {
 
 // ButtonGroupResult is the group element and the item clicked this frame.
 type ButtonGroupResult struct {
-	Element *ui.Element
+	Element ui.Element
 	clicked int
 }
 

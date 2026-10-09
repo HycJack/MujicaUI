@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // KanbanColumn is one column, holding the tasks in Status.
@@ -39,7 +39,7 @@ type KanbanMove struct {
 
 // KanbanResult is the board and what the user did.
 type KanbanResult struct {
-	Element *ui.Element
+	Element ui.Element
 	move    *KanbanMove
 	opened  string
 }

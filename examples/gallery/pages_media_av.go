@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/media"
-	"github.com/ZacharyZhang-NY/MujicaUI/navigation"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/media"
+	"github.com/HycJack/MujicaUI/navigation"
 )
 
 // mediaClockState simulates the caller's playback: position advances while playing.

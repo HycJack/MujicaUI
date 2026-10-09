@@ -9,10 +9,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // UndoToastOptions configure an UndoToast.
@@ -27,7 +27,7 @@ type UndoToastOptions struct {
 
 // UndoToastResult reports how an UndoToast ended this frame, if it did.
 type UndoToastResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Undone  bool
 	// Expired: the countdown ran out, or the user closed it; the action stands.
 	Expired bool

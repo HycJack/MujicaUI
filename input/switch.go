@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SwitchOptions configure a Switch.
@@ -26,11 +26,11 @@ const (
 )
 
 // Switch turns *on over by click or Space; Changed reports it, the caller applies it.
-func Switch(c *ui.Context, on *bool, label string, opts SwitchOptions) *ui.Element {
+func Switch(c *ui.Context, on *bool, label string, opts SwitchOptions) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	blocked := opts.Disabled || opts.Loading
-	var sw *ui.Element
+	var sw ui.Element
 	// Disabled on a wrapper blocks the base before it takes input.
 	ui.Row(c).Shrink(0).Disabled(blocked).Children(func() {
 		sw = ui.SwitchBase(c, on).Gap(d.Unit() * 2).AlignItems(ui.Center).

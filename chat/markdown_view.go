@@ -6,14 +6,14 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MarkdownResult is a MarkdownView's element and the link the user opened this frame.
 type MarkdownResult struct {
-	Element *ui.Element
+	Element ui.Element
 	link    string
 }
 
@@ -96,7 +96,7 @@ func markdownBlock(c *ui.Context, b *internal.MdBlock) string {
 }
 
 // markdownSpans fills paragraph t with styled spans; links are focusable and return their URL when used.
-func markdownSpans(c *ui.Context, t *ui.Element, spans []internal.MdSpan) string {
+func markdownSpans(c *ui.Context, t ui.Element, spans []internal.MdSpan) string {
 	k := core.Tokens(c)
 	var link string
 	t.MinWidth(0).Children(func() {

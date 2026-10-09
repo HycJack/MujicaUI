@@ -9,9 +9,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // timeGridConfig is what the week and day views share.
@@ -60,7 +60,7 @@ func timeGridSlot(name string, slot int) int {
 }
 
 // timeGrid draws day columns and turns gestures into changes.
-func timeGrid(c *ui.Context, root *ui.Element, days []core.Date, events []CalendarEvent, cfg timeGridConfig, r *CalendarViewResult) {
+func timeGrid(c *ui.Context, root ui.Element, days []core.Date, events []CalendarEvent, cfg timeGridConfig, r *CalendarViewResult) {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	hourH := d.ControlHeight() * 2
@@ -291,7 +291,7 @@ func timeChip(c *ui.Context, i int, pl timePlaced, ev CalendarEvent, cfg timeGri
 			}
 		}
 		for _, part := range []struct {
-			e    *ui.Element
+			e    ui.Element
 			kind CalendarChangeKind
 		}{{chip, CalendarMove}, {handle, CalendarResize}} {
 			dx, dy, ok := part.e.Dragged()

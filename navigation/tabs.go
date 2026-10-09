@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Tab is one tab of Tabs.
@@ -65,7 +65,7 @@ func Tabs(c *ui.Context, selected *int, tabs []Tab, opts TabsOptions) core.Choic
 	}
 	res := core.ChoiceResult{Element: root}
 	root.Children(func() {
-		var strip *ui.Element
+		var strip ui.Element
 		if opts.Vertical {
 			strip = ui.Scroll(c).Shrink(0).Padding(pad)
 		} else {
@@ -87,11 +87,11 @@ func Tabs(c *ui.Context, selected *int, tabs []Tab, opts TabsOptions) core.Choic
 			if opts.Label != "" {
 				list.Label(opts.Label)
 			}
-			built := make([]*ui.Element, len(tabs))
+			built := make([]ui.Element, len(tabs))
 			list.Children(func() {
 				n := 0
 				for i, t := range tabs {
-					var tab *ui.Element
+					var tab ui.Element
 					if t.Disabled {
 						tab = ui.Row(c).Shrink(0).Role(ui.RoleTab).Disabled(true)
 					} else {
@@ -121,7 +121,7 @@ func Tabs(c *ui.Context, selected *int, tabs []Tab, opts TabsOptions) core.Choic
 	return res
 }
 
-func TabsStyle(c *ui.Context, tab *ui.Element, t Tab, on, vertical bool) {
+func TabsStyle(c *ui.Context, tab ui.Element, t Tab, on, vertical bool) {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	u := d.Unit()

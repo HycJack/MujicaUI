@@ -9,11 +9,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // OrderSide is the buy or sell side.
@@ -90,7 +90,7 @@ func bookKeyOf(book OrderBookData, group float64) bookKey {
 
 // OrderBookResult is a built OrderBook and its clicked level.
 type OrderBookResult struct {
-	Element *ui.Element
+	Element ui.Element
 	price   float64
 	side    OrderSide
 }

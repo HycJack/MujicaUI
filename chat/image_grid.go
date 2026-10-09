@@ -5,11 +5,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // GridImage is one picture of an ImageGrid; the caller loads it.
@@ -23,7 +23,7 @@ type GridImage struct {
 
 // ImageGridResult is an ImageGrid's element and a retry the user asked for.
 type ImageGridResult struct {
-	Element *ui.Element
+	Element ui.Element
 	retry   int
 }
 
@@ -71,7 +71,7 @@ func ImageGrid(c *ui.Context, images []GridImage) ImageGridResult {
 		for i, im := range images {
 			loaded := im.Source != nil && !im.Loading && im.Err == nil
 			// Only a loaded picture is a button; a failed one keeps its retry.
-			var b *ui.Element
+			var b ui.Element
 			if loaded {
 				b = ui.ButtonBase(c).Label(im.Alt)
 				internal.Ring(b, k.Focus, theme.ControlRadius)

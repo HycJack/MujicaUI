@@ -3,9 +3,9 @@ package layout
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // dividerDiamond is the ornament's size in DIPs.
@@ -22,7 +22,7 @@ type DividerOptions struct {
 }
 
 // Divider is a thin separating line. It never takes focus and its ornament is not read out.
-func Divider(c *ui.Context, opts DividerOptions) *ui.Element {
+func Divider(c *ui.Context, opts DividerOptions) ui.Element {
 	if opts.Vertical && opts.Label != "" {
 		panic("mujica: a vertical Divider cannot have a Label")
 	}

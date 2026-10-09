@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/account"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/account"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 const accountCategory = "Settings & Account"
@@ -91,7 +91,7 @@ func accountSettingsPage(c *ui.Context, d *accountSettingsState, log func(string
 
 // accountSwitchRow is a settings row with a switch.
 func accountSwitchRow(c *ui.Context, id, label, desc string, v *bool, log func(string)) {
-	account.SettingsRow(c, label, account.SettingsRowOptions{ID: id, Description: desc}, func() *ui.Element {
+	account.SettingsRow(c, label, account.SettingsRowOptions{ID: id, Description: desc}, func() ui.Element {
 		sw := input.Switch(c, v, "", input.SwitchOptions{})
 		if sw.Changed() {
 			log(fmt.Sprintf("%s %v", label, *v))

@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chart"
-	"github.com/ZacharyZhang-NY/MujicaUI/code"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/devtools"
+	"github.com/HycJack/MujicaUI/chart"
+	"github.com/HycJack/MujicaUI/code"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/devtools"
 )
 
 func ExampleStatCard() {

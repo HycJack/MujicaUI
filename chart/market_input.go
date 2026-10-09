@@ -7,12 +7,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // input handles pan, zoom, alerts, drawings, and keyboard following.
-func (m *mktCore) input(plot *ui.Element) {
+func (m *mktCore) input(plot ui.Element) {
 	if plot.IsDisabled() {
 		return
 	}
@@ -85,7 +85,7 @@ func (m *mktCore) input(plot *ui.Element) {
 	}
 }
 
-func (m *mktCore) alertsKeyboard(plot *ui.Element) {
+func (m *mktCore) alertsKeyboard(plot ui.Element) {
 	if m.opts.Alerts == nil || len(*m.opts.Alerts) == 0 || m.base != 0 {
 		return
 	}

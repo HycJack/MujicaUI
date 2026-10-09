@@ -7,11 +7,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Profile is what a ProfileEditor edits.
@@ -34,7 +34,7 @@ type ProfileEditorOptions struct {
 
 // ProfileEditorResult reports save, avatar and discard requests.
 type ProfileEditorResult struct {
-	Element             *ui.Element
+	Element             ui.Element
 	save, avatar, reset bool
 }
 
@@ -73,10 +73,10 @@ func ProfileEditor(c *ui.Context, p *Profile, opts ProfileEditorOptions) Profile
 				r.avatar = true
 			}
 		})
-		input.FormField(c, core.Msg(c, "profile_editor.name"), input.FormFieldOptions{Required: true}, func() *ui.Element {
+		input.FormField(c, core.Msg(c, "profile_editor.name"), input.FormFieldOptions{Required: true}, func() ui.Element {
 			return input.TextInput(c, &p.Name, input.TextInputOptions{Disabled: locked, Error: nameErr}).Input
 		})
-		input.FormField(c, core.Msg(c, "profile_editor.bio"), input.FormFieldOptions{}, func() *ui.Element {
+		input.FormField(c, core.Msg(c, "profile_editor.bio"), input.FormFieldOptions{}, func() ui.Element {
 			return input.TextArea(c, &p.Bio, input.TextAreaOptions{MaxLength: limit, Disabled: locked}).Input
 		})
 		ui.Row(c).Gap(d.Unit() * 3).AlignItems(ui.Center).Children(func() {

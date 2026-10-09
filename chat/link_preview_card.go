@@ -3,9 +3,9 @@ package chat
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // LinkPreview is a link's metadata, fetched by the caller.
@@ -18,7 +18,7 @@ type LinkPreview struct {
 }
 
 // LinkPreviewCard shows a link's site, title, description and thumbnail; Clicked opens it.
-func LinkPreviewCard(c *ui.Context, p LinkPreview) *ui.Element {
+func LinkPreviewCard(c *ui.Context, p LinkPreview) ui.Element {
 	if p.URL == "" || p.Title == "" {
 		panic("mujica: LinkPreviewCard needs URL and Title")
 	}

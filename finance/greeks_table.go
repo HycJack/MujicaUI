@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // OptionGreeks are an option's sensitivities.
@@ -33,7 +33,7 @@ type GreeksTableOptions struct {
 
 var greekNames = [5]string{"Delta", "Gamma", "Theta", "Vega", "Rho"}
 
-func GreeksTable(c *ui.Context, rows []GreeksRow, opts GreeksTableOptions) *ui.Element {
+func GreeksTable(c *ui.Context, rows []GreeksRow, opts GreeksTableOptions) ui.Element {
 	if opts.Decimals < 0 || opts.Decimals > 12 {
 		panic("mujica: GreeksTable Decimals is negative")
 	}

@@ -5,11 +5,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/internal"
 )
 
 // WaveLoader draws a sine line flowing to the right.
-func WaveLoader(c *ui.Context, opts LoaderOptions) *ui.Element {
+func WaveLoader(c *ui.Context, opts LoaderOptions) ui.Element {
 	return loaderMark(c, opts, "wave_loader", 2.5, 1400, func(p *ui.Painter, r ui.Rect, t float64, col ui.Color, still bool) {
 		var path ui.Path
 		amp := r.H * 0.3

@@ -7,8 +7,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MentionCandidate is someone a MentionInput may mention.
@@ -57,7 +57,7 @@ func MentionInput(c *ui.Context, value *string, mentions *[]Mention, opts Mentio
 	k := core.Tokens(c)
 	var r InputResult
 	look := &textInputLook{disabled: opts.Disabled, err: opts.Error}
-	r.Element, r.Input = textInputFrame(c, look, func(frame *ui.Element) *ui.Element {
+	r.Element, r.Input = textInputFrame(c, look, func(frame ui.Element) ui.Element {
 		in := ui.Box(c).Grow(1).MinWidth(core.Density(c).Unit() * 20).Focusable().Clip().Role(ui.RoleTextField).Label(opts.Label).Cursor(ui.CursorText)
 		s := *ui.Local(in, "mention_input", func() *mentionInputState { return &mentionInputState{at: -1} })
 		if s.doc.text == nil || s.synced != *value || !slices.Equal(s.syncedMentions, *mentions) {
@@ -110,7 +110,7 @@ func mentionInputQuery(s *mentionInputState, opts MentionInputOptions) {
 }
 
 // mentionInputEvent applies one input event to the document and reports whether it took it.
-func mentionInputEvent(c *ui.Context, s *mentionInputState, ev ui.InputEvent, popup bool, in *ui.Element) bool {
+func mentionInputEvent(c *ui.Context, s *mentionInputState, ev ui.InputEvent, popup bool, in ui.Element) bool {
 	edit := func(f func()) {
 		s.undo = append(s.undo, s.doc.clone())
 		s.redo = nil
@@ -230,7 +230,7 @@ func mentionInputHit(c *ui.Context, s *mentionInputState, x float32) int {
 }
 
 // mentionInputView draws the text with mention chips, the selection and the caret, scrolled to keep the caret in view.
-func mentionInputView(c *ui.Context, k theme.Tokens, s *mentionInputState, in *ui.Element, placeholder string) {
+func mentionInputView(c *ui.Context, k theme.Tokens, s *mentionInputState, in ui.Element, placeholder string) {
 	size := core.FontSize(c, theme.BodySize)
 	measure := func(i int) float32 {
 		w, _ := c.MeasureText(0, ui.Span{Text: string(s.doc.text[:i]), Size: size})
@@ -298,7 +298,7 @@ func mentionInputSpans(k theme.Tokens, s *mentionInputState, size float32, place
 }
 
 // mentionInputPopup lists the candidates under the field; a click or Enter picks one.
-func mentionInputPopup(c *ui.Context, k theme.Tokens, s *mentionInputState, frame, in *ui.Element) {
+func mentionInputPopup(c *ui.Context, k theme.Tokens, s *mentionInputState, frame, in ui.Element) {
 	b := frame.Bounds()
 	u := core.Density(c).Unit()
 	ui.Overlay(c, func() {

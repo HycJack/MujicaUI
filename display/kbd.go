@@ -6,12 +6,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Kbd shows keys as caps; "Mod" is Command or Ctrl.
-func Kbd(c *ui.Context, keys ...string) *ui.Element {
+func Kbd(c *ui.Context, keys ...string) ui.Element {
 	if len(keys) == 0 {
 		panic("mujica: Kbd needs at least one key")
 	}

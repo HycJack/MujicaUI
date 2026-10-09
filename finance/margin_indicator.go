@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MarginIndicatorOptions configure a MarginIndicator. Zero lines mean 80% and 100%.
@@ -21,7 +21,7 @@ type MarginIndicatorOptions struct {
 }
 
 // MarginIndicator shows maintenance over equity against its two lines.
-func MarginIndicator(c *ui.Context, ratio float64, opts MarginIndicatorOptions) *ui.Element {
+func MarginIndicator(c *ui.Context, ratio float64, opts MarginIndicatorOptions) ui.Element {
 	warn, liq := opts.Warning, opts.Liquidation
 	if warn == 0 && liq == 0 {
 		warn, liq = 0.8, 1

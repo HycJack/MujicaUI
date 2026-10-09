@@ -5,7 +5,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 func TestFeedbackWidgetValidatesSubmitsOnce(t *testing.T) {

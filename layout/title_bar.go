@@ -3,8 +3,8 @@ package layout
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TitleBarOptions configure a TitleBar.
@@ -16,7 +16,7 @@ type TitleBarOptions struct {
 }
 
 // TitleBar is a window title row that drags the window and clears the system buttons.
-func TitleBar(c *ui.Context, title string, opts TitleBarOptions) *ui.Element {
+func TitleBar(c *ui.Context, title string, opts TitleBarOptions) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	bar := c.TitleBar()

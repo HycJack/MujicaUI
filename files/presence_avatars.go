@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Collaborator is someone working on the same document.
@@ -34,7 +34,7 @@ type PresenceAvatarsOptions struct {
 
 // PresenceAvatarsResult is the avatars and the follow request this frame.
 type PresenceAvatarsResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Follow identifies a collaborator; Unfollow requests stopping.
 	Follow   string
 	Unfollow bool
@@ -108,7 +108,7 @@ func PresenceAvatars(c *ui.Context, people []Collaborator, opts PresenceAvatarsO
 }
 
 // presenceAvatar builds a collaborator button with presence status.
-func presenceAvatar(c *ui.Context, p Collaborator, size float32, following bool) *ui.Element {
+func presenceAvatar(c *ui.Context, p Collaborator, size float32, following bool) ui.Element {
 	if p.ID == "" {
 		panic("mujica: Collaborator needs an ID")
 	}
@@ -134,7 +134,7 @@ func presenceAvatar(c *ui.Context, p Collaborator, size float32, following bool)
 }
 
 // presenceStyle styles hover, focus and following rings.
-func presenceStyle(c *ui.Context, b *ui.Element, size float32, following bool) {
+func presenceStyle(c *ui.Context, b ui.Element, size float32, following bool) {
 	k := core.Tokens(c)
 	b.Shrink(0).Background(k.Surface).FocusRing(false)
 	if b.Hovered() {

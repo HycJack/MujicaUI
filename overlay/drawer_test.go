@@ -5,8 +5,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 type drawerApp struct {
@@ -28,7 +28,7 @@ func (a *drawerApp) view(c *ui.Context) {
 	})
 	if p := Drawer(c, &a.open, a.opts, func() {
 		input.Button(c, "Apply", input.ButtonOptions{})
-	}); p != nil {
+	}); p.Valid() {
 		a.panel = p.Bounds()
 	}
 }

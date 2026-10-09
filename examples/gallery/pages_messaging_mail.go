@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/messaging"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/messaging"
 )
 
 func mailListDemo(c *ui.Context, log func(string)) {

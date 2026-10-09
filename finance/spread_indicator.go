@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SpreadIndicatorOptions configure a SpreadIndicator.
@@ -20,7 +20,7 @@ type SpreadIndicatorOptions struct {
 }
 
 // SpreadIndicator shows ask minus bid and its percent.
-func SpreadIndicator(c *ui.Context, bid, ask float64, opts SpreadIndicatorOptions) *ui.Element {
+func SpreadIndicator(c *ui.Context, bid, ask float64, opts SpreadIndicatorOptions) ui.Element {
 	if opts.WarnPercent < 0 {
 		panic("mujica: SpreadIndicator with negative WarnPercent")
 	}

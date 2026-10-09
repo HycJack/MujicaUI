@@ -7,11 +7,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ViewerImage is one picture of an ImageViewer.
@@ -47,7 +47,7 @@ func ImageViewer(c *ui.Context, open *bool, index *int, images []ViewerImage) co
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
 	w, h := c.Size()
-	v.Element = ui.DialogBase(c, open, func(back, panel *ui.Element) {
+	v.Element = ui.DialogBase(c, open, func(back, panel ui.Element) {
 		back.Background(ui.RGBA(0, 0, 0, 0.55))
 		panel.Background(k.Surface).Border(theme.BorderWidth, k.Border).Radius(theme.PopupRadius).
 			Size(w-u*12, h-u*12).Padding(u * 3).Gap(u * 3).Label(core.Msg(c, "image_viewer.title"))
@@ -143,7 +143,7 @@ func ImageViewer(c *ui.Context, open *bool, index *int, images []ViewerImage) co
 }
 
 // viewerKeys, anywhere in the panel, zooms with + - 0, switches with Left and Right, and pans with Shift+arrows.
-func viewerKeys(panel *ui.Element, st *viewerState, zoom func(float32), goTo func(int), at int) {
+func viewerKeys(panel ui.Element, st *viewerState, zoom func(float32), goTo func(int), at int) {
 	switch {
 	case panel.Shortcut(0, ui.KeyEqual), panel.Shortcut(ui.Shift, ui.KeyEqual):
 		zoom(viewerZoomStep)

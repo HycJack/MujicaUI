@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // AudioMessageOptions describe a voice message the caller plays.
@@ -26,7 +26,7 @@ type AudioMessageOptions struct {
 
 // AudioMessageResult is an AudioMessage's element and the user's requests this frame.
 type AudioMessageResult struct {
-	Element *ui.Element
+	Element ui.Element
 	toggled bool
 	seek    time.Duration
 	seeked  bool

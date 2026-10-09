@@ -6,16 +6,16 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // typingPeriod is one cycle of the dots, in milliseconds.
 const typingPeriod = 1200
 
 // TypingIndicator shows that name is typing: three fading dots, or static text under reduced motion.
-func TypingIndicator(c *ui.Context, name string) *ui.Element {
+func TypingIndicator(c *ui.Context, name string) ui.Element {
 	if name == "" {
 		panic("mujica: TypingIndicator needs a name")
 	}

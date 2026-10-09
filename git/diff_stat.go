@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // DiffStatOptions configure a DiffStat.
@@ -17,7 +17,7 @@ type DiffStatOptions struct {
 }
 
 // DiffStat shows added and deleted counts with a ratio bar.
-func DiffStat(c *ui.Context, added, deleted int, opts DiffStatOptions) *ui.Element {
+func DiffStat(c *ui.Context, added, deleted int, opts DiffStatOptions) ui.Element {
 	if added < 0 || deleted < 0 {
 		panic("mujica: DiffStat counts must not be negative")
 	}

@@ -8,12 +8,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TerminalTab is one terminal of a TerminalTabs.
@@ -30,7 +30,7 @@ type TerminalTabsOptions struct {
 
 // TerminalTabsResult is TerminalTabs and what happened in this frame.
 type TerminalTabsResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Renamed and Closed hold a tab ID.
 	Changed bool
 	Renamed string
@@ -126,7 +126,7 @@ func TerminalTabs(c *ui.Context, tabs *[]TerminalTab, active *string, opts Termi
 }
 
 // terminalTabsTab builds one tab with title and close.
-func terminalTabsTab(c *ui.Context, tab *ui.Element, t TerminalTab, on bool, st *terminalTabsState, rename func(string), askClose func(TerminalTab), disabled bool) {
+func terminalTabsTab(c *ui.Context, tab ui.Element, t TerminalTab, on bool, st *terminalTabsState, rename func(string), askClose func(TerminalTab), disabled bool) {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	u := d.Unit()

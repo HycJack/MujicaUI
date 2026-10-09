@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CascaderNode is one choice at a level of a Cascader.
@@ -97,7 +97,7 @@ func Cascader(c *ui.Context, path *[]string, opts CascaderOptions) core.ChoiceRe
 		}
 		ui.Text(c, cascaderLabels(opts, *path)).SingleLine().Grow(1).Shrink(1)
 	})
-	ui.PopoverBase(c, tr, &st.open, func(panel *ui.Element) {
+	ui.PopoverBase(c, tr, &st.open, func(panel ui.Element) {
 		SelectPanel(c, panel)
 		panel.Padding(0)
 		ui.Row(c).AlignItems(ui.Stretch).Dividers(theme.BorderWidth, core.Tokens(c).Border).Children(func() {

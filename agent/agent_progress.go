@@ -3,8 +3,8 @@ package agent
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/feedback"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/feedback"
 )
 
 // AgentProgressOptions configure an AgentProgress.
@@ -19,7 +19,7 @@ type AgentProgressOptions struct {
 }
 
 // AgentProgress shows progress 0 to 1 and the current action.
-func AgentProgress(c *ui.Context, value float64, opts AgentProgressOptions) *ui.Element {
+func AgentProgress(c *ui.Context, value float64, opts AgentProgressOptions) ui.Element {
 	label := opts.Label
 	if label == "" {
 		label = core.Msg(c, "agent_progress.label")

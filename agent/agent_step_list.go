@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // AgentStep is one step of an agent run.
@@ -30,7 +30,7 @@ type AgentStepListOptions struct {
 
 // AgentStepListResult reports this frame's events.
 type AgentStepListResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Retry is the failed step to retry, else "".
 	Retry string
 	// Toggled is the step whose detail toggled, else "".

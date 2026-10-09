@@ -8,9 +8,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ResizablePanel is one panel of a ResizablePanelGroup.
@@ -32,7 +32,7 @@ type ResizablePanelGroupOptions struct {
 
 // ResizablePanelGroupResult reports a group's changes: Resized while moving, Committed when a change is done, to save.
 type ResizablePanelGroupResult struct {
-	Element   *ui.Element
+	Element   ui.Element
 	Resized   bool
 	Committed bool
 }
@@ -88,7 +88,7 @@ func ResizablePanelGroup(c *ui.Context, sizes *[]float32, panels []ResizablePane
 	for i, p := range panels {
 		mins[i] = cmp.Or(p.Min, 10*u)
 	}
-	along := func(e *ui.Element, v float32) *ui.Element {
+	along := func(e ui.Element, v float32) ui.Element {
 		if opts.Vertical {
 			return e.Height(v).FillWidth()
 		}
@@ -231,7 +231,7 @@ func resizablePanelDivider(c *ui.Context, k theme.Tokens, u float32, st *resizab
 }
 
 // resizablePanelGrip places the grip over divider i and draws the divider.
-func resizablePanelGrip(c *ui.Context, k theme.Tokens, u float32, s []float32, avail float32, i int, vertical bool, grip, div *ui.Element, held bool) {
+func resizablePanelGrip(c *ui.Context, k theme.Tokens, u float32, s []float32, avail float32, i int, vertical bool, grip, div ui.Element, held bool) {
 	// The grip is wider than the 1 DIP line, centered on the boundary.
 	var at float32
 	for _, f := range s[:i+1] {

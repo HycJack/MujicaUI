@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/datetime"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/project"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/datetime"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/project"
 )
 
 var projectsStatuses = []project.WorkflowStatus{

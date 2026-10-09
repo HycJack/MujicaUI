@@ -5,8 +5,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
 )
 
 // PasswordInputOptions configure a PasswordInput.
@@ -26,9 +26,9 @@ func PasswordInput(c *ui.Context, value *string, opts PasswordInputOptions) Inpu
 	}
 	var r InputResult
 	look := &textInputLook{disabled: opts.Disabled, err: opts.Error}
-	r.Element, r.Input = textInputFrame(c, look, func(frame *ui.Element) *ui.Element {
+	r.Element, r.Input = textInputFrame(c, look, func(frame ui.Element) ui.Element {
 		shown := ui.Local(frame, "shown", func() bool { return false })
-		var in *ui.Element
+		var in ui.Element
 		// MyGo's mask cannot be lifted, so each mode keeps its own editor.
 		mode := "masked"
 		if *shown {

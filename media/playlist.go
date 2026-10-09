@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // PlaylistItem is one track; ID must be unique and stable.
@@ -30,7 +30,7 @@ type PlaylistOptions struct {
 
 // PlaylistResult is the playlist's element and this frame's events.
 type PlaylistResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Played is the ID chosen by Enter or double click.
 	Played string
 	// Removed is the ID taken out of *items.

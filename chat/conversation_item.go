@@ -7,11 +7,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ConversationItemOptions configure a ConversationItem.
@@ -29,7 +29,7 @@ type ConversationDrag struct{ ID string }
 
 // ConversationItemView is a built ConversationItem and its requests.
 type ConversationItemView struct {
-	Element *ui.Element
+	Element ui.Element
 	// Opened, Deleted, Exported and PinToggled are requests for the caller.
 	Opened, Deleted, Exported, PinToggled bool
 	// Renamed reports a confirmed new title, already in conv.Title.
@@ -145,7 +145,7 @@ func conversationItemEditor(c *ui.Context, k theme.Tokens, conv *ChatConversatio
 }
 
 // conversationItemMenu is a borderless ellipsis button opening a menu.
-func conversationItemMenu(c *ui.Context, label string, build func(m *overlay.PopupMenu)) *ui.Element {
+func conversationItemMenu(c *ui.Context, label string, build func(m *overlay.PopupMenu)) ui.Element {
 	b := core.IconAction(c, icons.Must("ellipsis"), label).Role(ui.RoleMenuButton).Shrink(0)
 	open := ui.Local(b, conversationItemKey{}, func() bool { return false })
 	if b.IsDisabled() {

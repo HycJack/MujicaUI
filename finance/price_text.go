@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // priceTextFlash is the tint's fade, three state steps long.
@@ -37,7 +37,7 @@ type priceTextState struct {
 }
 
 // PriceText shows a price; a change tints it once.
-func PriceText(c *ui.Context, value float64, opts PriceTextOptions) *ui.Element {
+func PriceText(c *ui.Context, value float64, opts PriceTextOptions) ui.Element {
 	dec := core.PriceDecimals("PriceText", opts.Decimals)
 	if opts.Size < 0 {
 		panic("mujica: PriceText with negative Size")

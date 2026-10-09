@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CheckboxOptions configure a Checkbox.
@@ -21,14 +21,14 @@ type CheckboxOptions struct {
 const checkboxSize float32 = 16
 
 // Checkbox toggles *value; a click on the box or its label toggles, as does Space.
-func Checkbox(c *ui.Context, value *bool, label string, opts CheckboxOptions) *ui.Element {
+func Checkbox(c *ui.Context, value *bool, label string, opts CheckboxOptions) ui.Element {
 	if value == nil {
 		panic("mujica: Checkbox needs a value")
 	}
 	k := core.Tokens(c)
 	d := core.Density(c)
 	// Disabled on a wrapper blocks the base's click before it toggles.
-	var row *ui.Element
+	var row ui.Element
 	wrap := ui.Row(c).Shrink(0).Disabled(opts.Disabled)
 	wrap.Children(func() {
 		row = ui.CheckboxBase(c, value).Gap(d.Unit() * 2).MinHeight(d.ControlHeight()).FocusRing(false)

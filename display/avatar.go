@@ -5,8 +5,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // AvatarOptions configure an Avatar.
@@ -18,7 +18,7 @@ type AvatarOptions struct {
 }
 
 // Avatar shows a person as picture, initials or icon.
-func Avatar(c *ui.Context, name string, opts AvatarOptions) *ui.Element {
+func Avatar(c *ui.Context, name string, opts AvatarOptions) ui.Element {
 	size := opts.Size
 	if size < 0 {
 		panic("mujica: Avatar Size must not be negative")

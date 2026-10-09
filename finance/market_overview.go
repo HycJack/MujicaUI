@@ -7,8 +7,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MarketBreadth counts the issues that rose, fell and stayed flat.
@@ -23,7 +23,7 @@ type MarketOverviewOptions struct {
 }
 
 type MarketOverviewView struct {
-	Element *ui.Element
+	Element ui.Element
 	Chosen  int
 }
 

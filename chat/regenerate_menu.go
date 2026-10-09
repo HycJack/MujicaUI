@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/overlay"
 )
 
 // RegenerateKind is what a RegenerateMenu choice asks for.
@@ -41,7 +41,7 @@ type RegenerateMenuOptions struct {
 
 // RegenerateMenuView is a built menu and the chosen retry.
 type RegenerateMenuView struct {
-	Element *ui.Element
+	Element ui.Element
 	Chosen  bool
 	Choice  RegenerateChoice
 }

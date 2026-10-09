@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Segment is one choice of a SegmentedControl.
@@ -28,7 +28,7 @@ type SegmentedControlOptions struct {
 }
 
 // SegmentedControl chooses one of segments into *selected; Changed reports a new choice.
-func SegmentedControl(c *ui.Context, selected *int, segments []Segment, opts SegmentedControlOptions) *ui.Element {
+func SegmentedControl(c *ui.Context, selected *int, segments []Segment, opts SegmentedControlOptions) ui.Element {
 	if len(segments) == 0 {
 		panic("mujica: SegmentedControl needs at least one segment")
 	}

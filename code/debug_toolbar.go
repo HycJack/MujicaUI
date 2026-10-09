@@ -7,8 +7,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/navigation"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/navigation"
 )
 
 // DebugState is where a debug session is.
@@ -42,7 +42,7 @@ type DebugToolbarOptions struct {
 
 // DebugToolbarResult carries the requested action.
 type DebugToolbarResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Action  DebugAction
 }
 

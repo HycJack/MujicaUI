@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Milestone holds a goal, due date and completion counts.
@@ -25,7 +25,7 @@ type MilestoneProgressOptions struct {
 }
 
 // MilestoneProgress shows completion counts, progress and due dates.
-func MilestoneProgress(c *ui.Context, m Milestone, opts MilestoneProgressOptions) *ui.Element {
+func MilestoneProgress(c *ui.Context, m Milestone, opts MilestoneProgressOptions) ui.Element {
 	core.DatetimeCheckDate("MilestoneProgress Due", m.Due)
 	if m.Total < 0 || m.Done < 0 || m.Done > m.Total {
 		panic(fmt.Sprintf("mujica: MilestoneProgress %d of %d is not valid", m.Done, m.Total))

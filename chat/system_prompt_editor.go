@@ -8,11 +8,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SystemPromptEditorOptions configure a SystemPromptEditor.
@@ -30,7 +30,7 @@ type SystemPromptEditorOptions struct {
 
 // SystemPromptEditorView is a built editor and its requests.
 type SystemPromptEditorView struct {
-	Element *ui.Element
+	Element ui.Element
 	// Save asks to save *value; Restored reports the default returned.
 	Save, Restored bool
 }

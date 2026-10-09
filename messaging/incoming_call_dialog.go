@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // IncomingCall is who calls; Caller is required.
@@ -49,7 +49,7 @@ func IncomingCallDialog(c *ui.Context, open *bool, call IncomingCall, opts Incom
 	u := core.Density(c).Unit()
 	title := fmt.Sprintf(core.Msg(c, "incoming_call_dialog.title"), call.Caller)
 	shown, accepted, video, declined, backClicked := true, false, false, false, false
-	panel := ui.DialogBase(c, &shown, func(back, panel *ui.Element) {
+	panel := ui.DialogBase(c, &shown, func(back, panel ui.Element) {
 		backClicked = back.Clicked() // a click outside neither answers nor refuses
 		p := core.OverlayEnter(c, panel)
 		back.Background(overlay.OverlayScrim(k).Alpha(p)).Padding(16)

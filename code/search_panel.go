@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // SearchMatch is a hit; Start and End index Text.
@@ -57,7 +57,7 @@ type SearchOpen struct {
 
 // SearchPanelResult is a SearchPanel and what happened in this frame.
 type SearchPanelResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Changed asks the caller to search again.
 	Changed bool
 	Opened  *SearchOpen

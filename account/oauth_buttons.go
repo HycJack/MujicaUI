@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // OAuthProvider is a sign-in provider; icons are plain, not trademarks.
@@ -25,7 +25,7 @@ type OAuthButtonsOptions struct {
 
 // OAuthButtonsResult carries the selected provider.
 type OAuthButtonsResult struct {
-	Element *ui.Element
+	Element ui.Element
 	chosen  string
 }
 

@@ -5,8 +5,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
 )
 
 // MessageAction is one action on a chat message.
@@ -39,7 +39,7 @@ type MessageActionsOptions struct {
 
 // MessageActionsResult is the toolbar's element and the action chosen this frame.
 type MessageActionsResult struct {
-	Element *ui.Element
+	Element ui.Element
 	action  MessageAction
 }
 

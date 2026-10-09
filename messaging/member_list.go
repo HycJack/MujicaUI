@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Member supplies a unique ID, name, presence and role.
@@ -51,7 +51,7 @@ type memberRows struct {
 
 // MemberListResult is a MemberList's element and this frame's events.
 type MemberListResult struct {
-	Element *ui.Element
+	Element ui.Element
 	changed bool
 	// Opened contains the ID activated by Enter or double-click.
 	Opened string

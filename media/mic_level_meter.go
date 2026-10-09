@@ -7,8 +7,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MicLevelMeterOptions configure a MicLevelMeter.
@@ -27,7 +27,7 @@ type micPeak struct {
 }
 
 // MicLevelMeter shows level as segments, held peak and dB.
-func MicLevelMeter(c *ui.Context, level float32, opts MicLevelMeterOptions) *ui.Element {
+func MicLevelMeter(c *ui.Context, level float32, opts MicLevelMeterOptions) ui.Element {
 	if level < 0 || level > 1 || math.IsNaN(float64(level)) || opts.Hold < 0 {
 		panic("mujica: MicLevelMeter needs level in 0..1 and Hold >= 0")
 	}

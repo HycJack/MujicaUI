@@ -7,12 +7,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 func TestMicLevelMeterPeakHold(t *testing.T) {
 	level := float32(1)
-	var e *ui.Element
+	var e ui.Element
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		e = MicLevelMeter(c, level, MicLevelMeterOptions{Hold: 40 * time.Millisecond})
@@ -39,7 +39,7 @@ func TestMicLevelMeterPeakHold(t *testing.T) {
 }
 
 // micTestDescription rebuilds the meter's spoken value from its state.
-func micTestDescription(e *ui.Element) string {
+func micTestDescription(e ui.Element) string {
 	pk := *ui.Local(e, micPeak{}, func() micPeak { return micPeak{} })
 	return "peak " + micDB(pk.level)
 }

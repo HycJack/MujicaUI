@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SearchInputOptions configure a SearchInput.
@@ -72,7 +72,7 @@ func SearchInput(c *ui.Context, query *string, opts SearchInputOptions) SearchIn
 	if opts.Find {
 		*opts.Current = max(0, min(*opts.Current, opts.Matches-1))
 	}
-	r.Element, r.Input = textInputFrame(c, look, func(frame *ui.Element) *ui.Element {
+	r.Element, r.Input = textInputFrame(c, look, func(frame ui.Element) ui.Element {
 		if opts.Find {
 			// Built inside the frame, where step knows of disabled ancestors.
 			mac := runtime.GOOS == "darwin"

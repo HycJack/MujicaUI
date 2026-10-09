@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chat"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/chat"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ThreadPanelOptions configure a ThreadPanel.
@@ -22,7 +22,7 @@ type ThreadPanelOptions struct {
 
 // ThreadPanelResult is the panel's element and this frame's events.
 type ThreadPanelResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Sent is a reply the user sent; empty is none.
 	Sent string
 }

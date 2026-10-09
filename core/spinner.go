@@ -6,7 +6,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/internal"
 )
 
 // SpinnerOptions configure a Spinner. Size is 16 DIPs when zero.
@@ -20,7 +20,7 @@ type SpinnerOptions struct {
 }
 
 // Spinner turns four diamonds only while painted; hidden or under reduced motion it stops.
-func Spinner(c *ui.Context, opts SpinnerOptions) *ui.Element {
+func Spinner(c *ui.Context, opts SpinnerOptions) ui.Element {
 	if !(opts.Size >= 0) || math.IsInf(float64(opts.Size), 1) {
 		panic(fmt.Sprintf("mujica: Spinner Size %v invalid", opts.Size))
 	}

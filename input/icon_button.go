@@ -3,7 +3,7 @@ package input
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // IconButtonOptions configure an IconButton.
@@ -17,7 +17,7 @@ type IconButtonOptions struct {
 }
 
 // IconButton is a square button showing only icon; label names its action.
-func IconButton(c *ui.Context, icon *ui.SVG, label string, opts IconButtonOptions) *ui.Element {
+func IconButton(c *ui.Context, icon *ui.SVG, label string, opts IconButtonOptions) ui.Element {
 	if icon == nil {
 		panic("mujica: IconButton needs an icon")
 	}

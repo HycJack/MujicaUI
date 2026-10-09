@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ImageCompareOptions configure an ImageCompare.
@@ -37,7 +37,7 @@ func ImageCompare(c *ui.Context, before, after ui.ImageSource, split *float64, o
 	}
 	g, _ := input.SliderSetup(0, 1, 0.01, nil, false, c)
 	old := *split
-	var s *ui.Element
+	var s ui.Element
 	var next float64
 	ui.Box(c).Disabled(opts.Disabled).Children(func() {
 		s, next, _ = input.SliderControl(c, old, g, 0, 1)

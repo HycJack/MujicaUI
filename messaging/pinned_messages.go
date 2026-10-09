@@ -6,14 +6,14 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chat"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/chat"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // PinnedMessagesResult is the list's element and this frame's events.
 type PinnedMessagesResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Jump requests navigation; Unpinned requests removing a pin.
 	Jump, Unpinned string
 }

@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SendButtonOptions configure a SendButton.
@@ -23,7 +23,7 @@ type SendButtonOptions struct {
 
 // SendResult carries the button and requested action.
 type SendResult struct {
-	Element    *ui.Element
+	Element    ui.Element
 	send, stop bool
 }
 
@@ -44,7 +44,7 @@ func SendButton(c *ui.Context, opts SendButtonOptions) SendResult {
 		tip += " (" + opts.Shortcut + ")"
 	}
 	var r SendResult
-	var b *ui.Element
+	var b ui.Element
 	r.Element = ui.Row(c).Shrink(0).Disabled(opts.Disabled && !opts.Streaming)
 	r.Element.Children(func() {
 		b = ui.ButtonBase(c).Size(h, h).Radius(h / 2).Label(label).Tooltip(tip).Transition(core.ColorFade)

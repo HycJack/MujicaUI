@@ -8,11 +8,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Shortcut combines modifiers and a key; zero means unassigned.
@@ -178,7 +178,7 @@ func shortcutRecorderKey(st *shortcutRecorderState, ev ui.InputEvent) bool {
 }
 
 // shortcutRecorderLook displays the shortcut or recording prompt.
-func shortcutRecorderLook(c *ui.Context, b *ui.Element, st *shortcutRecorderState, value Shortcut, name string) {
+func shortcutRecorderLook(c *ui.Context, b ui.Element, st *shortcutRecorderState, value Shortcut, name string) {
 	k := core.Tokens(c)
 	internal.Ring(b, k.Focus, theme.ControlRadius)
 	label := name + ": " + value.String()

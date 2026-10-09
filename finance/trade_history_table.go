@@ -8,11 +8,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/datetime"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/datetime"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // FillRow is one of the account's fills; ID is stable.
@@ -47,7 +47,7 @@ type TradeHistoryTableState struct {
 
 // TradeHistoryResult is a built table and its export request.
 type TradeHistoryResult struct {
-	Element  *ui.Element
+	Element  ui.Element
 	Table    data.DataTableView
 	exported []FillRow
 	export   bool

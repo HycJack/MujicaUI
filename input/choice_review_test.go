@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // A popup left open must stop taking choices once its control is disabled.
@@ -139,7 +139,7 @@ func TestChoiceHitAreas(t *testing.T) {
 func TestChoiceRowsFollowDensity(t *testing.T) {
 	for _, d := range []theme.Density{theme.Compact, theme.Default, theme.Comfortable} {
 		v, on := "apple", false
-		var sw *ui.Element
+		var sw ui.Element
 		tt := ui.NewTester(func(c *ui.Context) {
 			core.Use(c, core.Settings{Density: d})
 			ui.Column(c).Padding(10).AlignItems(ui.Start).Children(func() {

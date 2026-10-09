@@ -8,7 +8,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // MasonryOptions configure a Masonry.
@@ -46,7 +46,7 @@ type masonryLayout struct {
 }
 
 // Masonry lays n items in as many columns as fit, each into the shortest column, building only those in view.
-func Masonry(c *ui.Context, n int, opts MasonryOptions, item func(i int)) *ui.Element {
+func Masonry(c *ui.Context, n int, opts MasonryOptions, item func(i int)) ui.Element {
 	if opts.Key == nil || item == nil {
 		panic("mujica: Masonry needs Key and item")
 	}

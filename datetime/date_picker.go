@@ -8,9 +8,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // DatePickerOptions configure a DatePicker.
@@ -106,7 +106,7 @@ func DatePicker(c *ui.Context, value *core.Date, opts DatePickerOptions) DateTim
 	if placeholder == "" {
 		placeholder = core.Msg(c, "date_picker.placeholder")
 	}
-	var field, inputEl *ui.Element
+	var field, inputEl ui.Element
 	col.Children(func() {
 		field = core.DatetimeField(c, ui.Row(c), *problem != "", opts.ReadOnly)
 		field.Children(func() {

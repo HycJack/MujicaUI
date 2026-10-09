@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // LinkOptions configure a Link; empty URL means in-app action.
@@ -21,7 +21,7 @@ type LinkOptions struct {
 }
 
 // Link is underlined text; malformed URLs show an error instead.
-func Link(c *ui.Context, label string, opts LinkOptions) *ui.Element {
+func Link(c *ui.Context, label string, opts LinkOptions) ui.Element {
 	if label == "" {
 		panic("mujica: Link needs a label")
 	}
@@ -40,7 +40,7 @@ func Link(c *ui.Context, label string, opts LinkOptions) *ui.Element {
 			}
 		}
 	}
-	var l *ui.Element
+	var l ui.Element
 	ui.Column(c).Gap(u).AlignItems(ui.Start).Children(func() {
 		ui.Row(c).Gap(u).AlignItems(ui.Center).Children(func() {
 			l = ui.Link(c, label, target).Underline().DecorationThickness(1)

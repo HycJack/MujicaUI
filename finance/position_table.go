@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // PositionRow is one holding; ID must be stable across updates.
@@ -46,7 +46,7 @@ type PositionTableOptions struct {
 
 // TableActionResult is a trading table and its acted row.
 type TableActionResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Table   data.DataTableView
 	id      string
 }

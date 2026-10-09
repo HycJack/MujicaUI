@@ -11,12 +11,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/code"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/code"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // JsonEditorOptions configure a JsonEditor.
@@ -30,7 +30,7 @@ type JsonEditorOptions struct {
 
 // JsonEditorResult reports this frame's events and the parse state.
 type JsonEditorResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Changed bool
 	// Valid reports *text parses as one JSON value.
 	Valid bool

@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/media"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/media"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CallState is what the caller's call reports.
@@ -66,7 +66,7 @@ func (k callKey) String() string {
 }
 
 // CallControls provides call actions and window shortcuts.
-func CallControls(c *ui.Context, st CallState, opts CallControlsOptions) *ui.Element {
+func CallControls(c *ui.Context, st CallState, opts CallControlsOptions) ui.Element {
 	if opts.OnMute == nil || opts.OnCamera == nil || opts.OnShare == nil || opts.OnHangUp == nil {
 		panic("mujica: CallControls needs every callback")
 	}

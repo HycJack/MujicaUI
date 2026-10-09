@@ -7,7 +7,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chart"
+	"github.com/HycJack/MujicaUI/chart"
 )
 
 func c1Series(gap bool) []chart.ChartSeries {

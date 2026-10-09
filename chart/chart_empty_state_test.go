@@ -5,15 +5,15 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
 )
 
 func TestChartEmptyStateKeepsSizeAndRetries(t *testing.T) {
 	status := data.DataReady
 	retries, disabled := 0, false
 	var heights []float32
-	var el *ui.Element
+	var el ui.Element
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		ui.Column(c).Width(400).Disabled(disabled).Children(func() {

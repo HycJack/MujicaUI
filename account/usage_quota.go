@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // QuotaItem is one metered resource: Used of Limit, in Unit.
@@ -29,7 +29,7 @@ type UsageQuotaOptions struct {
 }
 
 // UsageQuota displays usage bars and reset time.
-func UsageQuota(c *ui.Context, items []QuotaItem, opts UsageQuotaOptions) *ui.Element {
+func UsageQuota(c *ui.Context, items []QuotaItem, opts UsageQuotaOptions) ui.Element {
 	warn := opts.Warn
 	if warn == 0 {
 		warn = 0.8

@@ -76,7 +76,7 @@ type overlaySiteState struct {
 }
 
 // OverlaySite builds the invisible focus fallback at a layer's call site.
-func OverlaySite(c *ui.Context) (*ui.Element, *overlaySiteState) {
+func OverlaySite(c *ui.Context) (ui.Element, *overlaySiteState) {
 	site := ui.Box(c).Size(0, 0).FocusRing(false)
 	st := ui.Local(site, "mujica.overlay.site", func() overlaySiteState { return overlaySiteState{} })
 	st.holding = st.holding && site.FocusWithin()
@@ -89,12 +89,12 @@ func OverlaySite(c *ui.Context) (*ui.Element, *overlaySiteState) {
 }
 
 // Shown records whether the focus is in the open layer's panel.
-func (st *overlaySiteState) Shown(panel *ui.Element) {
-	st.focusIn, st.wait = panel != nil && panel.FocusWithin(), 0
+func (st *overlaySiteState) Shown(panel ui.Element) {
+	st.focusIn, st.wait = panel.Valid() && panel.FocusWithin(), 0
 }
 
 // Closed moves a lost focus to the site once MyGo has had its chance to restore it.
-func (st *overlaySiteState) Closed(c *ui.Context, site *ui.Element) {
+func (st *overlaySiteState) Closed(c *ui.Context, site ui.Element) {
 	if st.focusIn {
 		st.focusIn, st.wait = false, 2 // MyGo prunes the panel at the end of the next frame
 	}

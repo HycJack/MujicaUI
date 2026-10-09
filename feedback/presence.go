@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // PresenceKind is how content comes and goes.
@@ -45,7 +45,7 @@ func presenceMotion(kind PresenceKind) *ui.Motion {
 type presenceState struct{ shown bool }
 
 // Presence builds content while show, entering and exiting with motion.
-func Presence(c *ui.Context, show bool, opts PresenceOptions, content func()) *ui.Element {
+func Presence(c *ui.Context, show bool, opts PresenceOptions, content func()) ui.Element {
 	m := presenceMotion(opts.Kind)
 	if opts.Duration < 0 {
 		panic("mujica: Presence Duration is negative")

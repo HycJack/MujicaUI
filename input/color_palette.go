@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ColorSwatch is one preset of a ColorPalette; Name is read out.
@@ -52,7 +52,7 @@ func ColorPalette(c *ui.Context, value *ui.Color, swatches []ColorSwatch, opts C
 	changed := false
 	g.Children(func() {
 		grid := ui.Box(c).Grid().Columns(cols).Gap(u * 1.5).FocusGroup(ui.Horizontal)
-		var cells []*ui.Element
+		var cells []ui.Element
 		grid.Children(func() {
 			for i, s := range swatches {
 				b := colorPaletteSwatch(c, k, s, *value == s.Color).Key(i)
@@ -86,7 +86,7 @@ func ColorPalette(c *ui.Context, value *ui.Color, swatches []ColorSwatch, opts C
 }
 
 // colorPaletteSwatch is one square swatch; the chosen one has an inset frame and a check.
-func colorPaletteSwatch(c *ui.Context, k theme.Tokens, s ColorSwatch, on bool) *ui.Element {
+func colorPaletteSwatch(c *ui.Context, k theme.Tokens, s ColorSwatch, on bool) ui.Element {
 	b := ui.ButtonBase(c).Size(theme.MinHitSize, theme.MinHitSize).Radius(theme.ControlRadius).Role(ui.RoleRadio).
 		Label(s.Name).Tooltip(s.Name).Selected(on)
 	internal.Ring(b, k.Focus, theme.ControlRadius)

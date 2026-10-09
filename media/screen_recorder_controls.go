@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // RecorderStatus is where a recording is; zero is idle.
@@ -34,7 +34,7 @@ type ScreenRecorderControlsOptions struct {
 }
 
 // ScreenRecorderControls start, pause, resume and stop a recording.
-func ScreenRecorderControls(c *ui.Context, st RecorderState, opts ScreenRecorderControlsOptions) *ui.Element {
+func ScreenRecorderControls(c *ui.Context, st RecorderState, opts ScreenRecorderControlsOptions) ui.Element {
 	if opts.OnStart == nil || opts.OnPause == nil || opts.OnResume == nil || opts.OnStop == nil {
 		panic("mujica: ScreenRecorderControls needs every callback")
 	}

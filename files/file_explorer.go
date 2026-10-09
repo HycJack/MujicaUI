@@ -9,11 +9,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/code"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/code"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // FileEntry identifies a file or folder by slash-separated Path.
@@ -83,7 +83,7 @@ func (s *FileExplorerState) step(from, to *[]string) {
 
 // FileExplorerResult is a FileExplorer and what happened in this frame.
 type FileExplorerResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Navigated reports a new current folder; Changed a new selection.
 	Navigated, Changed bool
 	// Opened is a file the user opened.

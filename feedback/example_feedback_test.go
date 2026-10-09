@@ -3,9 +3,9 @@ package feedback_test
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/feedback"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/feedback"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 func ExampleAlert() {

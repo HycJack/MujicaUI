@@ -7,8 +7,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MaskedInputOptions configure a MaskedInput.
@@ -102,7 +102,7 @@ func MaskedInput(c *ui.Context, value *string, opts MaskedInputOptions) InputRes
 	k := core.Tokens(c)
 	var r InputResult
 	look := &textInputLook{disabled: opts.Disabled, err: opts.Error}
-	r.Element, r.Input = textInputFrame(c, look, func(frame *ui.Element) *ui.Element {
+	r.Element, r.Input = textInputFrame(c, look, func(frame ui.Element) ui.Element {
 		in := ui.Row(c).Grow(1).Focusable().Role(ui.RoleTextField).Label(opts.Label).Description(MaskFormat(opts.Mask, *value))
 		st := ui.Local(in, "masked_input", func() *maskedInputState { return &maskedInputState{caret: len(raw)} })
 		s := *st

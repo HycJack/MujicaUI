@@ -5,11 +5,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // PopupMenuItemOptions configure one item of a PopupMenu.
@@ -39,7 +39,7 @@ type popupMenuLevel struct {
 }
 
 type popupMenuSub struct {
-	item  *ui.Element
+	item  ui.Element
 	seq   int
 	build func(m *PopupMenu)
 }
@@ -59,7 +59,7 @@ func (m *PopupMenu) Item(label string, opts PopupMenuItemOptions) bool {
 // Check adds an item toggling *checked and reports whether it changed.
 func (m *PopupMenu) Check(label string, checked *bool, opts PopupMenuItemOptions) bool {
 	// The base toggles as it is built, so a disabled wrapper comes first.
-	var base *ui.Element
+	var base ui.Element
 	ui.Column(m.c).Shrink(0).Disabled(opts.Disabled).Children(func() { base = ui.CheckboxBase(m.c, checked) })
 	it := m.row(base, opts.Disabled, false)
 	m.content(it, label, *checked, false)
@@ -109,7 +109,7 @@ func (m *PopupMenu) Separator() {
 }
 
 // row styles an item element and runs the hover, focus and highlight logic.
-func (m *PopupMenu) row(it *ui.Element, disabled, sub bool) *ui.Element {
+func (m *PopupMenu) row(it ui.Element, disabled, sub bool) ui.Element {
 	c := m.c
 	k := core.Tokens(c)
 	d := core.Density(c)
@@ -146,7 +146,7 @@ func (m *PopupMenu) row(it *ui.Element, disabled, sub bool) *ui.Element {
 }
 
 // content lays out the check column, label and submenu chevron of an item.
-func (m *PopupMenu) content(it *ui.Element, label string, checked, sub bool) {
+func (m *PopupMenu) content(it ui.Element, label string, checked, sub bool) {
 	c := m.c
 	k := core.Tokens(c)
 	it.Children(func() {
@@ -162,14 +162,14 @@ func (m *PopupMenu) content(it *ui.Element, label string, checked, sub bool) {
 }
 
 // PopupMenuOpen shows the menu build fills below anchor while *open is true.
-func PopupMenuOpen(c *ui.Context, anchor *ui.Element, open *bool, build func(m *PopupMenu)) *ui.Element {
+func PopupMenuOpen(c *ui.Context, anchor ui.Element, open *bool, build func(m *PopupMenu)) ui.Element {
 	if !*open {
-		return nil
+		return ui.Element{}
 	}
 	core.OverlayLayer(c, open)
 	b := anchor.Bounds()
 	root := &popupMenuRoot{}
-	panel := ui.PopoverBase(c, anchor, open, func(panel *ui.Element) {
+	panel := ui.PopoverBase(c, anchor, open, func(panel ui.Element) {
 		core.OverlayStyle(c, panel, OverlayAnchored(c, panel, b))
 		panel.Margin(4, 0, 0, 0).MinWidth(PopoverWide(c, max(b.W, 200))).MaxWidth(PopoverWide(c, 360)).MaxHeight(PopoverRoom(c, b))
 		popupMenuLevelBuild(c, panel, root, build, true)
@@ -188,7 +188,7 @@ func PopupMenuOpen(c *ui.Context, anchor *ui.Element, open *bool, build func(m *
 }
 
 // popupMenuLevelBuild builds one level's items in outer, then its open submenu.
-func popupMenuLevelBuild(c *ui.Context, outer *ui.Element, root *popupMenuRoot, build func(m *PopupMenu), autofocus bool) {
+func popupMenuLevelBuild(c *ui.Context, outer ui.Element, root *popupMenuRoot, build func(m *PopupMenu), autofocus bool) {
 	u := core.Density(c).Unit()
 	// The padding leaves room for the items' focus rings inside the clipping scroll.
 	items := ui.Scroll(c).Shrink(1).Padding(u + theme.FocusGap + theme.FocusWidth).FocusGroup(ui.Vertical)
@@ -204,7 +204,7 @@ func popupMenuLevelBuild(c *ui.Context, outer *ui.Element, root *popupMenuRoot, 
 }
 
 // popupMenuSubmenu builds a submenu beside its item, flipped to stay in the window.
-func popupMenuSubmenu(c *ui.Context, outer *ui.Element, root *popupMenuRoot, lv *popupMenuLevel, s popupMenuSub) {
+func popupMenuSubmenu(c *ui.Context, outer ui.Element, root *popupMenuRoot, lv *popupMenuLevel, s popupMenuSub) {
 	u := core.Density(c).Unit()
 	ob, ib := outer.Bounds(), s.item.Bounds()
 	ww, wh := c.Size()
@@ -232,7 +232,7 @@ func popupMenuSubmenu(c *ui.Context, outer *ui.Element, root *popupMenuRoot, lv 
 }
 
 // popupMenuTrigger styles a menu trigger button with a trailing chevron.
-func popupMenuTrigger(c *ui.Context, b *ui.Element, label string, icon *ui.SVG, open bool) {
+func popupMenuTrigger(c *ui.Context, b ui.Element, label string, icon *ui.SVG, open bool) {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	b.MinHeight(d.ControlHeight()).MinWidth(theme.MinHitSize).Padding(0, d.Unit()*3, 0, d.Unit()*4).

@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/code"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/code"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TransferStatus is where a transfer is.
@@ -54,7 +54,7 @@ type TransferQueueOptions struct {
 
 // TransferQueueResult exposes the queue and requested item action.
 type TransferQueueResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Action  TransferAction
 	// ID is the transfer the action is for.
 	ID string

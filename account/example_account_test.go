@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/account"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/account"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 func ExampleSettingsLayout() {
@@ -19,7 +19,7 @@ func ExampleSettingsLayout() {
 		core.Use(c, core.Settings{})
 		account.SettingsLayout(c, &page, pages, account.SettingsLayoutOptions{}, func(id string) {
 			account.SettingsSection(c, "Notifications", func() {
-				account.SettingsRow(c, "Sound", account.SettingsRowOptions{ID: "sound"}, func() *ui.Element {
+				account.SettingsRow(c, "Sound", account.SettingsRowOptions{ID: "sound"}, func() ui.Element {
 					return input.Switch(c, &sound, "", input.SwitchOptions{})
 				})
 			})

@@ -8,12 +8,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Workspace is a place a user can switch to.
@@ -115,7 +115,7 @@ func WorkspaceSwitcher(c *ui.Context, current *string, spaces []Workspace, opts 
 }
 
 // workspaceRow displays a clickable workspace with a selection mark.
-func workspaceRow(c *ui.Context, w Workspace, current, cursor bool) *ui.Element {
+func workspaceRow(c *ui.Context, w Workspace, current, cursor bool) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	b := ui.ButtonBase(c).Key(w.ID).MinHeight(d.ControlHeight()).Padding(d.Unit(), d.Unit()*2).Gap(d.Unit() * 2).

@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // DateRange is an inclusive span of days. The zero value means no range.
@@ -85,7 +85,7 @@ func DateRangePicker(c *ui.Context, value *DateRange, opts DateRangePickerOption
 	if !value.IsZero() {
 		text = value.Start.Format(layout) + " – " + value.End.Format(layout)
 	}
-	var field *ui.Element
+	var field ui.Element
 	col.Children(func() {
 		field = core.DatetimeField(c, ui.Row(c), *problem != "", opts.ReadOnly)
 		field.Children(func() {

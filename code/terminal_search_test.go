@@ -6,7 +6,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 func terminalSearchTester(term *TerminalState, s *TerminalSearchState, opts TerminalSearchOptions, moves *int) *ui.Tester {

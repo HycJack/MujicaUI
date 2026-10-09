@@ -6,7 +6,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 var slashCommandsSample = []SlashCommand{
@@ -130,7 +130,7 @@ func TestSlashCommandMenuNarrowAndLargeData(t *testing.T) {
 		cmds[i] = SlashCommand{Name: fmt.Sprintf("cmd%d", i)}
 	}
 	text := "/"
-	var panel *ui.Element
+	var panel ui.Element
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		p := PromptComposer(c, &text, PromptComposerOptions{Label: "Prompt"})
@@ -138,7 +138,7 @@ func TestSlashCommandMenuNarrowAndLargeData(t *testing.T) {
 	}, 180, 120)
 	_ = tt.Click("Prompt")
 	tt.Frame()
-	if panel == nil {
+	if !panel.Valid() {
 		t.Fatal("menu missing")
 	}
 	b := panel.Bounds()

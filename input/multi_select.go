@@ -8,9 +8,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MultiSelectOptions configure a MultiSelect.
@@ -55,7 +55,7 @@ func MultiSelect[T comparable](c *ui.Context, values *[]T, options []SelectOptio
 	SelectField(c, tr, *open, func() {
 		MultiSelectTags(c, values, options, opts)
 	})
-	ui.PopoverBase(c, tr, open, func(panel *ui.Element) {
+	ui.PopoverBase(c, tr, open, func(panel ui.Element) {
 		SelectPanel(c, panel)
 		panel.MinWidth(tr.Bounds().W).MaxWidth(max(tr.Bounds().W, 320))
 		multiSelectPopup(c, k, values, options, query, opts)
@@ -178,9 +178,9 @@ func multiSelectPopup[T comparable](c *ui.Context, k theme.Tokens, values *[]T, 
 }
 
 // MultiSelectCheck is a CheckboxBase row drawing its own box.
-func MultiSelectCheck(c *ui.Context, k theme.Tokens, on *bool, st internal.CheckState, label string, disabled bool) *ui.Element {
+func MultiSelectCheck(c *ui.Context, k theme.Tokens, on *bool, st internal.CheckState, label string, disabled bool) ui.Element {
 	d := core.Density(c)
-	var cb *ui.Element
+	var cb ui.Element
 	// A disabled wrapper blocks the base, which toggles as it is built.
 	ui.Row(c).Grow(1).Disabled(disabled).Children(func() {
 		cb = ui.CheckboxBase(c, on).MinHeight(d.ControlHeight()).Padding(0, d.Unit()*2).
@@ -227,12 +227,12 @@ func MultiSelectAll[T comparable](values []T, shown []SelectOption[T], on bool, 
 }
 
 // SelectSearch is the search field at the top of a popup; it takes the focus as the popup opens.
-func SelectSearch(c *ui.Context, query *string, placeholder string) *ui.Element {
+func SelectSearch(c *ui.Context, query *string, placeholder string) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	f := ui.Row(c).Gap(d.Unit()*2).Padding(0, d.Unit()*2).MinHeight(d.ControlHeight()-4).AlignItems(ui.Center).
 		Radius(theme.ControlRadius).Background(k.Background).Border(theme.BorderWidth, k.ControlBorder)
-	var in *ui.Element
+	var in ui.Element
 	f.Children(func() {
 		ui.Box(c).Size(14, 14).Shrink(0).Draw(func(p *ui.Painter, r ui.Rect) {
 			internal.Mark(p, r, "search", k.TextMuted)

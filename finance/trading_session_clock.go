@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 type TradingSession struct {
@@ -29,7 +29,7 @@ type TradingSessionClockOptions struct {
 	Now time.Time
 }
 
-func TradingSessionClock(c *ui.Context, markets []SessionMarket, opts TradingSessionClockOptions) *ui.Element {
+func TradingSessionClock(c *ui.Context, markets []SessionMarket, opts TradingSessionClockOptions) ui.Element {
 	now := opts.Now
 	if now.IsZero() {
 		now = c.Now()

@@ -8,8 +8,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CountUpOptions configure a CountUp.
@@ -28,7 +28,7 @@ type countUpState struct {
 }
 
 // CountUp counts from the last value to the new one.
-func CountUp(c *ui.Context, value float64, opts CountUpOptions) *ui.Element {
+func CountUp(c *ui.Context, value float64, opts CountUpOptions) ui.Element {
 	if math.IsNaN(value) || math.IsInf(value, 0) {
 		panic("mujica: CountUp value must be finite")
 	}

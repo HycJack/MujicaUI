@@ -8,9 +8,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // hexPerRow is how many bytes a row shows.
@@ -128,7 +128,7 @@ func hexColumn(c *ui.Context, s *HexViewerState, data []byte, start, end int, cw
 }
 
 // hexKeys moves, extends and copies the selection.
-func hexKeys(c *ui.Context, frame *ui.Element, data []byte, s *HexViewerState, move func(int, bool)) {
+func hexKeys(c *ui.Context, frame ui.Element, data []byte, s *HexViewerState, move func(int, bool)) {
 	copyMods := ui.Cmd
 	if runtime.GOOS != "darwin" {
 		copyMods = ui.Ctrl

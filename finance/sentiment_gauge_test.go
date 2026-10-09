@@ -5,7 +5,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/data"
 )
 
 func TestSentimentGaugeBandsAndBoundary(t *testing.T) {
@@ -40,7 +40,7 @@ func TestSentimentGaugeStatesKeepSize(t *testing.T) {
 	status := data.DataReady
 	empty := false
 	retried := 0
-	var element *ui.Element
+	var element ui.Element
 	tt := chatTester(400, 300, func(c *ui.Context) {
 		element = SentimentGauge(c, 72, SentimentGaugeOptions{Label: "Sentiment", Status: status, Empty: empty, Error: "Caller failed", Retry: func() { retried++ }})
 	})

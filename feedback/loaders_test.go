@@ -7,7 +7,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // motionFrames builds view and returns its tester and a counter of built frames.
@@ -39,11 +39,11 @@ func motionCount(tt *ui.Tester, s string) int {
 	return n
 }
 
-var loaderCases = map[string]func(c *ui.Context, o LoaderOptions) *ui.Element{
+var loaderCases = map[string]func(c *ui.Context, o LoaderOptions) ui.Element{
 	"dots": DotsLoader, "bars": BarsLoader, "pulse": PulseLoader, "orbit": OrbitLoader, "wave": WaveLoader,
 }
 
-func testLoaderBehavior(t *testing.T, loader func(*ui.Context, LoaderOptions) *ui.Element) {
+func testLoaderBehavior(t *testing.T, loader func(*ui.Context, LoaderOptions) ui.Element) {
 	show := true
 	tt, n := motionFrames(func(c *ui.Context) {
 		if show {
@@ -96,7 +96,7 @@ func TestLoadersInvalidSize(t *testing.T) {
 	}
 }
 
-func loaderSnapshot(t *testing.T, name string, loader func(c *ui.Context, o LoaderOptions) *ui.Element) {
+func loaderSnapshot(t *testing.T, name string, loader func(c *ui.Context, o LoaderOptions) ui.Element) {
 	snapshot(t, name, 480, 90, func(c *ui.Context) {
 		ui.Row(c).Padding(20).Gap(24).AlignItems(ui.Center).Children(func() {
 			loader(c, LoaderOptions{})

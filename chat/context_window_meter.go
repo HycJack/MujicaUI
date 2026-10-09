@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ContextSegment describes one part of the context window.
@@ -26,7 +26,7 @@ type ContextWindowMeterOptions struct {
 
 // ContextWindowMeter displays segmented usage and threshold warnings.
 // Palette colors and shaped legend markers identify segments.
-func ContextWindowMeter(c *ui.Context, segments []ContextSegment, limit int, opts ContextWindowMeterOptions) *ui.Element {
+func ContextWindowMeter(c *ui.Context, segments []ContextSegment, limit int, opts ContextWindowMeterOptions) ui.Element {
 	if limit <= 0 || opts.Warn < 0 || opts.Warn > 1 {
 		panic("mujica: ContextWindowMeter needs limit > 0 and 0 <= Warn <= 1")
 	}

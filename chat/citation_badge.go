@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Source is a document an answer cites.
@@ -36,7 +36,7 @@ type CitationState struct {
 func (s *CitationState) lit(n int) bool { return n > 0 && (s.Active == n || s.hover == n) }
 
 // track refreshes pointer ownership for the current frame.
-func (s *CitationState) track(c *ui.Context, e *ui.Element, n int) {
+func (s *CitationState) track(c *ui.Context, e ui.Element, n int) {
 	switch over := e.Hovered() && !e.IsDisabled(); {
 	case over && s.hover != n:
 		s.hover, s.owner = n, e.ID()
@@ -96,7 +96,7 @@ const citationPreviewDelay = 500 * time.Millisecond
 
 // citationPreview displays a source after resting hover or focus.
 // Pass-through preserves badge clicks; Escape dismisses the preview.
-func citationPreview(c *ui.Context, b *ui.Element, n int, src Source) {
+func citationPreview(c *ui.Context, b ui.Element, n int, src Source) {
 	st := ui.Local(b, "mujica.citation", func() overlay.TooltipState { return overlay.TooltipState{} })
 	size := ui.Local(b, "mujica.citation.size", func() ui.Rect { return ui.Rect{} })
 	if b.IsDisabled() || !b.Hovered() && !b.FocusVisible() {

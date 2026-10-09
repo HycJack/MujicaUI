@@ -8,11 +8,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // tableColumn is what the column menu knows of a column.
@@ -43,7 +43,7 @@ func tableColumnMenu(c *ui.Context, cols []tableColumn, sort *ui.SortOrder, layo
 			}
 		}
 	}
-	ui.PopoverBase(c, b, open, func(panel *ui.Element) {
+	ui.PopoverBase(c, b, open, func(panel ui.Element) {
 		panel.Background(k.Surface).Border(theme.BorderWidth, k.ControlBorder).Radius(theme.PopupRadius).
 			Padding(u * 2).Gap(u).MinWidth(240).MarginY(u)
 		for at, id := range order {

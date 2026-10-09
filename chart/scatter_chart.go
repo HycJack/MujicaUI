@@ -8,9 +8,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ScatterPoint is one dot; Size sets a bubble's area.
@@ -130,7 +130,7 @@ func ScatterChart(c *ui.Context, selected *[]ScatterKey, groups []ScatterGroup, 
 		}
 	}
 	res, plot := ch.Build(spec)
-	if plot != nil && !plot.IsDisabled() {
+	if plot.Valid() && !plot.IsDisabled() {
 		x, y, _ := plot.PointerPosition()
 		if _, _, held := plot.Dragged(); held {
 			if !drag.on {

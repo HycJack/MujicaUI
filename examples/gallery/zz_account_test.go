@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/account"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/account"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 func accountClick(t *testing.T, tt *ui.Tester, label string) {

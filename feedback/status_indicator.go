@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Status is a system or item state. The zero value is StatusSuccess.
@@ -44,7 +44,7 @@ type StatusIndicatorOptions struct {
 }
 
 // StatusIndicator shows a status by its own shape and a word, never by color alone.
-func StatusIndicator(c *ui.Context, status Status, opts StatusIndicatorOptions) *ui.Element {
+func StatusIndicator(c *ui.Context, status Status, opts StatusIndicatorOptions) ui.Element {
 	key := "status_indicator." + status.String() // panics on an unknown Status
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()

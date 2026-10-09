@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SandboxState is a sandbox's lifecycle. The zero value is SandboxStarting.
@@ -45,7 +45,7 @@ type SandboxStatusOptions struct {
 }
 
 // SandboxStatus shows sandbox state, resources and time left.
-func SandboxStatus(c *ui.Context, info SandboxInfo, opts SandboxStatusOptions) *ui.Element {
+func SandboxStatus(c *ui.Context, info SandboxInfo, opts SandboxStatusOptions) ui.Element {
 	agent := map[SandboxState]AgentState{SandboxStarting: AgentPlanning, SandboxRunning: AgentRunning, SandboxStopped: AgentSkipped, SandboxFailed: AgentFailed}
 	state, ok := agent[info.State]
 	if !ok {

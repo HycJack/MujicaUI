@@ -7,8 +7,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // VerticalSliderOptions configure a VerticalSlider. Min and Max both zero mean 0 to 100.
@@ -41,7 +41,7 @@ func VerticalSlider(c *ui.Context, value *float64, opts VerticalSliderOptions) c
 	h := cmp.Or(opts.Height, 160)
 	old := g.snap(*value)
 	*value = old
-	var s *ui.Element
+	var s ui.Element
 	var next float64
 	var held bool
 	wrap := ui.Column(c).Disabled(opts.Disabled)

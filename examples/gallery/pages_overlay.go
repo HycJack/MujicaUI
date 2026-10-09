@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/overlay"
 )
 
 const overlayCategory = "Overlays"
@@ -298,8 +298,8 @@ func hoverCardDemo(c *ui.Context, log func(string)) {
 			log("follow")
 		}
 	})
-	if (card != nil) != s.shown {
-		s.shown = card != nil
+	if (card.Valid()) != s.shown {
+		s.shown = card.Valid()
 		log(fmt.Sprintf("card shown = %v", s.shown))
 	}
 }

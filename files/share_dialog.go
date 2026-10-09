@@ -7,13 +7,13 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/layout"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/layout"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ShareMember is someone the item is shared with.
@@ -43,7 +43,7 @@ type ShareDialogOptions struct {
 
 // ShareDialogResult is what happened in the dialog this frame.
 type ShareDialogResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Invited requests membership; Changed and Removed identify applied changes.
 	Invited          *ShareInvite
 	Changed, Removed string

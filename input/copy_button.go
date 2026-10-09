@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // copyButtonShown is how long the button says Copied.
@@ -26,7 +26,7 @@ func CopyButton(c *ui.Context, text string, opts CopyButtonOptions) core.ChoiceR
 	copied := core.Msg(c, "copy_button.copied")
 	name := core.Msg(c, "copy_button.copy")
 	label, icon := opts.Label, icons.Must("copy")
-	var b *ui.Element
+	var b ui.Element
 	box := ui.Box(c)
 	at := ui.Local(box, "copy_button.at", func() time.Time { return time.Time{} })
 	left := copyButtonShown - c.Now().Sub(*at)

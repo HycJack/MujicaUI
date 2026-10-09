@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/agent"
-	"github.com/ZacharyZhang-NY/MujicaUI/chart"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/agent"
+	"github.com/HycJack/MujicaUI/chart"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ServiceHealth is a service's state. The zero value is ServiceOperational.
@@ -35,7 +35,7 @@ type ServiceStatusOptions struct {
 }
 
 // ServiceStatus lists service health and an overall summary.
-func ServiceStatus(c *ui.Context, services []ServiceItem, opts ServiceStatusOptions) *ui.Element {
+func ServiceStatus(c *ui.Context, services []ServiceItem, opts ServiceStatusOptions) ui.Element {
 	if opts.MaxHeight < 0 {
 		panic("mujica: ServiceStatus MaxHeight is negative")
 	}

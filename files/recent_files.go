@@ -10,11 +10,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/code"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/code"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // RecentFile is a file the user opened.
@@ -49,7 +49,7 @@ type recentRow struct{ group, file int }
 
 // RecentFilesResult is the list and what happened this frame.
 type RecentFilesResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Opened  *RecentFile
 	// Removed identifies one file; Cleared requests clearing all files.
 	Removed string

@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // AppShellOptions are the slots of an AppShell. Content is required; the others are optional.
@@ -28,7 +28,7 @@ type AppShellOptions struct {
 
 // AppShellResult is an AppShell and its event in this frame.
 type AppShellResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Toggled reports the sidebar opened or collapsed.
 	Toggled bool
 }

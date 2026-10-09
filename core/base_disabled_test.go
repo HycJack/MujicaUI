@@ -8,11 +8,11 @@ import (
 
 // TestBasesBlockedByDisabledWrapper flips a focused MyGo base's wrapper to Disabled in the frame Space arrives.
 func TestBasesBlockedByDisabledWrapper(t *testing.T) {
-	for name, base := range map[string]func(c *ui.Context, on *bool) *ui.Element{
-		"CheckboxBase": func(c *ui.Context, on *bool) *ui.Element { return ui.CheckboxBase(c, on) },
-		"RadioBase":    func(c *ui.Context, on *bool) *ui.Element { return ui.RadioBase(c, on, true) },
-		"SwitchBase":   func(c *ui.Context, on *bool) *ui.Element { return ui.SwitchBase(c, on) },
-		"ToggleBase":   func(c *ui.Context, on *bool) *ui.Element { return ui.ToggleBase(c, on) },
+	for name, base := range map[string]func(c *ui.Context, on *bool) ui.Element{
+		"CheckboxBase": func(c *ui.Context, on *bool) ui.Element { return ui.CheckboxBase(c, on) },
+		"RadioBase":    func(c *ui.Context, on *bool) ui.Element { return ui.RadioBase(c, on, true) },
+		"SwitchBase":   func(c *ui.Context, on *bool) ui.Element { return ui.SwitchBase(c, on) },
+		"ToggleBase":   func(c *ui.Context, on *bool) ui.Element { return ui.ToggleBase(c, on) },
 	} {
 		for _, disable := range []bool{false, true} {
 			on, off := false, false

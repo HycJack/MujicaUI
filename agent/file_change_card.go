@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // FileChangeCardOptions configure a FileChangeCard.
@@ -20,7 +20,7 @@ type FileChangeCardOptions struct {
 
 // FileChangeResult reports this frame's events.
 type FileChangeResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Decided reports that *decision changed.
 	Decided bool
 	// OpenDiff asks the caller to show the full diff.

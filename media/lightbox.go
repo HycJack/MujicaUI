@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Lightbox fills the window with images[*index] while *open.
@@ -28,7 +28,7 @@ func Lightbox(c *ui.Context, open *bool, index *int, images []data.ViewerImage) 
 	u := core.Density(c).Unit()
 	w, h := c.Size()
 	light := ui.Hex("#F2EBDD")
-	v.Element = ui.DialogBase(c, open, func(back, panel *ui.Element) {
+	v.Element = ui.DialogBase(c, open, func(back, panel ui.Element) {
 		back.Background(ui.RGBA(0, 0, 0, 0.92))
 		panel.Size(w, h).Padding(u * 4).Gap(u * 3).TextColor(light).Label(core.Msg(c, "lightbox.title")).
 			Opacity(core.OverlayEnter(c, panel))
@@ -79,7 +79,7 @@ func Lightbox(c *ui.Context, open *bool, index *int, images []data.ViewerImage) 
 }
 
 // lightboxButton is a 40 DIP icon button on the backdrop.
-func lightboxButton(c *ui.Context, icon, key string, disabled bool) *ui.Element {
+func lightboxButton(c *ui.Context, icon, key string, disabled bool) ui.Element {
 	light := ui.Hex("#F2EBDD")
 	b := core.IconAction(c, icons.Must(icon), core.Msg(c, key)).Size(40, 40).TextColor(light).Disabled(disabled)
 	// The theme's focus color is too dark on the backdrop.

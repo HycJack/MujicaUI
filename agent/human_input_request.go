@@ -9,10 +9,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // HumanInputRequestOptions configure a HumanInputRequest. Question is required.
@@ -28,7 +28,7 @@ type HumanInputRequestOptions struct {
 
 // HumanInputResult reports this frame's events.
 type HumanInputResult struct {
-	Element   *ui.Element
+	Element   ui.Element
 	Submitted bool
 	// TimedOut reports the frame the deadline passed.
 	TimedOut bool

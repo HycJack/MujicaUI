@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ErrorMessageOptions configure an ErrorMessage.
@@ -24,7 +24,7 @@ type ErrorMessageOptions struct {
 
 // ErrorMessageResult is the error's element and a retry the user asked for.
 type ErrorMessageResult struct {
-	Element *ui.Element
+	Element ui.Element
 	retried bool
 }
 

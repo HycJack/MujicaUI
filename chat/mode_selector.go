@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ChatMode is how the assistant answers.
@@ -44,7 +44,7 @@ func ModeSelector(c *ui.Context, mode *ChatMode, opts ModeSelectorOptions) core.
 	k, u := core.Tokens(c), core.Density(c).Unit()
 	old, pick := *mode, int(*mode)
 	wrapper := ui.Row(c).Shrink(0).Disabled(opts.Disabled)
-	var track *ui.Element
+	var track ui.Element
 	wrapper.Children(func() {
 		parts := ui.SegmentedBase(c, &pick, len(chatModes))
 		track = parts.Track.Padding(2).Gap(2).Radius(theme.ControlRadius+2).Background(k.Background).

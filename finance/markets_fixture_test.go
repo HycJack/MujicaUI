@@ -7,8 +7,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chart"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/chart"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // mktNow is the fixed clock of the markets tests: 10:30 in New York.

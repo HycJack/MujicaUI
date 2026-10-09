@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SplitPaneSide names a pane of a SplitPane.
@@ -40,7 +40,7 @@ type SplitPaneOptions struct {
 
 // SplitPaneResult is a SplitPane and its events in this frame.
 type SplitPaneResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Resized bool
 	Toggled bool
 }
@@ -94,7 +94,7 @@ func SplitPane(c *ui.Context, state *SplitPaneState, opts SplitPaneOptions, firs
 }
 
 // splitPaneBuild lays the panes, divider and drag handle out in the inner box in.
-func splitPaneBuild(c *ui.Context, in *ui.Element, state *SplitPaneState, opts SplitPaneOptions, lo, minSecond float32, res *SplitPaneResult, first, second func()) {
+func splitPaneBuild(c *ui.Context, in ui.Element, state *SplitPaneState, opts SplitPaneOptions, lo, minSecond float32, res *SplitPaneResult, first, second func()) {
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
 	was := in.Bounds()
@@ -123,7 +123,7 @@ func splitPaneBuild(c *ui.Context, in *ui.Element, state *SplitPaneState, opts S
 	}
 	firstShown := !(state.Collapsed && opts.Collapsible == SplitPaneFirst)
 	secondShown := !(state.Collapsed && opts.Collapsible == SplitPaneSecond)
-	along := func(el *ui.Element, v float32) {
+	along := func(el ui.Element, v float32) {
 		if opts.Vertical {
 			el.Height(v)
 		} else {
@@ -238,7 +238,7 @@ func splitPaneFollow(state *SplitPaneState, opts SplitPaneOptions, want, lo, min
 }
 
 // splitPaneKeys moves the divider with the arrows, Home and End, and toggles the collapsible pane with Enter.
-func splitPaneKeys(c *ui.Context, div *ui.Element, state *SplitPaneState, opts SplitPaneOptions, lo, hi, u float32, resize func(float32), toggle func()) {
+func splitPaneKeys(c *ui.Context, div ui.Element, state *SplitPaneState, opts SplitPaneOptions, lo, hi, u float32, resize func(float32), toggle func()) {
 	back, forth := ui.KeyLeft, ui.KeyRight
 	if opts.Vertical {
 		back, forth = ui.KeyUp, ui.KeyDown

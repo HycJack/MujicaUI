@@ -3,9 +3,9 @@ package display
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // HeadingOptions configure a Heading; zero is level 1.
@@ -19,7 +19,7 @@ type HeadingOptions struct {
 }
 
 // Heading shows a serif title scaled with desktop text.
-func Heading(c *ui.Context, title string, opts HeadingOptions) *ui.Element {
+func Heading(c *ui.Context, title string, opts HeadingOptions) ui.Element {
 	k := core.Tokens(c)
 	size := headingSize(opts.Level)
 	u := core.Density(c).Unit()

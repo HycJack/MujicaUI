@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // StatusSelectOptions configure a StatusSelect.
@@ -41,7 +41,7 @@ func StatusSelect(c *ui.Context, value *string, statuses []WorkflowStatus, opts 
 	k := core.Tokens(c)
 	old := *value
 	pick := old
-	var s *ui.SelectParts[string]
+	var s ui.SelectParts[string]
 	root := ui.Row(c).Shrink(0).Disabled(opts.Disabled)
 	epoch := ui.Local(root, "status-epoch", func() struct {
 		disabled   bool
@@ -70,7 +70,7 @@ func StatusSelect(c *ui.Context, value *string, statuses []WorkflowStatus, opts 
 		ui.Text(c, cur.Name).SingleLine().Grow(1).Shrink(1).TextColor(k.Text)
 	})
 	if !tr.IsDisabled() {
-		s.Popup(func(panel *ui.Element) {
+		s.Popup(func(panel ui.Element) {
 			input.SelectPanel(c, panel)
 			_, wh := c.Size()
 			ui.Scroll(c).MaxHeight(min(320, wh/2)).Children(func() {

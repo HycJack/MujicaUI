@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 func TestTimePickerDisabledIgnoresSegmentKeys(t *testing.T) {
@@ -167,11 +167,11 @@ func TestTimePickerPopupPickClearsSegmentError(t *testing.T) {
 func TestFormFocusesDatePickerInput(t *testing.T) {
 	var st input.FormState
 	day := core.Date{}
-	var field *ui.Element
+	var field ui.Element
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		input.Form(c, &st, input.FormOptions{}, func(f *input.FormScope) {
-			input.FormItem(c, f, "debut", &day, input.FormItemOptions[core.Date]{Label: "Debut date", Required: true}, func() *ui.Element {
+			input.FormItem(c, f, "debut", &day, input.FormItemOptions[core.Date]{Label: "Debut date", Required: true}, func() ui.Element {
 				r := DatePicker(c, &day, DatePickerOptions{Today: calendarToday})
 				field = r.Input
 				return r.Input
@@ -181,7 +181,7 @@ func TestFormFocusesDatePickerInput(t *testing.T) {
 	if err := tt.Click("Submit"); err != nil {
 		t.Fatal(err)
 	}
-	if field == nil || !field.Focused() || !tt.Focused("Debut date") {
+	if !field.Valid() || !field.Focused() || !tt.Focused("Debut date") {
 		t.Fatal("a failed submit should focus the DatePicker's text box")
 	}
 	tt.Type("2026-10-12")

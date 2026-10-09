@@ -3,9 +3,9 @@ package input
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ButtonVariant is a button's emphasis. The zero value is Primary.
@@ -34,7 +34,7 @@ type ButtonOptions struct {
 const buttonSpinnerSize float32 = 16
 
 // Button is a push button. Loading keeps its size and blocks clicks.
-func Button(c *ui.Context, label string, opts ButtonOptions) *ui.Element {
+func Button(c *ui.Context, label string, opts ButtonOptions) ui.Element {
 	if label == "" && opts.Label == "" {
 		panic("mujica: Button without a label needs Label to name it")
 	}

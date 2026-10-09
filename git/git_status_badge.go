@@ -3,8 +3,8 @@ package git
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // GitStatus is a file's change state in version control.
@@ -38,7 +38,7 @@ type GitStatusBadgeOptions struct {
 }
 
 // GitStatusBadge marks a status by letter, outline and color.
-func GitStatusBadge(c *ui.Context, status GitStatus, opts GitStatusBadgeOptions) *ui.Element {
+func GitStatusBadge(c *ui.Context, status GitStatus, opts GitStatusBadgeOptions) ui.Element {
 	k := core.Tokens(c)
 	name := core.Msg(c, "git_status_badge."+gitStatusKeys[gitStatusIndex(status)])
 	col := gitStatusColor(k, status)

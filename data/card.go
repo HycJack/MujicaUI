@@ -3,9 +3,9 @@ package data
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CardOptions configure a Card.
@@ -22,7 +22,7 @@ type CardOptions struct {
 const cardInset float32 = 4
 
 // Card groups content on a surface with an outline. It adds no click behavior.
-func Card(c *ui.Context, opts CardOptions, body func()) *ui.Element {
+func Card(c *ui.Context, opts CardOptions, body func()) ui.Element {
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
 	pad := u * 4

@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // AlertDialogOptions configure an AlertDialog. Title is required.
@@ -55,7 +55,7 @@ func AlertDialog(c *ui.Context, open *bool, opts AlertDialogOptions) AlertDialog
 		cancelLabel = core.Msg(c, "alert_dialog.cancel")
 	}
 	shown, backClicked := true, false
-	panel := ui.DialogBase(c, &shown, func(back, panel *ui.Element) {
+	panel := ui.DialogBase(c, &shown, func(back, panel ui.Element) {
 		backClicked = back.Clicked()
 		st := ui.Local(panel, "mujica.alert", func() alertDialogState { return alertDialogState{} })
 		p := core.OverlayEnter(c, panel)

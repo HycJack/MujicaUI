@@ -6,12 +6,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/code"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/feedback"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/code"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/feedback"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // FileOperationKind is what a file operation does.
@@ -47,7 +47,7 @@ const (
 
 // FileOperationResult is the panel and the user's answer this frame.
 type FileOperationResult struct {
-	Element  *ui.Element
+	Element  ui.Element
 	Canceled bool
 	// Resolved answers a conflict; ApplyAll extends that decision.
 	Resolved ConflictChoice

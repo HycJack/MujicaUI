@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // AnsiTextOptions configure an AnsiText.
@@ -17,7 +17,7 @@ type AnsiTextOptions struct {
 }
 
 // AnsiText renders terminal output with its SGR styles.
-func AnsiText(c *ui.Context, text string, opts AnsiTextOptions) *ui.Element {
+func AnsiText(c *ui.Context, text string, opts AnsiTextOptions) ui.Element {
 	k := core.Tokens(c)
 	col := ui.Column(c).Font(theme.MonoFont).TextColor(k.Text).Shrink(0)
 	col.Children(func() {

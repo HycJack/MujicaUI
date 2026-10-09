@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // StatisticOptions configure a Statistic. It formats values; it computes none.
@@ -29,7 +29,7 @@ type StatisticOptions struct {
 }
 
 // Statistic shows a headline number with its title, unit and change.
-func Statistic(c *ui.Context, value float64, opts StatisticOptions) *ui.Element {
+func Statistic(c *ui.Context, value float64, opts StatisticOptions) ui.Element {
 	if opts.Precision < 0 {
 		panic("mujica: Statistic with negative Precision")
 	}

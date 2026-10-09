@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ToolParam is a parameter in a tool's input schema.
@@ -37,7 +37,7 @@ type ToolRegistryPanelOptions struct {
 
 // ToolRegistryResult is a built ToolRegistryPanel and its events.
 type ToolRegistryResult struct {
-	Element *ui.Element
+	Element ui.Element
 	List    data.ListView
 	toggled string
 	on      bool

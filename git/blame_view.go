@@ -8,9 +8,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // BlameLine is a source line and its last commit.
@@ -40,7 +40,7 @@ type BlameViewOptions struct {
 }
 
 // BlameView shows code with its commits; give it a height.
-func BlameView(c *ui.Context, s *BlameViewState, lines []BlameLine, opts BlameViewOptions) *ui.Element {
+func BlameView(c *ui.Context, s *BlameViewState, lines []BlameLine, opts BlameViewOptions) ui.Element {
 	var first *BlameLine
 	if len(lines) > 0 {
 		first = &lines[0]

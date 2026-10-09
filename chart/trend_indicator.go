@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TrendIndicatorOptions configure a TrendIndicator.
@@ -26,7 +26,7 @@ type TrendIndicatorOptions struct {
 }
 
 // TrendIndicator shows signed change, direction, and semantic color.
-func TrendIndicator(c *ui.Context, change float64, opts TrendIndicatorOptions) *ui.Element {
+func TrendIndicator(c *ui.Context, change float64, opts TrendIndicatorOptions) ui.Element {
 	if opts.Precision < 0 || math.IsNaN(change) || math.IsInf(change, 0) {
 		panic("mujica: TrendIndicator needs a number and Precision ≥ 0")
 	}

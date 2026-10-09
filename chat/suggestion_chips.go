@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SuggestionChipsOptions configure SuggestionChips.
@@ -22,7 +22,7 @@ type SuggestionChipsOptions struct {
 
 // SuggestionChipsView is built chips and the suggestion used this frame.
 type SuggestionChipsView struct {
-	Element *ui.Element
+	Element ui.Element
 	// Chosen is the suggestion clicked, empty for none.
 	Chosen string
 	// Sent asks to send Chosen now instead of filling.

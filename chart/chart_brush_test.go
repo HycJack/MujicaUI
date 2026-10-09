@@ -7,14 +7,14 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 type brushHarness struct {
 	value    [2]float64
 	changes  int
 	disabled bool
-	el       *ui.Element
+	el       ui.Element
 }
 
 func (h *brushHarness) view(c *ui.Context) {

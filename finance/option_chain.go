@@ -9,11 +9,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // OptionQuote is one contract's market.
@@ -54,7 +54,7 @@ type OptionChainOptions struct {
 
 // OptionChainView is a built OptionChain and this frame's events.
 type OptionChainView struct {
-	Element *ui.Element
+	Element ui.Element
 	// ExpiryChanged asks the caller for the strikes of State.Expiry.
 	ExpiryChanged      bool
 	Changed, Submitted bool

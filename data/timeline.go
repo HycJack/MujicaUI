@@ -3,10 +3,10 @@ package data
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // TimelineStatus marks an event's state with a shape and a word, not only color.
@@ -29,7 +29,7 @@ type TimelineItem struct {
 }
 
 // Timeline lists events top to bottom with markers joined by a line; long text wraps.
-func Timeline(c *ui.Context, items []TimelineItem) *ui.Element {
+func Timeline(c *ui.Context, items []TimelineItem) ui.Element {
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
 	return ui.Column(c).Role(ui.RoleList).Children(func() {

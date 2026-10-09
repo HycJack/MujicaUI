@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
 )
 
 // CurrentTimeIndicatorOptions configure a CurrentTimeIndicator.
@@ -22,7 +22,7 @@ type CurrentTimeIndicatorOptions struct {
 }
 
 // CurrentTimeIndicator rules the current time across its parent.
-func CurrentTimeIndicator(c *ui.Context, opts CurrentTimeIndicatorOptions) *ui.Element {
+func CurrentTimeIndicator(c *ui.Context, opts CurrentTimeIndicatorOptions) ui.Element {
 	loc := eventLocation("CurrentTimeIndicator", opts.Location)
 	k := core.Tokens(c)
 	now := opts.Now

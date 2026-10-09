@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ChatConversation is one saved conversation, as the caller stores it.
@@ -54,7 +54,7 @@ type conversationListRow struct {
 
 // ConversationListView is a built ConversationList and this frame's events.
 type ConversationListView struct {
-	Element   *ui.Element
+	Element   ui.Element
 	changed   bool
 	submitted bool
 }
@@ -95,7 +95,7 @@ func ConversationList(c *ui.Context, s *ConversationListState, items []ChatConve
 	s.rows.Header = func(i int) bool { return rows[i].item < 0 }
 	s.rows.Label = func(i int) string { return conversationListTitle(c, items, rows[i]) }
 	s.rows.Selected = cursor
-	var list *ui.Element
+	var list ui.Element
 	wrap := ui.Column(c).MinHeight(0).Disabled(opts.Disabled)
 	wrap.Children(func() {
 		restore := data.DataSelectTheme(c, 0)

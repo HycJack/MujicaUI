@@ -9,9 +9,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
 )
 
 // EvalCase is one evaluation case and its outcome.
@@ -34,7 +34,7 @@ type EvalResultTableOptions struct {
 
 // EvalResultTableResult is a built EvalResultTable and its events.
 type EvalResultTableResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Table   data.DataTableView
 	diff    string
 }

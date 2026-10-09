@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/agent"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/agent"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // AlertLevel is an alert's level. The zero value is AlertInfo.
@@ -42,7 +42,7 @@ type AlertListOptions struct {
 
 // AlertListResult reports this frame's request.
 type AlertListResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Ack and Silence report requested alert IDs; empty means idle.
 	Ack, Silence string
 }

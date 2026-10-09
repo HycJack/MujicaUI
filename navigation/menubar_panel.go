@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // overlay draws the open menu and its submenus above the window.
@@ -50,7 +50,7 @@ func (m *menubarRun) overlay(titles []ui.Rect) {
 		var prev ui.Rect
 		for l := 0; l < len(st.hl) && st.open >= 0; l++ {
 			panel, anchor := m.panel(l, x, y, prev)
-			if anchor == nil || l+1 >= len(st.hl) {
+			if !anchor.Valid() || l+1 >= len(st.hl) {
 				break
 			}
 			a := anchor.Bounds()
@@ -61,7 +61,7 @@ func (m *menubarRun) overlay(titles []ui.Rect) {
 }
 
 // panel builds level l at (x, y) and returns it with its highlighted row.
-func (m *menubarRun) panel(l int, x, y float32, parent ui.Rect) (*ui.Element, *ui.Element) {
+func (m *menubarRun) panel(l int, x, y float32, parent ui.Rect) (ui.Element, ui.Element) {
 	c, st := m.c, m.st
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
@@ -84,7 +84,7 @@ func (m *menubarRun) panel(l int, x, y float32, parent ui.Rect) (*ui.Element, *u
 	if panel.Clicked() || panel.Pressed() {
 		m.focus(st.open)
 	}
-	var anchor *ui.Element
+	var anchor ui.Element
 	panel.Children(func() {
 		for j, it := range items {
 			if it.Kind == MenubarSeparator {
@@ -126,7 +126,7 @@ func (m *menubarRun) panel(l int, x, y float32, parent ui.Rect) (*ui.Element, *u
 	return panel, anchor
 }
 
-func (m *menubarRun) item(it MenubarItem, hl bool) *ui.Element {
+func (m *menubarRun) item(it MenubarItem, hl bool) ui.Element {
 	c := m.c
 	k := core.Tokens(c)
 	d := core.Density(c)

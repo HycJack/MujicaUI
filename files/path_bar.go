@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // PathBarOptions configure a PathBar.
@@ -24,7 +24,7 @@ type PathBarOptions struct {
 
 // PathBarResult exposes the toolbar and requested path.
 type PathBarResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Navigated is the chosen ancestor path, or empty.
 	Navigated string
 }
@@ -140,7 +140,7 @@ func pathBarFold(c *ui.Context, segs []pathSegment, room float32) int {
 }
 
 // pathBarCrumb builds a button, emphasizing the current segment.
-func pathBarCrumb(c *ui.Context, label string, current bool) *ui.Element {
+func pathBarCrumb(c *ui.Context, label string, current bool) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	b := ui.ButtonBase(c).MinHeight(theme.MinHitSize).MinWidth(theme.MinHitSize).Padding(0, d.Unit()*2).

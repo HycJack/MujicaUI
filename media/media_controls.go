@@ -6,7 +6,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // LoopMode is how playback repeats. The zero value repeats nothing.
@@ -39,7 +39,7 @@ type MediaControlsOptions struct {
 }
 
 // MediaControls are previous, play, next, loop and shuffle buttons.
-func MediaControls(c *ui.Context, st MediaControlsState, opts MediaControlsOptions) *ui.Element {
+func MediaControls(c *ui.Context, st MediaControlsState, opts MediaControlsOptions) ui.Element {
 	if opts.OnPrevious == nil || opts.OnPlay == nil || opts.OnPause == nil || opts.OnNext == nil || opts.OnLoop == nil || opts.OnShuffle == nil {
 		panic("mujica: MediaControls needs every callback")
 	}

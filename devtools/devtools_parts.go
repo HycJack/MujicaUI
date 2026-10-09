@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/agent"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/agent"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // devtoolsAgo formats elapsed time using localized copy.
@@ -27,6 +27,6 @@ func devtoolsSeverity(c *ui.Context, s core.Severity, word string) {
 }
 
 // devtoolsTitle is a serif panel title.
-func devtoolsTitle(c *ui.Context, s string) *ui.Element {
+func devtoolsTitle(c *ui.Context, s string) ui.Element {
 	return ui.Text(c, s).Font(theme.SerifFont).FontSize(core.FontSize(c, theme.H3Size)).FontWeight(600)
 }

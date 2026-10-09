@@ -8,8 +8,8 @@ import (
 	"github.com/egoist/mygo"
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // formStates shows a component's states side by side.
@@ -131,7 +131,7 @@ var formPages = []page{
 							async <- formAsync{version, msg}
 							c.Invalidate()
 						}()
-					}}, func() *ui.Element {
+					}}, func() ui.Element {
 					return input.InputGroup(c, &d.name, input.InputGroupOptions{Invalid: d.st.Error("name") != ""}).Input
 				})
 				input.FormItem(c, f, "email", &d.email, input.FormItemOptions[string]{Label: "Email", Required: true,
@@ -140,14 +140,14 @@ var formPages = []page{
 							return "Enter an email address."
 						}
 						return ""
-					}}, func() *ui.Element {
+					}}, func() ui.Element {
 					g := input.InputGroup(c, &d.email, input.InputGroupOptions{Invalid: d.st.Error("email") != ""})
 					if g.Submitted() {
 						d.st.Submit()
 					}
 					return g.Input
 				})
-				input.FormItem(c, f, "tags", &d.tags, input.FormItemOptions[[]string]{Label: "Roles", Required: true, Initial: []string{"keyboard"}}, func() *ui.Element {
+				input.FormItem(c, f, "tags", &d.tags, input.FormItemOptions[[]string]{Label: "Roles", Required: true, Initial: []string{"keyboard"}}, func() ui.Element {
 					return input.TagsInput(c, &d.tags, input.TagsInputOptions{Max: 4, Invalid: d.st.Error("tags") != ""}).Input
 				})
 			})
@@ -177,7 +177,7 @@ var formPages = []page{
 				e = "This name is already in the guest list."
 			}
 			input.FormField(c, "Guest name", input.FormFieldOptions{Required: d.required, Horizontal: d.horizontal,
-				Description: "As written on the invitation.", Error: e}, func() *ui.Element {
+				Description: "As written on the invitation.", Error: e}, func() ui.Element {
 				g := input.InputGroup(c, &d.value, input.InputGroupOptions{Invalid: d.withError})
 				if g.Changed() {
 					log(fmt.Sprintf("value %q", d.value))
@@ -336,7 +336,7 @@ name := ""
 view := func(c *ui.Context) {
 	core.Use(c, core.Settings{})
 	res := input.Form(c, &state, input.FormOptions{}, func(f *input.FormScope) {
-		input.FormItem(c, f, "name", &name, input.FormItemOptions[string]{Label: "Name", Required: true}, func() *ui.Element {
+		input.FormItem(c, f, "name", &name, input.FormItemOptions[string]{Label: "Name", Required: true}, func() ui.Element {
 			return input.InputGroup(c, &name, input.InputGroupOptions{Invalid: state.Error("name") != ""}).Input
 		})
 	})
@@ -348,7 +348,7 @@ ui.Render(view, 400, 300, 1)`,
 	"FormField": `email := ""
 view := func(c *ui.Context) {
 	core.Use(c, core.Settings{})
-	input.FormField(c, "Email", input.FormFieldOptions{Required: true, Description: "For receipts."}, func() *ui.Element {
+	input.FormField(c, "Email", input.FormFieldOptions{Required: true, Description: "For receipts."}, func() ui.Element {
 		return input.InputGroup(c, &email, input.InputGroupOptions{}).Input
 	})
 }

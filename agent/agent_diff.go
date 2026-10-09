@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // FileChange is a proposed edit; empty Old adds a file.
@@ -52,7 +52,7 @@ func (dc *agentDiffCache) update(ch FileChange) {
 }
 
 // agentDiffOf returns the cached diff of ch kept on holder.
-func agentDiffOf(holder *ui.Element, ch FileChange) *agentDiffCache {
+func agentDiffOf(holder ui.Element, ch FileChange) *agentDiffCache {
 	dc := ui.Local(holder, "mujica.agent.diff", func() *agentDiffCache { return &agentDiffCache{} })
 	(*dc).update(ch)
 	return *dc
@@ -98,7 +98,7 @@ func agentDiffRow(c *ui.Context, l internal.DiffLine) {
 }
 
 // agentDiffView shows lines[from:to] in a capped well, virtualized when long.
-func agentDiffView(c *ui.Context, lines []internal.DiffLine, maxHeight float32) *ui.Element {
+func agentDiffView(c *ui.Context, lines []internal.DiffLine, maxHeight float32) ui.Element {
 	w := AgentWellRows(c, len(lines), func(i int) { agentDiffRow(c, lines[i]) }, maxHeight)
 	return w.Padding(core.Density(c).Unit(), 0)
 }

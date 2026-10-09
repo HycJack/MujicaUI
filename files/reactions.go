@@ -7,11 +7,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Reaction is an emoji and who reacted with it.
@@ -33,7 +33,7 @@ type ReactionsOptions struct {
 
 // ReactionsResult exposes reactions and requested changes.
 type ReactionsResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Toggled identifies a reaction; Added identifies a picker choice.
 	Toggled, Added string
 }
@@ -85,7 +85,7 @@ func Reactions(c *ui.Context, reactions []Reaction, opts ReactionsOptions) React
 }
 
 // reactionChip frames and marks the current user's reaction.
-func reactionChip(c *ui.Context, r Reaction) *ui.Element {
+func reactionChip(c *ui.Context, r Reaction) ui.Element {
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
 	label := fmt.Sprintf(core.Msg(c, "reactions.count"), r.Emoji, r.Count)

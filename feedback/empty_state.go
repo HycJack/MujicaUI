@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // EmptyKind tells why there is nothing to show. The zero value is EmptyNoData.
@@ -38,7 +38,7 @@ type EmptyStateOptions struct {
 
 // EmptyStateResult is what an EmptyState built and reported this frame.
 type EmptyStateResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Action  bool
 }
 

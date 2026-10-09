@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // PresenceStatus is a person's availability. The zero value is offline.
@@ -43,7 +43,7 @@ type OnlineStatusOptions struct {
 }
 
 // OnlineStatus shows presence as a distinct shape plus its name.
-func OnlineStatus(c *ui.Context, p PresenceStatus, opts OnlineStatusOptions) *ui.Element {
+func OnlineStatus(c *ui.Context, p PresenceStatus, opts OnlineStatusOptions) ui.Element {
 	name := core.Msg(c, p.key())
 	if opts.Size < 0 {
 		panic("mujica: OnlineStatus Size must not be negative")

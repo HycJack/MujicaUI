@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // FileGridOptions configure a FileGrid.
@@ -23,7 +23,7 @@ type FileGridOptions struct {
 
 // FileGridResult is a FileGrid and what happened in this frame.
 type FileGridResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Changed reports a new selection; Opened is the entry opened.
 	Changed bool
 	Opened  *FileEntry

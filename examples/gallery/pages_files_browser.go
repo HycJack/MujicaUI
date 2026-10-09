@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/files"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/files"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 var filesFolders = map[string][]string{

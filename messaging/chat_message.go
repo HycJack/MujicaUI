@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chat"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/chat"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ChatEntry is one message of a person-to-person chat.
@@ -43,7 +43,7 @@ func ChatContinues(prev, cur ChatEntry) bool {
 }
 
 // ChatMessage displays text, timestamps, edits and interaction slots.
-func ChatMessage(c *ui.Context, m ChatEntry, opts ChatMessageOptions) *ui.Element {
+func ChatMessage(c *ui.Context, m ChatEntry, opts ChatMessageOptions) ui.Element {
 	if m.Author == "" {
 		panic("mujica: ChatMessage needs an Author")
 	}

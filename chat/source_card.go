@@ -6,14 +6,14 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SourceCard displays source metadata; Clicked requests opening.
 // Selection and an edge mark identify active or hovered sources.
-func SourceCard(c *ui.Context, n int, src Source, st *CitationState) *ui.Element {
+func SourceCard(c *ui.Context, n int, src Source, st *CitationState) ui.Element {
 	if n < 1 || st == nil || src.Title == "" || src.URL == "" {
 		panic("mujica: SourceCard needs n >= 1, a state and a Source with Title and URL")
 	}

@@ -7,11 +7,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ChatProject holds conversations; Folder groups projects, empty for none.
@@ -35,7 +35,7 @@ type ProjectListState struct {
 
 // ProjectListView is a built ProjectList and this frame's events.
 type ProjectListView struct {
-	Element *ui.Element
+	Element ui.Element
 	// Changed reports a newly chosen project, in State.Selected.
 	Changed bool
 	// Opened is a conversation the user opened, empty for none.
@@ -94,7 +94,7 @@ func ProjectList(c *ui.Context, s *ProjectListState, projects []ChatProject, con
 }
 
 // projectListFolder is a folder heading on a CollapsibleBase trigger.
-func projectListFolder(c *ui.Context, title string, open *bool) *ui.Element {
+func projectListFolder(c *ui.Context, title string, open *bool) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	parts := ui.CollapsibleBase(c, open)
@@ -121,7 +121,7 @@ func projectListProject(c *ui.Context, s *ProjectListState, p ChatProject, all [
 	d := core.Density(c)
 	convs := conversations(p.ID)
 	chosen := s.Selected == p.ID
-	var b *ui.Element
+	var b ui.Element
 	line := ui.Row(c).Key("project:" + p.ID).AlignItems(ui.Center)
 	line.Children(func() { b = ui.ButtonBase(c).Grow(1).MinWidth(0).MinHeight(d.ControlHeight()) })
 	b.Padding(0, d.Unit()*2, 0, d.Unit()*2+indent).Padding(0, d.Unit()*2, 0, d.Unit()*2+indent).

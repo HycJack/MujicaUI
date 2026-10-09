@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // StopGeneratingButtonOptions configure a StopGeneratingButton.
@@ -30,7 +30,7 @@ func StopGeneratingButton(c *ui.Context, opts StopGeneratingButtonOptions) core.
 	if runtime.GOOS == "darwin" {
 		mods = ui.Cmd
 	}
-	var b *ui.Element
+	var b ui.Element
 	wrap := ui.Row(c).Shrink(0).Disabled(opts.Disabled)
 	wrap.Children(func() {
 		b = ui.ButtonBase(c).MinHeight(max(theme.MinHitSize, d.ControlHeight()-4)).Padding(0, d.Unit()*3).Gap(d.Unit()*2).

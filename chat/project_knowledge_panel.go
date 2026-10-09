@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // KnowledgeFile is a project knowledge file, sized in tokens.
@@ -30,7 +30,7 @@ type ProjectKnowledgePanelOptions struct {
 
 // ProjectKnowledgePanelView is a built panel and its requests.
 type ProjectKnowledgePanelView struct {
-	Element *ui.Element
+	Element ui.Element
 	// Add asks the caller to pick files to add.
 	Add bool
 	// Removed is the ID of a file to remove.

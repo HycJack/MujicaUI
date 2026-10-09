@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MultiFileDiffReviewOptions configure a MultiFileDiffReview.
@@ -79,7 +79,7 @@ func MultiFileDiffReview(c *ui.Context, decisions *[]FileDecision, files []FileC
 					slog.Debug("mujica: multi_file_diff_review select", "path", files[i].Path)
 				}
 			}
-			var list *ui.Element
+			var list ui.Element
 			if len(files) > agentVirtualRows {
 				list = ui.List(c, nil, len(files), row)
 			} else {

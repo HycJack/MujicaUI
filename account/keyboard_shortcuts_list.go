@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/feedback"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/feedback"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ShortcutGroup is a titled group of bindings in a KeyboardShortcutsList.
@@ -35,7 +35,7 @@ type shortcutsListState struct {
 }
 
 // KeyboardShortcutsList displays searchable, grouped shortcuts using visible rows.
-func KeyboardShortcutsList(c *ui.Context, query *string, groups []ShortcutGroup, opts KeyboardShortcutsListOptions) *ui.Element {
+func KeyboardShortcutsList(c *ui.Context, query *string, groups []ShortcutGroup, opts KeyboardShortcutsListOptions) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	label := opts.Label
@@ -96,7 +96,7 @@ func shortcutsListPlan(st *shortcutsListState, groups []ShortcutGroup, q string)
 	}
 }
 
-func accountRows(c *ui.Context, n int, key func(int) any, row func(int)) *ui.Element {
+func accountRows(c *ui.Context, n int, key func(int) any, row func(int)) ui.Element {
 	if n <= 8 {
 		return ui.Column(c).Children(func() {
 			for i := range n {

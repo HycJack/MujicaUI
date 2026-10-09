@@ -3,8 +3,8 @@ package agent
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // AgentStatusOptions configure an AgentStatus.
@@ -16,7 +16,7 @@ type AgentStatusOptions struct {
 }
 
 // AgentStatus shows a state by icon shape and word.
-func AgentStatus(c *ui.Context, state AgentState, opts AgentStatusOptions) *ui.Element {
+func AgentStatus(c *ui.Context, state AgentState, opts AgentStatusOptions) ui.Element {
 	label := opts.Label
 	if label == "" {
 		label = agentWord(c, state) // panics on an unknown state

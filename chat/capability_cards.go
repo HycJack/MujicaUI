@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CapabilityCard explains one assistant capability with example prompts.
@@ -26,7 +26,7 @@ type CapabilityCardsOptions struct {
 
 // CapabilityCardsView is built CapabilityCards and the example clicked this frame.
 type CapabilityCardsView struct {
-	Element *ui.Element
+	Element ui.Element
 	// Example is the example prompt chosen, empty for none.
 	Example string
 }

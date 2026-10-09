@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MessageStatus is where a chat message is in its delivery.
@@ -30,7 +30,7 @@ type MessageHeaderOptions struct {
 }
 
 // MessageHeader shows a message's model, time and status as icon and text.
-func MessageHeader(c *ui.Context, opts MessageHeaderOptions) *ui.Element {
+func MessageHeader(c *ui.Context, opts MessageHeaderOptions) ui.Element {
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
 	small := core.FontSize(c, theme.CaptionSize)

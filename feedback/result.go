@@ -7,11 +7,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ResultKind is the outcome a Result page reports. The zero value is ResultSuccess.
@@ -35,7 +35,7 @@ type ResultOptions struct {
 
 // ResultResult is what a Result built and reported this frame.
 type ResultResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Action is the index of the clicked action, -1 for none.
 	Action int
 }

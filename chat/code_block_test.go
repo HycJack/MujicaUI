@@ -5,7 +5,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 const codeBlockSample = "// greet the court\nfunc greet(name string) int {\n\treturn len(\"hi \" + name) + 42\n}"

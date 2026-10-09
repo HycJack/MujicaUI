@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MessageListState keeps a MessageList's place and what the user has seen.
@@ -35,7 +35,7 @@ type MessageListOptions struct {
 
 // MessageListResult is a MessageList's element and its unread count.
 type MessageListResult struct {
-	Element *ui.Element
+	Element ui.Element
 	unread  int
 }
 

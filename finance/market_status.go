@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 type MarketPhase int
@@ -36,7 +36,7 @@ type MarketStatusOptions struct {
 	Now time.Time
 }
 
-func MarketStatus(c *ui.Context, phase MarketPhase, opts MarketStatusOptions) *ui.Element {
+func MarketStatus(c *ui.Context, phase MarketPhase, opts MarketStatusOptions) ui.Element {
 	marketPhaseCheck(phase)
 	marketPhaseCheck(opts.NextPhase)
 	k := core.Tokens(c)

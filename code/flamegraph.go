@@ -9,11 +9,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // FlameNode is a profile frame; Value includes children.
@@ -109,7 +109,7 @@ func Flamegraph(c *ui.Context, root *FlameNode, s *FlamegraphState, opts Flamegr
 }
 
 // flameInput zooms, moves focus and tracks hover.
-func flameInput(c *ui.Context, g *ui.Element, root *FlameNode, s *FlamegraphState, hover *[]int) bool {
+func flameInput(c *ui.Context, g ui.Element, root *FlameNode, s *FlamegraphState, hover *[]int) bool {
 	b := g.Bounds()
 	x, y, over := g.PointerPosition()
 	*hover = nil

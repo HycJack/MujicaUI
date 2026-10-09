@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/overlay"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/overlay"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Completion is one candidate of a CompletionMenu.
@@ -34,7 +34,7 @@ type CompletionMenuOptions struct {
 
 // CompletionMenuResult carries the accepted candidate.
 type CompletionMenuResult struct {
-	Element  *ui.Element
+	Element  ui.Element
 	Accepted *Completion
 }
 
@@ -42,8 +42,8 @@ type CompletionMenuResult struct {
 const completionRows = 8
 
 // CompletionMenu shows candidates under the editor anchor.
-func CompletionMenu(c *ui.Context, anchor *ui.Element, open *bool, items []Completion, s *CompletionMenuState, opts CompletionMenuOptions) CompletionMenuResult {
-	if anchor == nil || open == nil || s == nil {
+func CompletionMenu(c *ui.Context, anchor ui.Element, open *bool, items []Completion, s *CompletionMenuState, opts CompletionMenuOptions) CompletionMenuResult {
+	if !anchor.Valid() || open == nil || s == nil {
 		panic("mujica: CompletionMenu needs an anchor, open and a state")
 	}
 	for _, it := range items {
@@ -100,7 +100,7 @@ func CompletionMenu(c *ui.Context, anchor *ui.Element, open *bool, items []Compl
 	d := core.Density(c)
 	b := anchor.Bounds()
 	core.OverlayLayer(c, open)
-	res.Element = ui.PopoverBase(c, anchor, open, func(panel *ui.Element) {
+	res.Element = ui.PopoverBase(c, anchor, open, func(panel ui.Element) {
 		core.OverlayStyle(c, panel, overlay.OverlayAnchored(c, panel, b))
 		panel.Margin(4, 0, 0, 0).Padding(d.Unit()).Width(overlay.PopoverWide(c, 360)).MaxHeight(overlay.PopoverRoom(c, b)).
 			Label(core.Msg(c, "completion_menu.label")).Role(ui.RoleList)

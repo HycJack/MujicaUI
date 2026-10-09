@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // StatusItemTone colors a status item's text and icon. The zero value is muted text.
@@ -47,7 +47,7 @@ type StatusBarOptions struct {
 
 // StatusBarResult is a StatusBar and its event in this frame.
 type StatusBarResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Clicked is the ID of the action item clicked, or empty.
 	Clicked string
 }
@@ -108,7 +108,7 @@ func StatusBar(c *ui.Context, opts StatusBarOptions) StatusBarResult {
 				slog.Debug("mujica: status_bar hidden items", "open", *open)
 			}
 			if *open {
-				ui.PopoverBase(c, more, open, func(panel *ui.Element) {
+				ui.PopoverBase(c, more, open, func(panel ui.Element) {
 					core.OverlayStyle(c, panel, core.OverlayEnter(c, panel))
 					panel.Margin(d.Unit(), 0, 0, 0).Padding(d.Unit()).Gap(d.Unit()).AlignItems(ui.Stretch)
 					for _, it := range statusBarAll(opts) {
@@ -126,7 +126,7 @@ func StatusBar(c *ui.Context, opts StatusBarOptions) StatusBarResult {
 }
 
 // statusBarMore is the "+N" button that opens the hidden items.
-func statusBarMore(c *ui.Context, n int) *ui.Element {
+func statusBarMore(c *ui.Context, n int) ui.Element {
 	k := core.Tokens(c)
 	b := ui.ButtonBase(c).Key("status_bar.more").MinHeight(theme.MinHitSize).MinWidth(theme.MinHitSize).
 		PaddingX(core.Density(c).Unit()).Radius(theme.ControlRadius).TextColor(k.Text).
@@ -248,7 +248,7 @@ func statusBarItem(c *ui.Context, it StatusItem) (clicked, focused bool) {
 	default:
 		panic("mujica: invalid StatusItemTone")
 	}
-	var e *ui.Element
+	var e ui.Element
 	if it.Action {
 		e = ui.ButtonBase(c).Key(it.ID).MinHeight(theme.MinHitSize).MinWidth(theme.MinHitSize).Radius(theme.ControlRadius)
 		internal.Ring(e, k.Focus, theme.ControlRadius)

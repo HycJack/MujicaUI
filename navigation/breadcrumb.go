@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // BreadcrumbItem is one level of a Breadcrumb path.
@@ -29,7 +29,7 @@ type BreadcrumbOptions struct {
 
 // BreadcrumbResult is the built Breadcrumb.
 type BreadcrumbResult struct {
-	Element *ui.Element
+	Element ui.Element
 	chosen  int
 }
 
@@ -135,7 +135,7 @@ func breadcrumbMore(c *ui.Context, hidden []BreadcrumbItem, choose func(int)) {
 		*open = !*open
 	}
 	b.Children(func() { ui.Icon(c, icons.Must("ellipsis")).Size(16, 16) })
-	ui.PopoverBase(c, b, open, func(panel *ui.Element) {
+	ui.PopoverBase(c, b, open, func(panel ui.Element) {
 		core.OverlayStyle(c, panel, core.OverlayEnter(c, panel))
 		panel.Margin(u, 0, 0, 0).Padding(u).Gap(u * 0.5).MinWidth(160).MaxWidth(320)
 		for j, it := range hidden {

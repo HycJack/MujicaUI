@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // MessageEditorOptions configure a MessageEditor.
@@ -18,7 +18,7 @@ type MessageEditorOptions struct {
 
 // MessageEditorResult is the editor's element and its outcome this frame.
 type MessageEditorResult struct {
-	Element         *ui.Element
+	Element         ui.Element
 	saved, canceled bool
 }
 

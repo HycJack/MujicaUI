@@ -3,9 +3,9 @@ package git
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // InlineDiffOptions configure an InlineDiff.
@@ -21,7 +21,7 @@ type inlineDiffCache struct {
 }
 
 // InlineDiff shows old and new lines with changed words marked.
-func InlineDiff(c *ui.Context, from, to string, opts InlineDiffOptions) *ui.Element {
+func InlineDiff(c *ui.Context, from, to string, opts InlineDiffOptions) ui.Element {
 	k := core.Tokens(c)
 	col := ui.Column(c).AlignItems(ui.Stretch).Shrink(0).Radius(theme.ControlRadius).Clip()
 	cache := ui.Local(col, "words", func() *inlineDiffCache { return &inlineDiffCache{} })

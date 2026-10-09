@@ -7,14 +7,14 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/feedback"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/navigation"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/feedback"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/navigation"
 )
 
 // motionLoaderDemo shows a loader while loading.
-func motionLoaderDemo(id string, loader func(c *ui.Context, o feedback.LoaderOptions) *ui.Element) func(c *ui.Context, log func(string)) {
+func motionLoaderDemo(id string, loader func(c *ui.Context, o feedback.LoaderOptions) ui.Element) func(c *ui.Context, log func(string)) {
 	return func(c *ui.Context, log func(string)) {
 		type state struct {
 			loading, label bool

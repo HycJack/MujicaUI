@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // RenameInlineOptions configure a RenameInline.
@@ -23,7 +23,7 @@ type RenameInlineOptions struct {
 
 // RenameInlineResult is a RenameInline and its outcome in this frame.
 type RenameInlineResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Renamed reports a saved name; Canceled reports an abandoned edit.
 	Renamed, Canceled bool
 }
@@ -140,7 +140,7 @@ func renameCheck(c *ui.Context, name string, validate func(string) string) strin
 }
 
 // renameSelection marks the stem for replacement on initial input.
-func renameSelection(c *ui.Context, in *ui.Element, st *renameState) {
+func renameSelection(c *ui.Context, in ui.Element, st *renameState) {
 	k := core.Tokens(c)
 	stem := renameStem(st.draft, st.folder)
 	if st.stemSel && st.tail == "" {

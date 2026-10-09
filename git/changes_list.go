@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ChangedFile is a changed file in the tree or index.
@@ -78,7 +78,7 @@ func ChangesList(c *ui.Context, s *ChangesListState, files []ChangedFile, opts C
 	}
 	prev := s.cursor
 	outer := ui.Column(c).AlignItems(ui.Stretch).Disabled(opts.Disabled)
-	var e *ui.Element
+	var e ui.Element
 	outer.Children(func() {
 		restore := data.DataSelectTheme(c, 0)
 		defer restore()

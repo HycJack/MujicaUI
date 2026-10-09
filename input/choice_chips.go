@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ChoiceChipsOptions configure ChoiceChips.
@@ -54,7 +54,7 @@ func ChoiceChips[T comparable](c *ui.Context, value *[]T, items []ToggleItem[T],
 	return core.NewChoiceResult(g, changed)
 }
 
-func choiceChipLook[T comparable](c *ui.Context, k theme.Tokens, d theme.Density, b *ui.Element, on bool, it ToggleItem[T]) {
+func choiceChipLook[T comparable](c *ui.Context, k theme.Tokens, d theme.Density, b ui.Element, on bool, it ToggleItem[T]) {
 	b.MinHeight(max(theme.MinHitSize, d.ControlHeight()-4)).MinWidth(theme.MinHitSize).Padding(0, d.Unit()*3).Gap(d.Unit() * 1.5).
 		Radius(theme.PopupRadius)
 	internal.Ring(b, k.Focus, theme.PopupRadius)

@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 // RefreshIntervalSelectorOptions configure a RefreshIntervalSelector.
@@ -23,7 +23,7 @@ type RefreshIntervalSelectorOptions struct {
 
 // RefreshResult reports this frame's events.
 type RefreshResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Refresh requests caller loading, manually or after the interval.
 	Refresh bool
 	// Changed reports a new interval.

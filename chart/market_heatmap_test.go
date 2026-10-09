@@ -26,7 +26,7 @@ func TestMarketHeatmapAreaDrillAndKeys(t *testing.T) {
 	if len(path) != 0 {
 		t.Fatalf("back %v", path)
 	}
-	if got.Element == nil {
+	if !got.Element.Valid() {
 		t.Fatal("element missing")
 	}
 	if root.total() != 9830 {

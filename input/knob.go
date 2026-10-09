@@ -8,9 +8,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // KnobOptions configure a Knob. Min and Max both zero mean 0 to 100.
@@ -51,7 +51,7 @@ func Knob(c *ui.Context, value *float64, opts KnobOptions) core.ChoiceResult {
 	*value = old
 	col := ui.Column(c).AlignItems(ui.Center).Gap(core.Density(c).Unit()).Disabled(opts.Disabled)
 	disabled := col.IsDisabled()
-	var s *ui.Element
+	var s ui.Element
 	col.Children(func() {
 		if opts.Label != "" {
 			ui.Text(c, opts.Label).TextColor(k.Text).FontSize(core.FontSize(c, theme.CaptionSize))

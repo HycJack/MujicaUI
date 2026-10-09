@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CommitMessage is a commit's title and body.
@@ -31,7 +31,7 @@ type CommitInputOptions struct {
 
 // CommitInputResult is a built CommitInput and its events.
 type CommitInputResult struct {
-	Element          *ui.Element
+	Element          ui.Element
 	committed, amend bool
 }
 

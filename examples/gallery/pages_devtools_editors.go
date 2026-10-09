@@ -6,8 +6,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/devtools"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/devtools"
+	"github.com/HycJack/MujicaUI/input"
 )
 
 func devJsonViewerDemo(c *ui.Context, log func(string)) {

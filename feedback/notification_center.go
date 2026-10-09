@@ -7,11 +7,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Notification is one in-app message. The caller owns and persists the list.
@@ -35,7 +35,7 @@ type NotificationCenterOptions struct {
 
 // NotificationCenterResult reports the frame's events by notification ID.
 type NotificationCenterResult struct {
-	Element *ui.Element
+	Element ui.Element
 	Action  string
 	// Toggled changed its Read state; Opened was clicked and is now read.
 	Toggled string
@@ -186,7 +186,7 @@ func notificationRow(c *ui.Context, k theme.Tokens, u float32, n *Notification, 
 	}
 }
 
-func notificationIconButton(c *ui.Context, k theme.Tokens, u float32, icon *ui.SVG, label string) *ui.Element {
+func notificationIconButton(c *ui.Context, k theme.Tokens, u float32, icon *ui.SVG, label string) ui.Element {
 	b := input.Button(c, "", input.ButtonOptions{Variant: input.Ghost, Icon: icon, Label: label})
 	b.TextColor(k.TextMuted).Padding(0, u).Tooltip(label)
 	return b

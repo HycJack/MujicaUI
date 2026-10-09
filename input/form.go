@@ -8,7 +8,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/core"
 )
 
 // FormState is a form's check and submit state; use it on the UI thread only.
@@ -107,7 +107,7 @@ type FormScope struct {
 
 // FormParts are the parts of a Form.
 type FormParts struct {
-	Element          *ui.Element
+	Element          ui.Element
 	submitted, reset bool
 }
 
@@ -243,7 +243,7 @@ func formReset(st *FormState) {
 }
 
 // FormItem registers field name around the focusable element control returns.
-func FormItem[T any](c *ui.Context, f *FormScope, name string, value *T, opts FormItemOptions[T], control func() *ui.Element) *ui.Element {
+func FormItem[T any](c *ui.Context, f *FormScope, name string, value *T, opts FormItemOptions[T], control func() ui.Element) ui.Element {
 	st := f.st
 	if name == "" || opts.Label == "" {
 		panic("mujica: FormItem needs a name and a Label")
@@ -294,8 +294,8 @@ func FormItem[T any](c *ui.Context, f *FormScope, name string, value *T, opts Fo
 	if fs.pending {
 		desc = core.Msg(c, "form.checking")
 	}
-	var ctrl *ui.Element
-	field := formFieldBuild(c, name, opts.Label, FormFieldOptions{Required: opts.Required, Description: desc, Error: st.Error(name)}, f.horizontal, func() *ui.Element {
+	var ctrl ui.Element
+	field := formFieldBuild(c, name, opts.Label, FormFieldOptions{Required: opts.Required, Description: desc, Error: st.Error(name)}, f.horizontal, func() ui.Element {
 		ctrl = control()
 		return ctrl
 	})

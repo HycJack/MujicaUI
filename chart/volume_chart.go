@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/data"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/data"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // VolumeChartOptions configure a VolumeChart.
@@ -106,7 +106,7 @@ func VolumeChart(c *ui.Context, candles []Candle, view *MarketView, opts VolumeC
 		}
 	}
 	res, plot := ch.Build(spec)
-	if plot != nil && !plot.IsDisabled() {
+	if plot.Valid() && !plot.IsDisabled() {
 		room := m.room()
 		switch {
 		case plot.Shortcut(ui.Shift, ui.KeyLeft):

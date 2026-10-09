@@ -3,9 +3,9 @@ package chat
 import (
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MessageRole is who a chat message comes from.
@@ -43,7 +43,7 @@ type MessageBubbleOptions struct {
 }
 
 // MessageBubble frames one chat message by role: users right, others left, system centered.
-func MessageBubble(c *ui.Context, role MessageRole, opts MessageBubbleOptions, content func()) *ui.Element {
+func MessageBubble(c *ui.Context, role MessageRole, opts MessageBubbleOptions, content func()) ui.Element {
 	if opts.MaxWidth < 0 {
 		panic("mujica: MessageBubble MaxWidth must not be negative")
 	}

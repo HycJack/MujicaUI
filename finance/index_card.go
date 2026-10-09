@@ -5,10 +5,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chart"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/chart"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 type IndexQuote struct {
@@ -36,7 +36,7 @@ func IndexCard(c *ui.Context, q IndexQuote, opts IndexCardOptions) core.ChoiceRe
 	dec := core.PriceDecimals("IndexCard", opts.Decimals)
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
-	var e *ui.Element
+	var e ui.Element
 	ui.Row(c).Shrink(0).Disabled(opts.Disabled).Children(func() {
 		if opts.Clickable {
 			e = ui.ButtonBase(c).Justify(ui.Start)

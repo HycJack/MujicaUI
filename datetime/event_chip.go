@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // EventChipOptions configure an EventChip.
@@ -22,7 +22,7 @@ type EventChipOptions struct {
 }
 
 // EventChip is a clickable, truncating event block.
-func EventChip(c *ui.Context, ev CalendarEvent, opts EventChipOptions) *ui.Element {
+func EventChip(c *ui.Context, ev CalendarEvent, opts EventChipOptions) ui.Element {
 	loc := eventLocation("EventChip", opts.Location)
 	k := core.Tokens(c)
 	d := core.Density(c)

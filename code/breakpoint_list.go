@@ -7,12 +7,12 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/layout"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/layout"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Breakpoint stops at File:Line when Condition holds.
@@ -31,7 +31,7 @@ type BreakpointListOptions struct {
 
 // BreakpointListResult fields hold breakpoint IDs.
 type BreakpointListResult struct {
-	Element                 *ui.Element
+	Element                 ui.Element
 	Toggled, Edited, Opened string
 }
 
@@ -104,7 +104,7 @@ func BreakpointList(c *ui.Context, bps *[]Breakpoint, opts BreakpointListOptions
 }
 
 // breakpointLocation is a button opening the location.
-func breakpointLocation(c *ui.Context, b Breakpoint) *ui.Element {
+func breakpointLocation(c *ui.Context, b Breakpoint) ui.Element {
 	k := core.Tokens(c)
 	d := core.Density(c)
 	e := ui.ButtonBase(c).Grow(1).MinWidth(0).MinHeight(theme.MinHitSize).Justify(ui.Start).Gap(d.Unit()*2).Padding(0, d.Unit()).

@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // Step is one stage of Steps.
@@ -86,7 +86,7 @@ func Steps(c *ui.Context, current *int, steps []Step, opts StepsOptions) core.Ch
 func stepsItem(c *ui.Context, i, n int, s Step, st stepsState, vertical, tail, doneLine bool) bool {
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
-	var e *ui.Element
+	var e ui.Element
 	if s.Clickable {
 		e = ui.ButtonBase(c).Cursor(ui.CursorPointer)
 		internal.Ring(e, k.Focus, theme.ControlRadius)

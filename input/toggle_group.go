@@ -6,9 +6,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ToggleItem is one button of a ToggleGroup.
@@ -90,7 +90,7 @@ func toggleGroupApply[T comparable](value *[]T, v T, pressed bool, opts ToggleGr
 	return true
 }
 
-func toggleGroupLook[T comparable](c *ui.Context, k theme.Tokens, b *ui.Element, on bool, it ToggleItem[T]) {
+func toggleGroupLook[T comparable](c *ui.Context, k theme.Tokens, b ui.Element, on bool, it ToggleItem[T]) {
 	d := core.Density(c)
 	b.MinHeight(d.ControlHeight()-2).MinWidth(d.ControlHeight()).Padding(0, d.Unit()*3).Gap(d.Unit() * 2)
 	internal.Ring(b, k.Focus, theme.ControlRadius)

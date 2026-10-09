@@ -8,10 +8,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // CalendarMonthViewOptions configure a CalendarMonthView.
@@ -204,7 +204,7 @@ func monthCell(c *ui.Context, day core.Date, month YearMonth, today core.Date, l
 				*more = day
 			}
 			open := *more == day
-			ui.PopoverBase(c, b, &open, func(panel *ui.Element) {
+			ui.PopoverBase(c, b, &open, func(panel ui.Element) {
 				core.OverlayStyle(c, panel, core.OverlayEnter(c, panel))
 				_, wh := c.Size()
 				panel.Padding(d.Unit() * 2).Gap(d.Unit()).MinWidth(d.ControlHeight() * 6).MaxHeight(wh / 2)

@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/chat"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/chat"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // MailFormat selects plain text or safe Markdown.
@@ -42,7 +42,7 @@ type Mail struct {
 
 // MailReaderResult is a MailReader's element and this frame's events.
 type MailReaderResult struct {
-	Element *ui.Element
+	Element ui.Element
 	// Link contains the activated URL, or an empty string.
 	Link string
 	// Opened and Downloaded are attachment indexes, -1 for none.

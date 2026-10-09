@@ -7,8 +7,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ReorderTransitionOptions configure a ReorderTransition.
@@ -20,7 +20,7 @@ type ReorderTransitionOptions struct {
 }
 
 // ReorderTransition slides keyed items to their new places.
-func ReorderTransition[K comparable](c *ui.Context, keys []K, opts ReorderTransitionOptions, item func(key K)) *ui.Element {
+func ReorderTransition[K comparable](c *ui.Context, keys []K, opts ReorderTransitionOptions, item func(key K)) ui.Element {
 	if opts.Duration < 0 || !(opts.Gap >= 0) || math.IsInf(float64(opts.Gap), 0) {
 		panic("mujica: ReorderTransition Duration and Gap must not be negative")
 	}

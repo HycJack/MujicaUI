@@ -7,10 +7,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/code"
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/code"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // StorageSegment is one category of used space.
@@ -39,7 +39,7 @@ type storageUsageState struct {
 }
 
 // StorageUsage displays segmented capacity with keyboard readouts and details.
-func StorageUsage(c *ui.Context, segments []StorageSegment, opts StorageUsageOptions) *ui.Element {
+func StorageUsage(c *ui.Context, segments []StorageSegment, opts StorageUsageOptions) ui.Element {
 	if opts.Capacity <= 0 {
 		panic("mujica: StorageUsage needs a positive Capacity")
 	}

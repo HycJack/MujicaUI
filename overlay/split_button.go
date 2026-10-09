@@ -6,11 +6,11 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/icons"
-	"github.com/ZacharyZhang-NY/MujicaUI/input"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/icons"
+	"github.com/HycJack/MujicaUI/input"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // SplitButtonOptions configure a SplitButton.
@@ -78,7 +78,7 @@ func SplitButton(c *ui.Context, label string, opts SplitButtonOptions, build fun
 }
 
 // splitButtonLook colors one half as a Button of variant v would be.
-func splitButtonLook(c *ui.Context, k theme.Tokens, b *ui.Element, v input.ButtonVariant, open bool) {
+func splitButtonLook(c *ui.Context, k theme.Tokens, b ui.Element, v input.ButtonVariant, open bool) {
 	internal.Ring(b, k.Focus, theme.ControlRadius)
 	bg, fg, border := input.ButtonColors(k, v, b.Hovered() && !b.IsDisabled(), b.Pressed() || open)
 	b.Background(bg).TextColor(fg).Transition(core.ColorFade)

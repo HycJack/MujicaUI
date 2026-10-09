@@ -7,9 +7,9 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ChartLegendItem is a series key: name, color and marker shape.
@@ -29,7 +29,7 @@ type ChartLegendOptions struct {
 
 // ChartLegendResult exposes the element and legend events.
 type ChartLegendResult struct {
-	Element          *ui.Element
+	Element          ui.Element
 	toggled          string
 	expanded, folded bool
 }
@@ -100,7 +100,7 @@ func chartLegendEntry(c *ui.Context, hidden *map[string]bool, it ChartLegendItem
 	k := core.Tokens(c)
 	u := core.Density(c).Unit()
 	on := hidden == nil || !(*hidden)[it.Name]
-	var e *ui.Element
+	var e ui.Element
 	switched := false
 	if hidden != nil {
 		e = ui.CheckboxBase(c, &on).Disabled(disabled).Label(it.Name)

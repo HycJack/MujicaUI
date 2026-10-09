@@ -6,10 +6,10 @@ import (
 
 	"github.com/egoist/mygo/ui"
 
-	"github.com/ZacharyZhang-NY/MujicaUI/core"
-	"github.com/ZacharyZhang-NY/MujicaUI/display"
-	"github.com/ZacharyZhang-NY/MujicaUI/internal"
-	"github.com/ZacharyZhang-NY/MujicaUI/theme"
+	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/display"
+	"github.com/HycJack/MujicaUI/internal"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 // ReceiptState tracks delivery; its zero value means sent.
@@ -30,7 +30,7 @@ type ReadReceiptOptions struct {
 }
 
 // ReadReceipt displays delivery marks, text and reader avatars.
-func ReadReceipt(c *ui.Context, state ReceiptState, opts ReadReceiptOptions) *ui.Element {
+func ReadReceipt(c *ui.Context, state ReceiptState, opts ReadReceiptOptions) ui.Element {
 	if state < ReceiptSent || state > ReceiptRead || opts.Max < 0 {
 		panic(fmt.Sprintf("mujica: bad ReadReceipt state %d or Max %d", state, opts.Max))
 	}
