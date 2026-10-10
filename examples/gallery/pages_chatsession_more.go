@@ -81,7 +81,7 @@ func chatDemoPromptLibrary(c *ui.Context, log func(string)) {
 	}, func() {
 		before := s.lib.Selected
 		v := chat.PromptLibrary(c, &s.lib, templates, chat.PromptLibraryOptions{Label: "Prompt library", Disabled: s.disabled})
-		if s.lib.Selected != before {
+		if s.lib.Selected != before { // the preview choice lands in the build pass
 			log("preview " + s.lib.Selected)
 		}
 		if v.Inserted != "" {

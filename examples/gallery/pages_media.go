@@ -67,13 +67,13 @@ func mediaSection(c *ui.Context, title string, fn func()) {
 	})
 }
 
-// mediaCheck is a parameter checkbox that logs its changes.
-func mediaCheck(c *ui.Context, log func(string), v *bool, label string) {
-	before := *v
-	input.Checkbox(c, v, label, input.CheckboxOptions{})
-	if *v != before {
+// mediaCheck is a parameter checkbox that logs its changes and reports them.
+func mediaCheck(c *ui.Context, log func(string), v *bool, label string) bool {
+	changed := input.Checkbox(c, v, label, input.CheckboxOptions{}).Changed()
+	if changed {
 		log(fmt.Sprintf("%s = %v", label, *v))
 	}
+	return changed
 }
 
 // mediaPicture draws a w×h court scene in variant hues.

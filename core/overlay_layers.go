@@ -96,7 +96,7 @@ func (st *overlaySiteState) Shown(panel ui.Element) {
 // Closed moves a lost focus to the site once MyGo has had its chance to restore it.
 func (st *overlaySiteState) Closed(c *ui.Context, site ui.Element) {
 	if st.focusIn {
-		st.focusIn, st.wait = false, 2 // MyGo prunes the panel at the end of the next frame
+		st.focusIn, st.wait = false, 6 // MyGo prunes the exited panel after its keep-alive
 	}
 	if st.wait == 0 {
 		return

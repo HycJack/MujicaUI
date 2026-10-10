@@ -116,9 +116,8 @@ func (g *gallery) sections() []navigation.SidebarSection {
 
 func (g *gallery) sidebar(c *ui.Context) {
 	ui.Column(c).FillWidth().Gap(8).Padding(8, 8, 0, 8).Children(func() {
-		before := g.query
-		input.SearchInput(c, &g.query, input.SearchInputOptions{Placeholder: g.t("Search · 搜索", "搜索 · Search")})
-		if g.query != before {
+		sr := input.SearchInput(c, &g.query, input.SearchInputOptions{Placeholder: g.t("Search · 搜索", "搜索 · Search")})
+		if sr.Changed() {
 			g.logFor("shell")("search " + g.query)
 		}
 	})

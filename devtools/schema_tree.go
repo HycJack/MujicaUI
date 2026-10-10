@@ -108,6 +108,10 @@ func SchemaTree(c *ui.Context, s *SchemaTreeState, roots []SchemaNode, opts Sche
 		}).Grow(1)
 		restore()
 		internal.Ring(e, k.Focus, theme.ControlRadius)
+		// The outline applies its pending keyboard input when queried.
+		if !locked {
+			e.Changed()
+		}
 		r = core.NewChoiceResult(r.Element, !locked && s.selected != was)
 	})
 	if r.Changed() {

@@ -145,9 +145,7 @@ func audioWaveformDemo(c *ui.Context, log func(string)) {
 	s := ui.Local(c.Root(), "349", func() state { return state{pos: 20 * time.Second, selecting: true} })
 	mediaSection(c, "Parameters", func() {
 		ui.Row(c).Gap(16).AlignItems(ui.Center).Children(func() {
-			before := s.status
-			navigation.SegmentedControl(c, &s.status, []navigation.Segment{{Label: "Ready"}, {Label: "Loading"}, {Label: "Failed"}, {Label: "Empty"}}, navigation.SegmentedControlOptions{Label: "Status"})
-			if s.status != before {
+			if navigation.SegmentedControl(c, &s.status, []navigation.Segment{{Label: "Ready"}, {Label: "Loading"}, {Label: "Failed"}, {Label: "Empty"}}, navigation.SegmentedControlOptions{Label: "Status"}).Changed() {
 				log(fmt.Sprintf("status %d", s.status))
 			}
 			mediaCheck(c, log, &s.selecting, "Selectable")

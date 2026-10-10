@@ -24,9 +24,7 @@ func imageCropperDemo(c *ui.Context, log func(string)) {
 	aspects := []float64{0, 1, 16.0 / 9, 4.0 / 3}
 	mediaSection(c, "Parameters", func() {
 		ui.Row(c).Gap(16).AlignItems(ui.Center).Children(func() {
-			before := s.aspect
-			navigation.SegmentedControl(c, &s.aspect, []navigation.Segment{{Label: "Free"}, {Label: "1:1"}, {Label: "16:9"}, {Label: "4:3"}}, navigation.SegmentedControlOptions{Label: "Aspect"})
-			if s.aspect != before {
+			if navigation.SegmentedControl(c, &s.aspect, []navigation.Segment{{Label: "Free"}, {Label: "1:1"}, {Label: "16:9"}, {Label: "4:3"}}, navigation.SegmentedControlOptions{Label: "Aspect"}).Changed() {
 				s.crop.Rect = image.Rectangle{} // refit to the new ratio
 				log(fmt.Sprintf("aspect = %v", aspects[s.aspect]))
 			}

@@ -37,21 +37,19 @@ var navigationPages = []page{
 
 // navigationCheck is a check box that logs its changes.
 func navigationCheck(c *ui.Context, v *bool, label string, log func(string)) {
-	was := *v
-	ui.Checkbox(c, v, label)
-	if *v != was {
+	cb := ui.Checkbox(c, v, label)
+	if cb.Changed() {
 		log(fmt.Sprintf("%s: %v", label, *v))
 	}
 }
 
 // navigationSlider is a labeled whole-number slider that logs its changes.
 func navigationSlider(c *ui.Context, v *float64, label string, lo, hi float64, log func(string)) {
-	was := math.Round(*v)
-	ui.Row(c).Gap(8).AlignItems(ui.Center).Children(func() {
+	s := ui.Row(c).Gap(8).AlignItems(ui.Center).Children(func() {
 		ui.Text(c, fmt.Sprintf("%s %.0f", label, math.Round(*v)))
 		ui.StepSlider(c, v, lo, hi, 1).Width(160)
 	})
-	if math.Round(*v) != was {
+	if s.Changed() {
 		log(fmt.Sprintf("%s: %.0f", label, math.Round(*v)))
 	}
 }

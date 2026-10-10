@@ -111,6 +111,11 @@ func JsonViewer(c *ui.Context, data string, s *JsonViewerState, opts JsonViewerO
 		s.list.Selected = &at
 		s.list.Label = func(i int) string { return s.tree.nodes[s.rows[i]].label() }
 		list := code.CodeRows(c, &s.list, len(s.rows), func(i int) { jsonViewerRow(c, s, s.rows[i]) })
+		// The list applies its pending input (arrows, clicks) when
+		// queried; read at only afterwards.
+		if !list.IsDisabled() {
+			list.Changed()
+		}
 		if !list.IsDisabled() && at != was && at >= 0 {
 			s.sel = s.rows[at]
 		}

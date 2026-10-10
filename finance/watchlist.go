@@ -168,6 +168,7 @@ func watchlistRows(c *ui.Context, s *WatchlistState, items []WatchItem, dec int,
 	}).Grow(1).MinHeight(0).Padding(d.Unit()).Background(k.Surface).Border(theme.BorderWidth, k.Border).Radius(theme.ControlRadius)
 	restore()
 	internal.Ring(list, k.Focus, theme.ControlRadius)
+	list.Changed() // applies the deferred choice to the cursor before reading it
 	if !disabled && s.cursor != before && s.cursor >= 0 {
 		s.Selected, changed = items[s.cursor].Symbol, true
 	}

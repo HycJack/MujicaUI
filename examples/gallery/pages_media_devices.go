@@ -205,9 +205,7 @@ func deviceDemo(c *ui.Context, log func(string)) {
 	}
 	mediaSection(c, "Parameters", func() {
 		ui.Row(c).Gap(16).Children(func() {
-			before := s.noCamera
-			mediaCheck(c, log, &s.noCamera, "No cameras")
-			if s.noCamera != before {
+			if mediaCheck(c, log, &s.noCamera, "No cameras") {
 				s.sel.Camera = ""
 			}
 			mediaCheck(c, log, &s.disabled, "Disabled")

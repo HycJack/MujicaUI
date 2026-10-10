@@ -36,3 +36,12 @@ PRD 第 2 节要求公开接口不足时向上游提交扩展。以下缺口在 
 | `TextInputBase` 无只读开关 | `ui/editor.go:139,811` | TextInput 只读模式 |
 | `ui.Stepper` 禁用时仍可步进，固定 9 位取整 | `ui/indicators.go:216`、`ui/widgets.go` `snap` | NumberInput（已改为自绘） |
 | 路径遮罩缓存按四分之一像素取键，进程内共享 | `ui/path.go:189-210` | 自绘路径以 `internal.Snap` 对齐；MyGo 自绘的箭头（Outline 等）无法对齐；快照测试因此在独立子进程中渲染，结果与测试顺序无关 |
+
+## mygo v0.3 迁移中发现的缺口（待提交 MyGo）
+
+在迁移到 mygo v0.3.4（值类型 Element、延迟输入）时核实：
+
+| 缺口 | 位置 | 影响 |
+| --- | --- | --- |
+| 模态 overlay 打开期间下层视图不构建，opener 的状态被 prune 剪除；关闭时 `restoreFocus` 因 `rt.states[opener] != nil` 不成立而失效，即使 opener 的 id 仍在 `rt.focused` 上 | `ui/scope.go:141-152`、`ui/runtime.go:591-636` | AlertDialog、ToolApprovalDialog 关闭后焦点落在 OverlaySite 的隐形占位上，不回到触发按钮（焦点不丢，Tab 可继续，但焦点环消失）。引擎侧需让 openers 记录的 opener 在模态期间 keep-alive，或恢复时按构建内容重挂 |
+| 输入分发期（HandleInput 回调）与绘制期（Draw/DrawOver 回调）元素句柄过期并 panic，剪贴板/焦点/查询 API 静默失效；组件必须在构建期捕获值或改用 `ui.Handle` 与 `Context.Services()` | `ui/frame.go:96-107`、`ui/api_gen.go` | 全部自定义控件的输入/绘制回调；已在 fork 内完成适配 |

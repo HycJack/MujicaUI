@@ -84,6 +84,7 @@ func projectsDemoTaskList(c *ui.Context, log func(string)) {
 	ui.Box(c).Height(360).FillWidth().Children(func() {
 		before := s.filter
 		r := project.TaskList(c, s.tasks, &s.filter, project.TaskListOptions{Statuses: projectsStatuses, Members: projectsMembers, GroupBy: s.group, Version: s.version, Disabled: s.disabled})
+		r.Element.Changed() // applies the deferred filter choice before reading it
 		if s.filter != before {
 			log(fmt.Sprintf("filter = %d", s.filter))
 		}

@@ -134,9 +134,9 @@ func (g *gallery) filesView(c *ui.Context, log func(string)) {
 		navigation.Toolbar(c, navigation.ToolbarOptions{Label: g.t("File actions", "文件操作")}, func() {
 			g.fileActions(c, log, targets, func(m *overlay.PopupMenu) { g.fileMenu(m, log, targets) })
 		}).Grow(1)
-		before := s.query
-		input.SearchInput(c, &s.query, input.SearchInputOptions{Placeholder: g.t("Filter files", "筛选文件")}).Element.Width(240)
-		if s.query != before {
+		sr := input.SearchInput(c, &s.query, input.SearchInputOptions{Placeholder: g.t("Filter files", "筛选文件")})
+		sr.Element.Width(240)
+		if sr.Changed() {
 			log(fmt.Sprintf("filter %q", s.query))
 		}
 	})

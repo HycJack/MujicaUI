@@ -84,8 +84,11 @@ func Popconfirm(c *ui.Context, anchor ui.Element, open *bool, opts PopconfirmOpt
 	if res.Confirmed || res.Canceled {
 		slog.Debug("mujica: popconfirm close", "confirmed", res.Confirmed)
 		*open = false
-		// Drop the exit keep-alive, so MyGo prunes the panel and returns the focus.
+		// Drop the exit keep-alive and put the focus back on the anchor.
 		panel.Transition(ui.ElementTransition{})
+		if panel.FocusWithin() {
+			anchor.Focus()
+		}
 	}
 	return res
 }

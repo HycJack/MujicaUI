@@ -67,16 +67,17 @@ func marketsEconomicCalendarDemo(c *ui.Context, log func(string)) {
 	if empty || status != data.DataReady {
 		rows = nil
 	}
-	beforeFilter := fmt.Sprint(state.Countries, state.MinImportance)
 	ui.Column(c).Disabled(*disabled).MinHeight(0).Height(400).Children(func() {
+		beforeFilter := fmt.Sprint(state.Countries, state.MinImportance)
 		r := finance.EconomicCalendar(c, state, rows, finance.EconomicCalendarOptions{Status: status, Error: err})
+		r.Element.Changed() // applies the deferred filter choice before reading it
 		if r.Changed() || r.Submitted() || r.SortChanged() || r.Retried() {
 			log(fmt.Sprint(state.Table.Selected()))
 		}
+		if fmt.Sprint(state.Countries, state.MinImportance) != beforeFilter {
+			log(fmt.Sprint("filter ", state.Countries, state.MinImportance))
+		}
 	})
-	if fmt.Sprint(state.Countries, state.MinImportance) != beforeFilter {
-		log(fmt.Sprint("filter ", state.Countries, state.MinImportance))
-	}
 }
 
 func marketsEarningsCalendarDemo(c *ui.Context, log func(string)) {

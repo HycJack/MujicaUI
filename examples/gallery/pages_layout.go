@@ -38,31 +38,28 @@ var layoutPages = []page{
 
 // layoutCheck is a check box that logs its changes.
 func layoutCheck(c *ui.Context, v *bool, label string, log func(string)) {
-	was := *v
-	ui.Checkbox(c, v, label)
-	if *v != was {
+	cb := ui.Checkbox(c, v, label)
+	if cb.Changed() {
 		log(fmt.Sprintf("%s: %v", label, *v))
 	}
 }
 
 // layoutChoice is a labeled drop-down that logs its changes.
 func layoutChoice(c *ui.Context, v *string, label string, options []string, log func(string)) {
-	was := *v
-	ui.Row(c).Gap(8).Children(func() { ui.Text(c, label); ui.Select(c, v, options) })
-	if *v != was {
+	sel := ui.Row(c).Gap(8).Children(func() { ui.Text(c, label); ui.Select(c, v, options) })
+	if sel.Changed() {
 		log(fmt.Sprintf("%s: %s", label, *v))
 	}
 }
 
 // layoutSlider is a labeled slider that logs whole-number changes.
 func layoutSlider(c *ui.Context, v *float64, label string, lo, hi float64, log func(string)) {
-	was := math.Round(*v)
-	ui.Row(c).Gap(8).Children(func() {
+	s := ui.Row(c).Gap(8).Children(func() {
 		ui.Text(c, fmt.Sprintf("%s %.0f", label, *v))
 		ui.Slider(c, v, lo, hi).Width(140)
 	})
-	if math.Round(*v) != was {
-		log(fmt.Sprintf("%s: %.0f", label, *v))
+	if s.Changed() {
+		log(fmt.Sprintf("%s: %.0f", label, math.Round(*v)))
 	}
 }
 

@@ -182,6 +182,12 @@ func PopupMenuOpen(c *ui.Context, anchor ui.Element, open *bool, build func(m *P
 		*open = false
 	}
 	if !*open {
+		// Drop the exit keep-alive and put the focus back on the trigger
+		// when the menu had it; an outside press has focused its target.
+		panel.Transition(ui.ElementTransition{})
+		if panel.FocusWithin() {
+			anchor.Focus()
+		}
 		slog.Debug("mujica: popup_menu close")
 	}
 	return panel
