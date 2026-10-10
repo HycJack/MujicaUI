@@ -30,6 +30,10 @@ type TextAreaOptions struct {
 	Error string
 	// Keys sees keys before the editor, for PromptComposer's menus.
 	Keys func(ui.InputEvent) bool
+	// Frameless drops the field's own border, background and focus ring:
+	// the field sits inside a frame the caller draws, such as a composer
+	// card with its own toolbar.
+	Frameless bool
 }
 
 // TextArea is a multi-line field editing *value.
@@ -56,7 +60,7 @@ func TextArea(c *ui.Context, value *string, opts TextAreaOptions) InputResult {
 	}
 	count := textAreaCount(c, n, opts.MaxLength)
 	var r InputResult
-	look := &textInputLook{disabled: opts.Disabled, readOnly: opts.ReadOnly, err: errMsg, area: true}
+	look := &textInputLook{disabled: opts.Disabled, readOnly: opts.ReadOnly, err: errMsg, area: true, frameless: opts.Frameless}
 	r.Element, r.Input = textInputFrame(c, look, func(frame ui.Element) ui.Element {
 		in := TextInputEditor(c, frame, value, opts.ReadOnly || look.disabled, ui.TextAreaBase).Grow(1).Padding(d.Unit()*2, d.Unit()*3).
 			Placeholder(opts.Placeholder).Label(opts.Label)

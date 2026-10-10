@@ -81,6 +81,7 @@ func TextInput(c *ui.Context, value *string, opts TextInputOptions) InputResult 
 // textInputLook is the state a field frame shows; disabled gains any disabled ancestor.
 type textInputLook struct {
 	disabled, readOnly, area bool
+	frameless                bool
 	err                      string
 }
 
@@ -109,6 +110,11 @@ func textInputFrame(c *ui.Context, look *textInputLook, build func(frame ui.Elem
 		}
 		if frame.Clicked() {
 			in.Focus()
+		}
+		if look.frameless {
+			// A frameless field draws nothing of its own: it sits inside a
+			// frame the caller draws, such as a composer card.
+			return
 		}
 		bg, border := k.Surface, k.ControlBorder
 		switch {
