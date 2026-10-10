@@ -197,7 +197,7 @@ func PopupMenuOpen(c *ui.Context, anchor ui.Element, open *bool, build func(m *P
 func popupMenuLevelBuild(c *ui.Context, outer ui.Element, root *popupMenuRoot, build func(m *PopupMenu), autofocus bool) {
 	u := core.Density(c).Unit()
 	// The padding leaves room for the items' focus rings inside the clipping scroll.
-	items := ui.Scroll(c).Shrink(1).Padding(u + theme.FocusGap + theme.FocusWidth).FocusGroup(ui.Vertical)
+	items := ui.Scroll(c).Padding(u + theme.FocusGap + theme.FocusWidth).FocusGroup(ui.Vertical)
 	m := &PopupMenu{c: c, root: root, autofocus: autofocus}
 	m.level = ui.Local(items, "mujica.menu.level", func() popupMenuLevel { return popupMenuLevel{} })
 	outer.Role(ui.RolePopup)
