@@ -131,11 +131,24 @@ func TestImageRetryUnclippedInSmallBox(t *testing.T) {
 		t.Fatal("retry not focused")
 	}
 	above, below := ring()
+	// ControlRadius is large enough to round the 28x28 icon button into a
+	// circle, so the ring's stroke runs on an arc and the sampled point
+	// sits on its antialiased edge: compare with a tolerance.
 	want := theme.Light().Focus
-	if above != want || below != want {
+	close := func(a, b ui.Color) bool {
+		return abs(int(a.R)-int(b.R)) <= 12 && abs(int(a.G)-int(b.G)) <= 12 && abs(int(a.B)-int(b.B)) <= 12
+	}
+	if !close(above, want) || !close(below, want) {
 		t.Fatalf("ring above %v below %v, want %v", above, below, want)
 	}
 	if r.Y-theme.FocusGap >= box.Y || r.Y+r.H+theme.FocusGap <= box.Y+box.H {
 		t.Fatalf("ring rows not outside box %v (retry %v)", box, r)
 	}
+}
+
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
 }

@@ -244,7 +244,7 @@ func Toaster(c *ui.Context) ToasterResult {
 func toastCard(c *ui.Context, k theme.Tokens, u, width float32, m ToastMessage) (action, closed, held bool) {
 	tone, icon := core.SeverityLook(k, m.Severity)
 	card := ui.Row(c).Key(m.ID).Width(width).AlignItems(ui.Center).Gap(u*3).Padding(u*2, u*2, u*2, u*4).
-		Radius(theme.PopupRadius).Background(k.Surface).Border(theme.BorderWidth, k.ControlBorder).
+		Radius(theme.ControlRadius).Background(k.Surface).Border(theme.BorderWidth, k.ControlBorder).
 		Role(ui.RoleStatus).Label(m.Message)
 	card.Shadow(0, 4, 12, 0, ui.RGBA(0, 0, 0, 0.14))
 	card.Transition(ui.ElementTransition{
@@ -253,7 +253,7 @@ func toastCard(c *ui.Context, k theme.Tokens, u, width float32, m ToastMessage) 
 		Exit:     &ui.Motion{},
 	})
 	card.Draw(func(p *ui.Painter, r ui.Rect) {
-		p.Fill(ui.Rect{X: r.X, Y: r.Y + theme.PopupRadius, W: 3, H: r.H - 2*theme.PopupRadius}, tone, 0)
+		p.Fill(ui.Rect{X: r.X, Y: r.Y + theme.ControlRadius, W: 3, H: r.H - 2*theme.ControlRadius}, tone, 0)
 	})
 	card.Children(func() {
 		ui.Icon(c, icon).Size(20, 20).TextColor(tone)

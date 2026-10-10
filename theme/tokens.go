@@ -33,58 +33,61 @@ type Tokens struct {
 	OnDanger      ui.Color
 }
 
-// Light returns the ivory appearance.
+// Light returns the Mint appearance: a zinc grayscale on white, with blue
+// reserved for accent — the palette keeps color scarce and surfaces layered
+// (white cards on grey panels), so hierarchy comes from the surface steps.
 func Light() Tokens {
 	return Tokens{
-		Background:    ui.Hex("#F2EBDD"),
-		Surface:       ui.Hex("#FBF7EF"),
-		SurfaceHover:  ui.Hex("#E8DFD0"),
-		Text:          ui.Hex("#211C1D"),
-		TextMuted:     ui.Hex("#6A5B55"),
-		Border:        ui.Hex("#D2C3AF"),
-		ControlBorder: ui.Hex("#877662"),
-		Accent:        ui.Hex("#7D2034"),
-		AccentHover:   ui.Hex("#651729"),
-		AccentPressed: ui.Hex("#511020"),
-		OnAccent:      ui.Hex("#FFF8EE"),
-		AccentText:    ui.Hex("#7D2034"),
-		Selection:     ui.Hex("#EAD7D9"),
-		Focus:         ui.Hex("#7D2034"),
-		Ornament:      ui.Hex("#AD9164"),
-		Success:       ui.Hex("#326247"),
-		Warning:       ui.Hex("#805714"),
-		Danger:        ui.Hex("#A12635"),
-		Info:          ui.Hex("#355E80"),
-		DangerFill:    ui.Hex("#A12635"),
-		OnDanger:      ui.Hex("#FFF8EE"),
+		Background:    ui.Hex("#FFFFFF"),
+		Surface:       ui.Hex("#F4F4F5"),
+		SurfaceHover:  ui.Hex("#ECECEE"),
+		Text:          ui.Hex("#18181B"),
+		TextMuted:     ui.Hex("#6B6B74"),
+		Border:        ui.Hex("#D9D9DE"),
+		ControlBorder: ui.Hex("#8B8B95"),
+		Accent:        ui.Hex("#2563EB"),
+		AccentHover:   ui.Hex("#1D4ED8"),
+		AccentPressed: ui.Hex("#1E40AF"),
+		OnAccent:      ui.Hex("#FFFFFF"),
+		AccentText:    ui.Hex("#1D4ED8"),
+		Selection:     ui.Hex("#E8EFFD"),
+		Focus:         ui.Hex("#2563EB"),
+		Ornament:      ui.Hex("#8B8B95"),
+		Success:       ui.Hex("#1F7A3D"),
+		Warning:       ui.Hex("#9A5410"),
+		Danger:        ui.Hex("#C62B30"),
+		Info:          ui.Hex("#0E7490"),
+		DangerFill:    ui.Hex("#C62B30"),
+		OnDanger:      ui.Hex("#FFFFFF"),
 	}
 }
 
-// Dark returns the charcoal appearance.
+// Dark returns the Mint appearance inverted: the same zinc steps on
+// near-black, the accent lifted to hold contrast.
 func Dark() Tokens {
 	return Tokens{
 		Dark:          true,
-		Background:    ui.Hex("#191618"),
-		Surface:       ui.Hex("#242024"),
-		SurfaceHover:  ui.Hex("#342C32"),
-		Text:          ui.Hex("#F2EBDD"),
-		TextMuted:     ui.Hex("#BCAEAA"),
-		Border:        ui.Hex("#51424A"),
-		ControlBorder: ui.Hex("#968278"),
-		Accent:        ui.Hex("#9C3C53"),
-		AccentHover:   ui.Hex("#AA425C"),
-		AccentPressed: ui.Hex("#813047"),
-		OnAccent:      ui.Hex("#FFF8EE"),
-		AccentText:    ui.Hex("#E4A0AE"),
-		Selection:     ui.Hex("#492A36"),
-		Focus:         ui.Hex("#E4A0AE"),
-		Ornament:      ui.Hex("#BDA172"),
-		Success:       ui.Hex("#94C6A4"),
-		Warning:       ui.Hex("#DFC080"),
-		Danger:        ui.Hex("#F0A1AA"),
-		Info:          ui.Hex("#9DBDDA"),
-		DangerFill:    ui.Hex("#A12635"),
-		OnDanger:      ui.Hex("#FFF8EE"),
+		Background:    ui.Hex("#111113"),
+		Surface:       ui.Hex("#1C1C1F"),
+		SurfaceHover:  ui.Hex("#26262A"),
+		Text:          ui.Hex("#F4F4F5"),
+		TextMuted:     ui.Hex("#A1A1AA"),
+		Border:        ui.Hex("#33333A"),
+		ControlBorder: ui.Hex("#6E6E78"),
+		Accent:        ui.Hex("#5B8DFF"),
+		AccentHover:   ui.Hex("#7AA5FF"),
+		AccentPressed: ui.Hex("#4A7AF0"),
+		OnAccent:      ui.Hex("#111113"),
+		AccentText:    ui.Hex("#9DC0FF"),
+		Selection:     ui.Hex("#16233D"),
+		Focus:         ui.Hex("#9DC0FF"),
+		Ornament:      ui.Hex("#71717A"),
+		Success:       ui.Hex("#5FC47C"),
+		Warning:       ui.Hex("#E5A04A"),
+		Danger:        ui.Hex("#FF6B6F"),
+		Info:          ui.Hex("#22D3EE"),
+		DangerFill:    ui.Hex("#C62B30"),
+		OnDanger:      ui.Hex("#FFFFFF"),
 	}
 }
 
@@ -149,11 +152,12 @@ const (
 	MonoFont  = "monospace"
 )
 
-// Shape metrics in DIPs.
+// Shape metrics in DIPs. One radius family, so curves read as related;
+// the values are generous — pills and switches go past them via Pill uses.
 const (
-	ControlRadius float32 = 2
-	CardRadius    float32 = 4
-	PopupRadius   float32 = 6
+	ControlRadius float32 = 14
+	CardRadius    float32 = 18
+	PopupRadius   float32 = 24
 	BorderWidth   float32 = 1
 	FocusWidth    float32 = 2
 	FocusGap      float32 = 2
