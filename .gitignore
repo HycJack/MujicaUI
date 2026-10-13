@@ -1,6 +1,7 @@
 *.got.png
 .DS_Store
 /gallery
+/gallery.exe
 /.claude/
 PRD.md
 docs/prd/
