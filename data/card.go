@@ -16,6 +16,11 @@ type CardOptions struct {
 	Footer func()
 	// Decorated draws a double border and corner ornaments in Ornament.
 	Decorated bool
+	// HoverLift lifts the card and scales it up slightly while the pointer
+	// is over it, as SwiftUI's cards; it takes no focus, and stays where it
+	// is in the layout, animated by AnimatePose. The lift only affects the
+	// way the card shows, never the space it reserves.
+	HoverLift bool
 }
 
 // cardInset is how far the inner line of a decorated card sits inside.
@@ -55,5 +60,26 @@ func Card(c *ui.Context, opts CardOptions, body func()) ui.Element {
 			ui.Row(c).Gap(u * 2).Justify(ui.End).AlignItems(ui.Center).Wrap().Children(opts.Footer)
 		}
 	})
+	cardPose(c, card, opts.HoverLift)
 	return card
+}
+
+// cardLift is how far and how much a HoverLift card moves and scales.
+const cardLift float32 = 4
+
+// cardPose sets the hover lift of a Card, when lifted is true: it raises
+// the card cardLift DIPs and scales it a hair while the pointer is over it,
+// smoothly (AnimatePose), and back when it leaves. The lift only changes
+// how the card shows, never the space it reserves in the layout. Without
+// motion on the desktop the card shows there at once.
+func cardPose(c *ui.Context, card ui.Element, lifted bool) {
+	if !lifted {
+		return
+	}
+	p := ui.Pose{}
+	if card.Hovered() {
+		p.Y = -cardLift
+		p.Scale = 1.02
+	}
+	card.AnimatePose(p, ui.Animation{Duration: core.Motion(c, theme.StateDuration), Ease: ui.EaseInOut})
 }

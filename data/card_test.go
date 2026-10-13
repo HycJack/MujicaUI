@@ -74,6 +74,89 @@ func TestCardDecorationColor(t *testing.T) {
 
 func toRGBA(c ui.Color) color.RGBA { return color.RGBA{c.R, c.G, c.B, c.A} }
 
+// firstSurfaceY returns the first y where, at column x, the image shows the
+// card's surface color, scanning down from top to bottom; -1 when the column
+// never shows it. It skips the card's top radius and border by starting at
+// the layout top, so it tracks where the filled body starts.
+func firstSurfaceY(t *testing.T, tt *ui.Tester, surf color.RGBA, x, top, bottom int) int {
+	t.Helper()
+	for y := top; y < bottom; y++ {
+		if got := color.RGBAModel.Convert(tt.Image().At(x, y)).(color.RGBA); got == surf {
+			return y
+		}
+	}
+	return -1
+}
+
+func TestCardHoverLiftMovesOnHover(t *testing.T) {
+	var surf color.RGBA
+	var laytop float32
+	tt := ui.NewTester(func(c *ui.Context) {
+		core.Use(c, core.Settings{Mode: core.Light})
+		k := core.Tokens(c)
+		surf = color.RGBA{k.Surface.R, k.Surface.G, k.Surface.B, k.Surface.A}
+		ui.Column(c).FillWidth().FillHeight().Background(k.Background).Padding(20).Children(func() {
+			laytop = Card(c, CardOptions{HoverLift: true}, func() { ui.Text(c, "lift") }).Width(120).Bounds().Y
+		})
+	}, 220, 180)
+	tt.Frame()
+	// The probe runs down the card's middle, past its top radius.
+	start := int(laytop) - 2
+	hoverY := firstSurfaceY(t, tt, surf, 100, start, start+14)
+	tt.Move(60, 40) // over the card
+	for range 8 {
+		tt.Frame()
+	}
+	liftY := firstSurfaceY(t, tt, surf, 100, start, start+14)
+	tt.Move(5, 5) // off the card
+	for range 8 {
+		tt.Frame()
+	}
+	restY := firstSurfaceY(t, tt, surf, 100, start, start+14)
+	if hoverY < 0 || liftY < 0 || restY < 0 {
+		t.Fatalf("surface not found: at rest %d, hovering %d, back %d", hoverY, liftY, restY)
+	}
+	if liftY >= hoverY {
+		t.Fatalf("hover lift: body top at rest %d, hovering %d; want it to rise", hoverY, liftY)
+	}
+	if restY != hoverY {
+		t.Fatalf("back to rest: body top %d, want %d", restY, hoverY)
+	}
+	// The layout keeps its place: the lift only changes how it shows.
+	tt.Frame()
+	if b := firstSurfaceY(t, tt, surf, 100, int(laytop)-2, int(laytop)+6); b != hoverY {
+		t.Fatalf("layout bounds unchanged, body still at %d, got %d", hoverY, b)
+	}
+}
+
+func TestCardNoLiftWithoutOption(t *testing.T) {
+	var surf color.RGBA
+	var laytop float32
+	tt := ui.NewTester(func(c *ui.Context) {
+		core.Use(c, core.Settings{Mode: core.Light})
+		k := core.Tokens(c)
+		surf = color.RGBA{k.Surface.R, k.Surface.G, k.Surface.B, k.Surface.A}
+		ui.Column(c).FillWidth().FillHeight().Background(k.Background).Padding(20).Children(func() {
+			laytop = Card(c, CardOptions{}, func() { ui.Text(c, "lift") }).Width(120).Bounds().Y
+		})
+	}, 220, 180)
+	tt.Frame()
+	start := int(laytop) - 2
+	atRest := firstSurfaceY(t, tt, surf, 100, start, start+14)
+	tt.Move(60, 40)
+	for range 8 {
+		tt.Frame()
+	}
+	hovering := firstSurfaceY(t, tt, surf, 100, start, start+14)
+	if atRest < 0 || hovering < 0 {
+		t.Fatalf("surface not found: rest %d, hover %d", atRest, hovering)
+	}
+	// Without HoverLift the card shows in place; hovering must not move it.
+	if atRest != hovering {
+		t.Fatalf("card without HoverLift moved: rest top %d, hovering top %d", atRest, hovering)
+	}
+}
+
 func TestCardSnapshot(t *testing.T) {
 	snapshot(t, "card", 640, 240, func(c *ui.Context) {
 		ui.Row(c).Padding(20).Gap(20).AlignItems(ui.Start).Children(func() {

@@ -14,8 +14,8 @@ import (
 
 func dataCardDemo(c *ui.Context, log func(string)) {
 	type state struct {
-		decorated, footer bool
-		title             string
+		decorated, footer, hoverLift bool
+		title                       string
 	}
 	s := ui.Local(c.Root(), "069", func() state { return state{footer: true, title: "Archive"} })
 	dataSection(c, "Card", func() {
@@ -23,9 +23,10 @@ func dataCardDemo(c *ui.Context, log func(string)) {
 			ui.TextInput(c, &s.title).Width(180).Placeholder("Title")
 			ui.Checkbox(c, &s.decorated, "Decorated")
 			ui.Checkbox(c, &s.footer, "Footer")
+			ui.Checkbox(c, &s.hoverLift, "Hover lift")
 		})
 		card := func(decorated bool) {
-			opts := data.CardOptions{Title: s.title, Decorated: decorated}
+			opts := data.CardOptions{Title: s.title, Decorated: decorated, HoverLift: s.hoverLift}
 			if s.footer {
 				opts.Footer = func() {
 					if input.Button(c, "Open", input.ButtonOptions{Variant: input.Secondary}).Clicked() {

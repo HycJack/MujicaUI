@@ -4,7 +4,9 @@ package main
 
 const dataCardCode = `view := func(c *ui.Context) {
 	core.Use(c, core.Settings{})
-	data.Card(c, data.CardOptions{Title: "Archive", Decorated: true, Footer: func() {
+	// HoverLift raises the card and scales it up a hair while the pointer
+	// is over it, animated by AnimatePose; it never moves its layout.
+	data.Card(c, data.CardOptions{Title: "Archive", HoverLift: true, Footer: func() {
 		input.Button(c, "Open", input.ButtonOptions{})
 	}}, func() {
 		ui.Text(c, "Letters of the court, sealed in wax.")
