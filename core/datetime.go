@@ -131,6 +131,9 @@ func DatetimeTrigger(c *ui.Context, text, placeholder, icon string) ui.Element {
 	k := Tokens(c)
 	b := ui.ButtonBase(c).Grow(1).Shrink(1).Justify(ui.Start).Gap(Density(c).Unit() * 2).
 		MinHeight(theme.MinHitSize).Radius(theme.ControlRadius).Role(ui.RolePopUpButton)
+	if text != "" {
+		b.Value(text)
+	}
 	internal.Ring(b, k.Focus, theme.ControlRadius)
 	if b.Shortcut(ui.Cmd, ui.KeyC) && text != "" {
 		c.WriteClipboard(text)
@@ -153,6 +156,7 @@ func DatetimePopup(c *ui.Context, anchor ui.Element, open *bool, readOnly bool, 
 		slog.Debug("mujica: datetime popup closed by state", "readOnly", readOnly)
 		*open = false
 	}
+	anchor.Expanded(*open)
 	return ui.PopoverBase(c, anchor, open, func(panel ui.Element) {
 		OverlayStyle(c, panel, OverlayEnter(c, panel))
 		panel.MaxWidth(d.ControlHeight()*7+d.Unit()*6+2*theme.BorderWidth).Margin(d.Unit(), 0, 0, 0).Padding(d.Unit() * 3).Gap(d.Unit() * 3)

@@ -48,6 +48,6 @@ view := func(c *ui.Context) {
 
 ## 限制
 
-- MyGo v0.2.10 不报告打开失败。`ui.Link` 和 `Context.OpenURL` 不返回结果（`ui/context.go:270`、`ui/window.go:583`）。窗口宿主在 goroutine 中调用 `Shell.OpenExternal` 并丢弃它的错误（`content.go:55`）。因此组件只能自行检查地址格式，系统打开失败无法自动显示。需要这种反馈时，传空 `URL`，在 `Clicked()` 后由调用方在 goroutine 中调用 `mygo.Shell.OpenExternal(url)`。它会返回 error，把结果通过 `Window.Update` 写回 `Error`。
+- `ui.Link` 本身仍不报告打开失败，但 MyGo v0.6.2 起 `Context.OpenURLThen` 会把结果交给回调。需要这种反馈时，传空 `URL`，在 `Clicked()` 后调用 `c.OpenURLThen(url, func(err error) { ... })`，把错误写回 `Error`。
 - 路径是否交给 Router 由 MyGo 决定。没有 Router 时，路径会被当作 URL 交给系统打开。
 - 链接不能嵌入 `ui.RichText` 句子中作为行内元素，因为外部图标和错误说明需要额外的行布局。行内链接请直接使用 `ui.Link`。

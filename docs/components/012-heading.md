@@ -39,5 +39,5 @@ view := func(c *ui.Context) {
 ## 限制
 
 - 标题字体为 `theme.SerifFont`（Georgia、宋体类回退）；系统缺字时由系统回退字体显示。
-- MyGo v0.2.10 没有 Heading 角色（`ui/access.go` 的 Role 列表中没有），辅助技术把标题读作普通文本，无法按标题层级导航。
+- 标题文本以 `ui.RoleHeading` 与 `Level` 报告为对应层级的标题（MyGo v0.6.2 起），辅助技术可按标题层级导航；副标题仍是普通文本。
 - 分隔线只在 Heading 内绘制，不依赖 Divider 组件。
