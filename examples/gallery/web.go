@@ -75,12 +75,20 @@ func (m *mirror) loop() {
 		if still > 30 {
 			wait = 200 * time.Millisecond
 		}
+		kicked := false
 		select {
 		case <-m.wake:
 			still = 0
+			kicked = true
 		case <-time.After(wait):
 		}
 		m.mu.Lock()
+		// The Tester's clock stands still until moved: move it on by the
+		// wait, so animation and After timers run as a window's would,
+		// but leave it be for input, which the frame already follows.
+		if !kicked {
+			m.tt.Advance(wait)
+		}
 		m.tt.Frame()
 		changed := m.capture()
 		m.mu.Unlock()
