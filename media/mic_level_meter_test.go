@@ -12,9 +12,10 @@ import (
 func TestMicLevelMeterPeakHold(t *testing.T) {
 	level := float32(1)
 	var peak *micPeak
+	const hold = 40 * time.Millisecond
 	tt := ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
-		e := MicLevelMeter(c, level, MicLevelMeterOptions{Hold: 40 * time.Millisecond})
+		e := MicLevelMeter(c, level, MicLevelMeterOptions{Hold: hold})
 		peak = ui.Local(e, micPeak{}, func() micPeak { return micPeak{} })
 	}, 400, 100)
 	if !tt.HasText("0 dB") {
@@ -31,7 +32,13 @@ func TestMicLevelMeterPeakHold(t *testing.T) {
 	if got := "peak " + micDB(peak.level); got != "peak 0 dB" {
 		t.Fatalf("peak not held: %q", got)
 	}
-	time.Sleep(60 * time.Millisecond)
+	// A tick short of the hold the peak still stands; past it, it falls.
+	tt.Advance(hold - time.Millisecond)
+	tt.Frame()
+	if got := "peak " + micDB(peak.level); got != "peak 0 dB" {
+		t.Fatalf("peak fell before the hold: %q", got)
+	}
+	tt.Advance(time.Millisecond)
 	tt.Frame()
 	if got := "peak " + micDB(peak.level); got != "peak -20 dB" {
 		t.Fatalf("peak did not fall after the hold: %q", got)

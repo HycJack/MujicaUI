@@ -32,11 +32,14 @@ func TestHoldToConfirmStep(t *testing.T) {
 	}
 }
 
+// holdDuration is the hold the tester asks for below.
+const holdDuration = 60 * time.Millisecond
+
 func holdTester(dis *bool, n *int) *ui.Tester {
 	return ui.NewTester(func(c *ui.Context) {
 		core.Use(c, core.Settings{})
 		ui.Row(c).Padding(20).Children(func() {
-			if HoldToConfirm(c, "Delete repo", HoldToConfirmOptions{Duration: 60 * time.Millisecond, Disabled: *dis}).Changed() {
+			if HoldToConfirm(c, "Delete repo", HoldToConfirmOptions{Duration: holdDuration, Disabled: *dis}).Changed() {
 				*n++
 			}
 		})
@@ -55,16 +58,16 @@ func TestHoldToConfirmPointerHold(t *testing.T) {
 		t.Fatalf("a click or key tap confirmed: %d", n)
 	}
 	tt.Press(cx, cy)
-	time.Sleep(20 * time.Millisecond)
+	tt.Advance(holdDuration / 2)
 	tt.Release(cx, cy)
-	time.Sleep(60 * time.Millisecond)
+	tt.Advance(holdDuration)
 	tt.Frame()
 	if n != 0 {
 		t.Fatal("an early release confirmed")
 	}
 	tt.Press(cx, cy)
-	time.Sleep(80 * time.Millisecond)
-	tt.Frame()
+	tt.Advance(holdDuration)
+	// The frame the clock lands on is the first to reach the duration.
 	tt.Frame()
 	tt.Release(cx, cy)
 	if n != 1 {
@@ -73,7 +76,7 @@ func TestHoldToConfirmPointerHold(t *testing.T) {
 	dis = true
 	tt.Frame()
 	tt.Press(cx, cy)
-	time.Sleep(80 * time.Millisecond)
+	tt.Advance(holdDuration)
 	tt.Frame()
 	tt.Release(cx, cy)
 	if n != 1 {

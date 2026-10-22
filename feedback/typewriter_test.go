@@ -21,8 +21,8 @@ func TestTypewriterRevealsFinishesAndSkips(t *testing.T) {
 	if tt.HasText(text) && motionCount(tt, text) == 2 {
 		t.Fatal("whole text shown at once")
 	}
-	time.Sleep(120 * time.Millisecond)
-	tt.Frame()
+	// 100 characters a second: 120 ms reveals a dozen of the 28.
+	motionAdvance(tt, 120*time.Millisecond)
 	shown := 0
 	for _, s := range tt.Texts() {
 		if s != text && s != "Skip" && len(s) > shown {
@@ -43,8 +43,8 @@ func TestTypewriterRevealsFinishesAndSkips(t *testing.T) {
 	if motionCount(tt, "The court assembles at dusk.") != 1 {
 		t.Fatalf("appended text restarted: %q", tt.Texts())
 	}
-	time.Sleep(300 * time.Millisecond)
-	tt.Frame()
+	// The appended sentence types on from where the skip left off.
+	motionAdvance(tt, 300*time.Millisecond)
 	if motionCount(tt, text) != 2 || finished != 2 {
 		t.Fatalf("append: finished %d %q", finished, tt.Texts())
 	}
@@ -87,7 +87,8 @@ func TestTypewriterReplacementRestartsClock(t *testing.T) {
 	tt, _ := motionFrames(func(c *ui.Context) {
 		Typewriter(c, text, TypewriterOptions{Speed: 10})
 	}, 300, 100)
-	time.Sleep(220 * time.Millisecond)
+	// 10 characters a second: two of them are down when the text is replaced.
+	motionAdvance(tt, 220*time.Millisecond)
 	text = "New letter"
 	tt.Frame()
 	if motionCount(tt, "Ne") > 0 {

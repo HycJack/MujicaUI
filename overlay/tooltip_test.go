@@ -35,9 +35,12 @@ func waitTooltip(tt *ui.Tester) bool {
 func TestTooltipHoverDelay(t *testing.T) {
 	tt, clicks := tooltipTester(40, 40)
 	r, _ := tt.Find("Share")
-	start := time.Now()
 	tt.Move(r.X+4, r.Y+4)
-	if time.Since(start) < tooltipTestDelay && tt.HasText("Share with the court") {
+	if tt.HasText("Share with the court") {
+		t.Fatal("tip showed before the delay")
+	}
+	tt.Advance(tooltipTestDelay / 2)
+	if tt.HasText("Share with the court") {
 		t.Fatal("tip showed before the delay")
 	}
 	waitTooltip(tt)
@@ -66,7 +69,7 @@ func TestTooltipFocusAndEscape(t *testing.T) {
 	if tt.HasText("Share with the court") {
 		t.Fatal("Escape did not hide the tip")
 	}
-	time.Sleep(tooltipTestDelay + 30*time.Millisecond)
+	tt.Advance(tooltipTestDelay + 30*time.Millisecond)
 	tt.Frame()
 	if tt.HasText("Share with the court") {
 		t.Fatal("tip came back while still focused")

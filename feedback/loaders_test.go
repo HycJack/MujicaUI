@@ -28,6 +28,15 @@ func motionBusy(tt *ui.Tester, n *int) bool {
 	return *n-before > 2
 }
 
+// motionAdvance moves the tester clock on by d, then draws the frame it leaves.
+func motionAdvance(tt *ui.Tester, d time.Duration) {
+	tt.Advance(d)
+	tt.Frame()
+}
+
+// motionSettle finishes an animation of duration d and the frame after it.
+func motionSettle(tt *ui.Tester, d time.Duration) { motionAdvance(tt, d+30*time.Millisecond) }
+
 // motionCount counts texts and names equal to s.
 func motionCount(tt *ui.Tester, s string) int {
 	n := 0
@@ -57,8 +66,7 @@ func testLoaderBehavior(t *testing.T, loader func(*ui.Context, LoaderOptions) ui
 		t.Fatal("label shown without ShowLabel")
 	}
 	a := encode(t, tt.Image())
-	time.Sleep(120 * time.Millisecond)
-	tt.Frame()
+	motionAdvance(tt, 120*time.Millisecond)
 	if bytes.Equal(a, encode(t, tt.Image())) || !motionBusy(tt, n) {
 		t.Fatal("loader does not move")
 	}
@@ -67,8 +75,7 @@ func testLoaderBehavior(t *testing.T, loader func(*ui.Context, LoaderOptions) ui
 		t.Fatalf("reduced motion: still repainting or no static label: %q", tt.Texts())
 	}
 	a = encode(t, tt.Image())
-	time.Sleep(120 * time.Millisecond)
-	tt.Frame()
+	motionAdvance(tt, 120*time.Millisecond)
 	if !bytes.Equal(a, encode(t, tt.Image())) {
 		t.Fatal("loader moved under reduced motion")
 	}

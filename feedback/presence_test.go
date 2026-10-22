@@ -7,6 +7,7 @@ import (
 	"github.com/egoist/mygo/ui"
 
 	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 func TestPresenceEntersExitsAndRemoves(t *testing.T) {
@@ -27,16 +28,14 @@ func TestPresenceEntersExitsAndRemoves(t *testing.T) {
 		if !tt.HasText("Notice") || *n-before < 3 {
 			t.Fatalf("kind %d: no entry motion (%d frames)", kind, *n-before)
 		}
-		time.Sleep(250 * time.Millisecond)
-		tt.Frame()
+		motionSettle(tt, theme.PopupDuration)
 		show = false
 		before = *n
 		tt.Frame()
 		if *n-before < 3 {
 			t.Fatalf("kind %d: no exit motion", kind)
 		}
-		time.Sleep(250 * time.Millisecond)
-		tt.Frame()
+		motionSettle(tt, theme.PopupDuration)
 		if tt.HasText("Notice") || motionBusy(tt, n) {
 			t.Fatalf("kind %d: not removed after exit", kind)
 		}

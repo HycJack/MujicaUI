@@ -109,17 +109,20 @@ func TestListMultiple(t *testing.T) {
 	if err := tt.ClickWith(ui.Cmd, "Item 4"); err != nil {
 		t.Fatal(err)
 	}
+	if !h.st.Selection.Has(1) || !h.st.Selection.Has(4) || h.st.Selection.Len() != 2 {
+		t.Fatalf("Cmd-click chose %d, want items 1 and 4", h.st.Selection.Len())
+	}
 	if err := tt.ClickWith(ui.Shift, "Item 6"); err != nil {
 		t.Fatal(err)
 	}
-	// Shift extends from the anchor click (MyGo keeps the pivot at item 1).
-	for id := 1; id <= 6; id++ {
+	// Shift extends from the row the Cmd-click toggled, in place of the rest.
+	for id := 4; id <= 6; id++ {
 		if !h.st.Selection.Has(id) {
 			t.Fatalf("item %d not chosen; %d chosen", id, h.st.Selection.Len())
 		}
 	}
-	if h.st.Selection.Len() != 6 {
-		t.Fatalf("chosen %d, want 6", h.st.Selection.Len())
+	if h.st.Selection.Len() != 3 {
+		t.Fatalf("chosen %d, want 3", h.st.Selection.Len())
 	}
 	tt.Key(ui.Cmd, ui.KeyA)
 	if h.st.Selection.Len() != 10 {

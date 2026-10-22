@@ -50,6 +50,9 @@ func TestBlameViewGroupsCommits(t *testing.T) {
 	}
 }
 
+// blameTooltipRest is how long MyGo rests the pointer on an anchor before showing its tip.
+const blameTooltipRest = 600 * time.Millisecond
+
 func TestBlameViewHoverDetails(t *testing.T) {
 	var s BlameViewState
 	tt := ui.NewTester(func(c *ui.Context) {
@@ -58,7 +61,7 @@ func TestBlameViewHoverDetails(t *testing.T) {
 	}, 700, 340)
 	r, _ := tt.Find("Uika")
 	tt.Move(r.X+2, r.Y+2)
-	time.Sleep(650 * time.Millisecond)
+	tt.Advance(blameTooltipRest)
 	tt.Move(r.X+3, r.Y+2)
 	tt.Frame()
 	if tt.HasText(gitTestHash(2) + "\nUika · 2026-10-05\nComment the lanes") {

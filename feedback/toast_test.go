@@ -179,19 +179,19 @@ func TestToastExpiresAndHoverPauses(t *testing.T) {
 	if !res.wake.IsZero() {
 		t.Fatal("hovered toast still schedules its expiry")
 	}
-	time.Sleep(2 * life)
-	released := time.Now()
+	// Hovered well past its life, then released: the toast is still there.
+	motionAdvance(tt, 2*life)
+	released := tt.Now()
 	tt.Move(5, 395)
-	done := time.Now()
 	// The frame that ends the hover must schedule the expiry itself.
-	if res.wake.IsZero() || res.wake.Before(released) || res.wake.After(done.Add(life)) {
+	if res.wake.IsZero() || res.wake.Before(released) || res.wake.After(released.Add(life)) {
 		t.Fatalf("release scheduled wake %v, released %v", res.wake, released)
 	}
 	if !tt.HasText("Copied") {
 		t.Fatal("hovered toast expired")
 	}
 	// Stands in for the frame MyGo's timer runs at res.wake.
-	time.Sleep(time.Until(res.wake) + 5*time.Millisecond)
+	tt.Advance(res.wake.Sub(tt.Now()) + 5*time.Millisecond)
 	tt.Frame()
 	if tt.HasText("Copied") {
 		t.Fatal("toast stayed after its wake-up")

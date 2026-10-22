@@ -3,7 +3,6 @@ package input
 import (
 	"slices"
 	"testing"
-	"time"
 
 	"github.com/egoist/mygo/ui"
 
@@ -54,7 +53,7 @@ func TestCopyButtonKeyboardRevertAndDisabled(t *testing.T) {
 	if _, ok := tt.Find("已复制"); !ok {
 		t.Fatal("icon button lacks the copied name")
 	}
-	time.Sleep(copyButtonShown + 50*time.Millisecond)
+	tt.Advance(copyButtonShown)
 	tt.Frame()
 	if _, ok := tt.Find("复制"); !ok {
 		t.Fatal("did not revert to Copy")

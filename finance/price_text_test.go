@@ -3,7 +3,6 @@ package finance
 import (
 	"bytes"
 	"testing"
-	"time"
 
 	"github.com/egoist/mygo/ui"
 
@@ -79,7 +78,7 @@ func TestPriceTextFlashesOnceAndNotUnderReducedMotion(t *testing.T) {
 		if same == !still {
 			t.Fatalf("reduced motion %v: flashed %v", still, !same)
 		}
-		time.Sleep(priceTextFlash + 20*time.Millisecond)
+		tt.Advance(priceTextFlash)
 		tt.Frame()
 		if !bytes.Equal(tt.Image().Pix, fresh.Image().Pix) {
 			t.Fatalf("reduced motion %v: flash did not end", still)

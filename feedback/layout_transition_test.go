@@ -2,11 +2,11 @@ package feedback
 
 import (
 	"testing"
-	"time"
 
 	"github.com/egoist/mygo/ui"
 
 	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 func TestLayoutTransitionResizes(t *testing.T) {
@@ -30,8 +30,7 @@ func TestLayoutTransitionResizes(t *testing.T) {
 	if *n-before < 3 {
 		t.Fatal("resize did not animate")
 	}
-	time.Sleep(260 * time.Millisecond)
-	tt.Frame()
+	motionSettle(tt, theme.StateDuration)
 	if motionBusy(tt, n) || w != 300 {
 		t.Fatalf("settled width %v", w)
 	}
