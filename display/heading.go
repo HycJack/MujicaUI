@@ -26,7 +26,7 @@ func Heading(c *ui.Context, title string, opts HeadingOptions) ui.Element {
 	col := ui.Column(c).Gap(u).Shrink(0)
 	col.Children(func() {
 		ui.Text(c, title).Font(theme.SerifFont).FontSize(core.FontSize(c, size)).FontWeight(600).
-			LineHeight(1.25).TextColor(k.Text)
+			LineHeight(1.25).TextColor(k.Text).Role(ui.RoleHeading).Level(max(opts.Level, 1))
 		if opts.Subtitle != "" {
 			ui.Text(c, opts.Subtitle).FontSize(core.FontSize(c, theme.BodySize)).LineHeight(theme.LineHeight).TextColor(k.TextMuted)
 		}

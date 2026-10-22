@@ -37,4 +37,4 @@ Enter 发送，Shift+Enter 换行；CmdEnterSends 下使用 Command/Ctrl+Enter�
 
 ## 限制
 
-MyGo v0.2.10 的 ui/input.go:688–708 将组合事件直接送到私有编辑器，公开 HandleInput 无法观察组合状态。自动检测组合输入仍需上游 API；调用方须设置 Composing。
+组合状态由调用方通过 `Composing` 传入：组件在按键处理阶段就要知道它，而输入框元素此时还没建出来。MyGo v0.6.2 起可以用上一帧的 `Element.Composing()` 驱动该字段（`opts.Composing = in.Composing()`），不必等上游再开接口。
