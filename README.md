@@ -9,7 +9,7 @@ MyGo 桌面组件库，建立在 [MyGo](https://mygo.egoist.dev/docs/ui) 原生 
 go get github.com/HycJack/MujicaUI
 ```
 
-要求 Go 1.27.1 与 MyGo v0.2.10（见 [兼容表](docs/compat.md)）。
+要求 Go 1.27.1 与 MyGo v0.6.2（见 [兼容表](docs/compat.md)）。
 
 ## 最小示例
 
