@@ -50,7 +50,7 @@ func TestCitationBadgeActivatesAndPreviews(t *testing.T) {
 	if a.st.hover != 3 {
 		t.Fatalf("hover %d, want 3", a.st.hover)
 	}
-	time.Sleep(600 * time.Millisecond)
+	tt.Advance(citationPreviewDelay)
 	tt.Frame()
 	if n := len(tt.Texts()); n == 0 || !tt.HasText("example.net") {
 		t.Fatalf("no preview card: %q", tt.Texts())
@@ -114,7 +114,7 @@ func TestCitationBadgeHitAreaAndDisabledPreview(t *testing.T) {
 		t.Errorf("hit area %v, want at least 28x28", b)
 	}
 	tt.Key(0, ui.KeyTab)
-	time.Sleep(550 * time.Millisecond)
+	tt.Advance(citationPreviewDelay)
 	tt.Frame()
 	off = true
 	tt.Frame()
@@ -133,7 +133,7 @@ func TestCitationBadgePreviewFitsNarrowWindow(t *testing.T) {
 		ui.Row(c).Padding(8).Children(func() { CitationBadge(c, 1, src, &st) })
 	}, 180, 120)
 	tt.Key(0, ui.KeyTab)
-	time.Sleep(550 * time.Millisecond)
+	tt.Advance(citationPreviewDelay)
 	tt.Frame()
 	preview, ok := tt.Find("Source preview")
 	if !ok || preview.X < 0 || preview.X+preview.W > 180 || preview.Y+preview.H > 120 {
@@ -163,6 +163,8 @@ func TestCitationBadgeRemovedOwnerClearsHover(t *testing.T) {
 	}
 	show = false
 	tt.Move(390, 290)
+	// A hover is cleared by the next frame, whose clock has moved on.
+	tt.Advance(time.Second / 60)
 	tt.Frame()
 	if st.hover != 0 {
 		t.Fatalf("removed owner retained hover %d", st.hover)

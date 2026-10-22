@@ -26,10 +26,7 @@ func TestThinkingIndicatorReducedMotionIsStill(t *testing.T) {
 		tt := chatTester(200, 60, func(c *ui.Context) { ThinkingIndicator(c, ThinkingIndicatorOptions{}) })
 		tt.SetPreferences(ui.Preferences{ReduceMotion: reduce, TextScale: 1})
 		tt.Frame()
-		if at > 0 {
-			time.Sleep(at)
-			tt.Frame()
-		}
+		tt.Advance(at)
 		return encode(t, tt.Image())
 	}
 	if !bytes.Equal(frame(true, 0), frame(true, 300*time.Millisecond)) {

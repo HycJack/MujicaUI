@@ -3,7 +3,6 @@ package navigation
 import (
 	"fmt"
 	"testing"
-	"time"
 
 	"github.com/egoist/mygo/ui"
 
@@ -31,12 +30,12 @@ func TestNavigationPopupsFadeIn(t *testing.T) {
 		{"menubar", "File", "Quit", func(c *ui.Context) {
 			Menubar(c, (&menubarApp{}).menus(), MenubarOptions{})
 		}},
-		{"command palette", "", "Esc close", func(c *ui.Context) {
+		// A row shows the panel's surface; the footer pins the page's own background.
+		{"command palette", "", "Open recent", func(c *ui.Context) {
 			open := true
 			CommandPalette(c, &open, commandPaletteSample(), CommandPaletteOptions{})
 		}},
 	} {
-		opened := time.Now()
 		tt := ui.NewTester(func(c *ui.Context) {
 			core.Use(c, core.Settings{Mode: core.Light})
 			ui.Column(c).Fill().Padding(16).AlignItems(ui.Start).Children(func() { tc.view(c) })
@@ -52,11 +51,9 @@ func TestNavigationPopupsFadeIn(t *testing.T) {
 		}
 		x, y := int(r.X-3), int(r.Y+r.H/2)
 		early := tt.Image().RGBAAt(x, y)
-		mid := time.Since(opened) < theme.PopupDuration/2
-		time.Sleep(200 * time.Millisecond)
+		tt.Advance(theme.PopupDuration)
 		tt.Frame()
-		// A slow run may finish the fade before the first sample.
-		if late := tt.Image().RGBAAt(x, y); mid && early == late {
+		if late := tt.Image().RGBAAt(x, y); early == late {
 			t.Errorf("%s: popup appeared at once (%v)", tc.name, late)
 		}
 	}

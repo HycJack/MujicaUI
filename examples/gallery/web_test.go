@@ -161,18 +161,21 @@ func postInput(t *testing.T, srv *httptest.Server, in webEvent) {
 }
 
 func TestMirrorTimersFireWithoutInput(t *testing.T) {
-	start := time.Now()
+	var start time.Time
 	var late bool
 	m, _ := mirrorWith(t, func(c *ui.Context) {
 		core.Use(c, core.Settings{})
+		if start.IsZero() {
+			start = c.Now()
+		}
 		late = c.Now().Sub(start) > 300*time.Millisecond
 		if !late {
 			c.After(350 * time.Millisecond)
 		}
 	})
-	time.Sleep(900 * time.Millisecond)
 	m.mu.Lock()
 	defer m.mu.Unlock()
+	m.tt.Advance(350 * time.Millisecond)
 	if !late {
 		t.Fatal("the view was not rebuilt after its timer with no input")
 	}

@@ -46,9 +46,9 @@ func hoverCardShown(tt *ui.Tester) func() bool {
 	return func() bool { return tt.HasText("Keyboardist of the court") }
 }
 
-// hoverCardSettle waits past both delays so any pending open or close has happened.
+// hoverCardSettle advances past both delays so any pending open or close has happened.
 func hoverCardSettle(tt *ui.Tester) {
-	time.Sleep(hoverCardTestDelay + 30*time.Millisecond)
+	tt.Advance(hoverCardTestDelay + 30*time.Millisecond)
 	tt.Frame()
 }
 
@@ -56,9 +56,8 @@ func TestHoverCardPointerCanEnterCard(t *testing.T) {
 	a := &hoverCardApp{}
 	tt := ui.NewTester(a.view, 500, 400)
 	r, _ := tt.Find("Lady Sakiko")
-	start := time.Now()
 	tt.Move(r.X+5, r.Y+5)
-	if time.Since(start) < hoverCardTestDelay && tt.HasText("Keyboardist of the court") {
+	if tt.HasText("Keyboardist of the court") {
 		t.Fatal("opened before the delay")
 	}
 	if !overlayUntil(tt, hoverCardShown(tt)) {
@@ -97,9 +96,12 @@ func TestHoverCardCloseDelay(t *testing.T) {
 	if !overlayUntil(tt, hoverCardShown(tt)) {
 		t.Fatal("card did not open")
 	}
-	start := time.Now()
 	tt.Move(490, 390)
-	if time.Since(start) < hoverCardTestDelay && !tt.HasText("Follow") {
+	if !tt.HasText("Follow") {
+		t.Fatal("closed without the close delay")
+	}
+	tt.Advance(hoverCardTestDelay / 2)
+	if !tt.HasText("Follow") {
 		t.Fatal("closed without the close delay")
 	}
 	if !overlayUntil(tt, func() bool { return !tt.HasText("Follow") }) {

@@ -2,7 +2,6 @@ package project
 
 import (
 	"testing"
-	"time"
 
 	"github.com/egoist/mygo/ui"
 
@@ -54,7 +53,7 @@ func TestIssueIdBadgeCopiedFades(t *testing.T) {
 	if !tt.HasText("Copied") {
 		t.Fatal("no Copied note")
 	}
-	time.Sleep(issueCopiedFor + 50*time.Millisecond)
+	tt.Advance(issueCopiedFor)
 	tt.Frame()
 	if tt.HasText("Copied") {
 		t.Fatal("Copied should go away")

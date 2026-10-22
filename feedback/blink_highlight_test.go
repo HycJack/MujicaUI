@@ -11,9 +11,10 @@ import (
 )
 
 func TestBlinkHighlightFlashesOnceWithDirection(t *testing.T) {
+	const flash = 200 * time.Millisecond
 	value := 10.0
 	tt, n := motionFrames(func(c *ui.Context) {
-		BlinkHighlight(c, value, BlinkHighlightOptions{Duration: 200 * time.Millisecond})
+		BlinkHighlight(c, value, BlinkHighlightOptions{Duration: flash})
 	}, 200, 60)
 	if motionBusy(tt, n) {
 		t.Fatal("first value flashed")
@@ -27,8 +28,7 @@ func TestBlinkHighlightFlashesOnceWithDirection(t *testing.T) {
 	if _, ok := tt.Find("12.00, up"); !ok {
 		t.Fatalf("direction not named: %q", tt.Texts())
 	}
-	time.Sleep(250 * time.Millisecond)
-	tt.Frame()
+	motionSettle(tt, flash)
 	if bytes.Equal(a, encode(t, tt.Image())) || motionBusy(tt, n) {
 		t.Fatal("flash did not fade and stop")
 	}

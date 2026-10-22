@@ -13,17 +13,17 @@ import (
 )
 
 func TestCountUpCountsAndSettles(t *testing.T) {
+	const count = 300 * time.Millisecond
 	value := 100.0
 	tt, n := motionFrames(func(c *ui.Context) {
-		CountUp(c, value, CountUpOptions{Duration: 300 * time.Millisecond})
+		CountUp(c, value, CountUpOptions{Duration: count})
 	}, 200, 60)
 	if !tt.HasText("100") || motionBusy(tt, n) {
 		t.Fatalf("first value shown at once: %q", tt.Texts())
 	}
 	value = 200
 	tt.Frame()
-	time.Sleep(100 * time.Millisecond)
-	tt.Frame()
+	motionAdvance(tt, count/3)
 	mid := ""
 	for _, s := range tt.Texts() {
 		if s != "200" {
@@ -33,8 +33,7 @@ func TestCountUpCountsAndSettles(t *testing.T) {
 	if mid == "" || mid == "100" {
 		t.Fatalf("no value between: %q", tt.Texts())
 	}
-	time.Sleep(300 * time.Millisecond)
-	tt.Frame()
+	motionSettle(tt, count)
 	if motionCount(tt, "200") != 2 || motionBusy(tt, n) {
 		t.Fatalf("did not settle: %q", tt.Texts())
 	}

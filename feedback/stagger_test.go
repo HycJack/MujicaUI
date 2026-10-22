@@ -7,6 +7,7 @@ import (
 	"github.com/egoist/mygo/ui"
 
 	"github.com/HycJack/MujicaUI/core"
+	"github.com/HycJack/MujicaUI/theme"
 )
 
 func TestStaggerRevealsInTurnOnce(t *testing.T) {
@@ -19,15 +20,13 @@ func TestStaggerRevealsInTurnOnce(t *testing.T) {
 	if !tt.HasText("Row 0") || tt.HasText("Row 4") {
 		t.Fatalf("first frame: %q", tt.Texts())
 	}
-	time.Sleep(120 * time.Millisecond)
-	tt.Frame()
+	// Two intervals in, the third row has come and the fifth has not.
+	motionAdvance(tt, 120*time.Millisecond)
 	if !tt.HasText("Row 2") || tt.HasText("Row 4") {
 		t.Fatalf("after 120 ms: %q", tt.Texts())
 	}
-	time.Sleep(300 * time.Millisecond)
-	tt.Frame()
-	time.Sleep(250 * time.Millisecond)
-	tt.Frame()
+	motionAdvance(tt, 300*time.Millisecond)
+	motionSettle(tt, theme.PopupDuration)
 	if !tt.HasText("Row 4") || motionBusy(tt, n) {
 		t.Fatalf("did not finish and settle: %q", tt.Texts())
 	}

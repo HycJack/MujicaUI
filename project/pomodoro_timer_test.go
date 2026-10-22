@@ -122,7 +122,8 @@ func TestPomodoroTimerIdleAndHidden(t *testing.T) {
 	shown = false
 	tt.Frame()
 	before := builds
-	time.Sleep(1100 * time.Millisecond)
+	// A hidden timer still marks the clock, but asks for no frame.
+	tt.Advance(1100 * time.Millisecond)
 	if builds != before || !s.Running() {
 		t.Fatalf("hidden timer: builds %d, running %v", builds, s.Running())
 	}

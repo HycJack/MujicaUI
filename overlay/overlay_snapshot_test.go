@@ -6,15 +6,13 @@ import (
 	"github.com/egoist/mygo/ui"
 )
 
-// overlayUntil draws frames until cond holds, for at most 5 s of wall time.
+// overlayUntil advances the tester clock until cond holds, for at most 5 s of it.
 func overlayUntil(tt *ui.Tester, cond func() bool) bool {
-	end := time.Now().Add(5 * time.Second)
-	for !cond() {
-		if time.Now().After(end) {
-			return false
+	for range 100 {
+		if cond() {
+			return true
 		}
-		time.Sleep(2 * time.Millisecond)
-		tt.Frame()
+		tt.Advance(50 * time.Millisecond)
 	}
-	return true
+	return cond()
 }
