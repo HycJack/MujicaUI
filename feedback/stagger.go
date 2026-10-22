@@ -59,6 +59,8 @@ func Stagger(c *ui.Context, n int, opts StaggerOptions, item func(i int)) ui.Ele
 	if c.Preferences().ReduceMotion {
 		s.done = true
 	}
+	// The state is a copy: write it back, so the sequence runs once.
+	*st = s
 	enter := &ui.Motion{Y: 8}
 	if opts.Horizontal {
 		enter = &ui.Motion{X: 8}
