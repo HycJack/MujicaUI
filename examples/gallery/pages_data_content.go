@@ -15,7 +15,7 @@ import (
 func dataCardDemo(c *ui.Context, log func(string)) {
 	type state struct {
 		decorated, footer, hoverLift bool
-		title                       string
+		title                        string
 	}
 	s := ui.Local(c.Root(), "069", func() state { return state{footer: true, title: "Archive"} })
 	dataSection(c, "Card", func() {
