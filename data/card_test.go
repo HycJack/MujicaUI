@@ -104,14 +104,10 @@ func TestCardHoverLiftMovesOnHover(t *testing.T) {
 	start := int(laytop) - 2
 	hoverY := firstSurfaceY(t, tt, surf, 100, start, start+14)
 	tt.Move(60, 40) // over the card
-	for range 8 {
-		tt.Frame()
-	}
+	tt.Advance(theme.StateDuration)
 	liftY := firstSurfaceY(t, tt, surf, 100, start, start+14)
 	tt.Move(5, 5) // off the card
-	for range 8 {
-		tt.Frame()
-	}
+	tt.Advance(theme.StateDuration)
 	restY := firstSurfaceY(t, tt, surf, 100, start, start+14)
 	if hoverY < 0 || liftY < 0 || restY < 0 {
 		t.Fatalf("surface not found: at rest %d, hovering %d, back %d", hoverY, liftY, restY)
@@ -144,9 +140,7 @@ func TestCardNoLiftWithoutOption(t *testing.T) {
 	start := int(laytop) - 2
 	atRest := firstSurfaceY(t, tt, surf, 100, start, start+14)
 	tt.Move(60, 40)
-	for range 8 {
-		tt.Frame()
-	}
+	tt.Advance(theme.StateDuration)
 	hovering := firstSurfaceY(t, tt, surf, 100, start, start+14)
 	if atRest < 0 || hovering < 0 {
 		t.Fatalf("surface not found: rest %d, hover %d", atRest, hovering)
