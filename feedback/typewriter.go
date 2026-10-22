@@ -37,9 +37,11 @@ func Typewriter(c *ui.Context, text string, opts TypewriterOptions) core.ChoiceR
 	if math.IsNaN(speed) || math.IsInf(speed, 0) || speed < float64(time.Second)/float64(math.MaxInt64) || speed > float64(time.Second) {
 		panic("mujica: Typewriter Speed must give a finite positive interval")
 	}
-	step := time.Duration(float64(time.Second) / speed)
-	if step <= 0 {
-		panic("mujica: Typewriter Speed interval exceeds time.Duration")
+	// The slowest speed asks for the longest interval, which rounds past the
+	// largest Duration: it types one character per Duration and no faster.
+	step := time.Duration(math.MaxInt64)
+	if interval := float64(time.Second) / speed; interval < float64(math.MaxInt64) {
+		step = time.Duration(interval)
 	}
 	col := ui.Column(c).AlignItems(ui.Start).Gap(core.Density(c).Unit() * 2).Role(ui.RoleGroup).Label(text)
 	res := core.ChoiceResult{Element: col}
